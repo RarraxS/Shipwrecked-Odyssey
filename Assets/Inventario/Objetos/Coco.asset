@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Coco
   m_EditorClassIdentifier: 
-  Nombre: Coco
-  Stackeable: 1
-  icono: {fileID: 21300000, guid: 4f5016466dde87440bb94788485e2348, type: 3}
+  nombre: Coco
+  stackeable: 1
+  sprite: {fileID: 21300000, guid: c2d25901c84a7e347ad2be46363e7ca9, type: 3}
+  descripcion: Es un coco

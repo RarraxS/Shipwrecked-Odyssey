@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     
     public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menú está abierto 
     
-    public ItemContainer InventoryContainer;
-    public ItemDragAndDropController dragAndDropController;
+    //public ItemContainerOld InventoryContainer;
+    //public ItemDragAndDropControllerOld dragAndDropController;
     public Jugador Player;
 
     private static GameManager instance;

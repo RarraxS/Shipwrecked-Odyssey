@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6453705441346248685}
   - component: {fileID: 6453705441346248690}
   - component: {fileID: 6453705441346248687}
-  - component: {fileID: 5851018211302393271}
+  - component: {fileID: 1907498137544446741}
   m_Layer: 0
   m_Name: Recolectables
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &5851018211302393271
+--- !u!114 &1907498137544446741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6453705441346248688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859dc22d4f0456444993ef7f74fd8d1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2461f938abe41f446917082408389b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanciaMaximaInteraccion: 8
   velocidad: 10
-  distancia: 8
   item: {fileID: 0}

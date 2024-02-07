@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Madera
   m_EditorClassIdentifier: 
-  Nombre: Madera
-  Stackeable: 1
-  icono: {fileID: 21300000, guid: 96ef5abb957889a4fbb572d223931bf6, type: 3}
+  nombre: Madera
+  stackeable: 1
+  sprite: {fileID: 21300000, guid: 96ef5abb957889a4fbb572d223931bf6, type: 3}
+  descripcion: Es madera
