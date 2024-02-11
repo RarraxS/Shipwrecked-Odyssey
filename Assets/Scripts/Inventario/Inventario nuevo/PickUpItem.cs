@@ -10,6 +10,8 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] int velocidad;//La velocidad con la que el objeto persigue al jugador
     [SerializeField] Item item;//El item que se le sumará al inventario del jugador cuando recoja el objeto
 
+    private bool permitirMovimiento;
+
 
     void Start()
     {
@@ -20,20 +22,35 @@ public class PickUpItem : MonoBehaviour
     void Update()
     {
         //Seguir al jugador ---------------------------------------------------------------------------------------
-        
         float distance = Vector3.Distance(transform.position, jugador.position);
         if (distance > distanciaMaximaInteraccion)
         {
             return;
         }
+
+            //Esta parte es la que se encarga de que no siga al jugador cuando el item no cabe  en el inventario
         
+        for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
+        {
+            permitirMovimiento = false;
+
+            if (item.nombre == Inventario.Instance.slotInventario[i].nombre && item.stackeable == true ||
+                Inventario.Instance.slotInventario[i].nombre == "")
+            {
+                permitirMovimiento = true;
+                break;
+            }
+        }
+
+        if(permitirMovimiento == true)
         transform.position = Vector3.MoveTowards(transform.position, jugador.position, velocidad * Time.deltaTime);
+
         //---------------------------------------------------------------------------------------------------------
         if (distance < 0.1f)
         {
             //Recorre todas las posiciones del inventario, si hay alguna posición que ya tenga ese objeto y
             //el objeto es stackeable lo mete ahí, o si no hay ninguna posición en la que haya acumulaciones
-            //de ese objeto encuentra alguna posición vacía y entonces lo mete ahí. si no tiene espacio,
+            //de ese objeto encuentra alguna posición vacía y entonces lo mete ahí. Si no tiene espacio,
             //entonces el objeto no segue al jugador
             for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
             {
