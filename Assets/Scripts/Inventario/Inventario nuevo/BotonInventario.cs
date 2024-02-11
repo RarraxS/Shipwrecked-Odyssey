@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class BotonInventario : MonoBehaviour
 {
-    [SerializeField] public string nombre;
-    [SerializeField] public Sprite sprite;
-    [SerializeField] public string descripcion;
-    [SerializeField] public bool stackeable;
-    [SerializeField] public int cantidad;
+    public string nombre;
+    public Sprite sprite;
+    public string descripcion;
+    public bool stackeable;
+    public int cantidad;
+
+    [SerializeField]private Image icono;
 
     private void Start()
     {
@@ -18,6 +19,6 @@ public class BotonInventario : MonoBehaviour
     
     private void Update()
     {
-        
+        icono.sprite = sprite;
     }
 }

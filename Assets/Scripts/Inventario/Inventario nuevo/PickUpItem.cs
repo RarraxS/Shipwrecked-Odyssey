@@ -41,7 +41,7 @@ public class PickUpItem : MonoBehaviour
                 {
                     //Modificar este para que en vez de crear uno nuevo sume a la cantidad que ya hay
                     Debug.Log("Sumado");
-                    Inventario.Instance.AnadirInventario();
+                    Inventario.Instance.AnadirInventario(i, item.nombre, item.sprite, item.descripcion, item.stackeable);
                     Destroy(gameObject);
                     break;
                 }
@@ -49,7 +49,7 @@ public class PickUpItem : MonoBehaviour
                 if (Inventario.Instance.slotInventario[i].nombre == "")
                 {
                     Debug.Log("Añadido");
-                    Inventario.Instance.AnadirInventario();
+                    Inventario.Instance.AnadirInventario(i, item.nombre, item.sprite, item.descripcion, item.stackeable);
                     Destroy(gameObject);
                     break;
                 }

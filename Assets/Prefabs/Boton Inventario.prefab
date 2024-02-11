@@ -289,9 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec47119d1e10654fb8408e4f36e8c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icono: {fileID: 0}
-  text: {fileID: 0}
-  highlight: {fileID: 0}
+  nombre: 
+  sprite: {fileID: 0}
+  descripcion: 
+  stackeable: 0
+  cantidad: 0
+  icono: {fileID: 8426596008273372495}
 --- !u!1001 &793528872288287965
 PrefabInstance:
   m_ObjectHideFlags: 0
