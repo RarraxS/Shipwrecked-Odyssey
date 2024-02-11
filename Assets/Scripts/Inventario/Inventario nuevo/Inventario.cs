@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Inventario : MonoBehaviour
 {
@@ -38,5 +39,11 @@ public class Inventario : MonoBehaviour
         slotInventario[posicion].sprite = sprite;
         slotInventario[posicion].descripcion = descripcion;
         slotInventario[posicion].stackeable = stackeable;
+        slotInventario[posicion].cantidad = 1;
+    }
+
+    public void Sumar(int posicion)
+    {
+        slotInventario[posicion].cantidad += 1;
     }
 }

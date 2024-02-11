@@ -19,6 +19,15 @@ public class BotonInventario : MonoBehaviour
     
     private void Update()
     {
-        icono.sprite = sprite;
+        if (nombre == "")
+        {
+            icono.gameObject.SetActive(false);
+        }
+
+        else
+        {
+            icono.sprite = sprite;
+            icono.gameObject.SetActive(true);
+        }
     }
 }

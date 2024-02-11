@@ -39,15 +39,16 @@ public class PickUpItem : MonoBehaviour
             {
                 if (item.nombre == Inventario.Instance.slotInventario[i].nombre && item.stackeable == true)
                 {
-                    //Modificar este para que en vez de crear uno nuevo sume a la cantidad que ya hay
+                    //Suma objetos a un espacio ya existente
                     Debug.Log("Sumado");
-                    Inventario.Instance.AnadirInventario(i, item.nombre, item.sprite, item.descripcion, item.stackeable);
+                    Inventario.Instance.Sumar(i);
                     Destroy(gameObject);
                     break;
                 }
 
                 if (Inventario.Instance.slotInventario[i].nombre == "")
                 {
+                    //Añade un nuevo espacio
                     Debug.Log("Añadido");
                     Inventario.Instance.AnadirInventario(i, item.nombre, item.sprite, item.descripcion, item.stackeable);
                     Destroy(gameObject);
