@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Inventario : MonoBehaviour
 {
@@ -21,18 +18,6 @@ public class Inventario : MonoBehaviour
         else
             Destroy(this);
     }
-
-    private void Start()
-    {
-        
-    }
-
-    
-    private void Update()
-    {
-        
-    }
-
     public void AnadirInventario(int posicion, string nombre, Sprite sprite, string descripcion, bool stackeable)
     {
         slotInventario[posicion].nombre = nombre;

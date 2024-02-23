@@ -276,7 +276,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5537311043900001637}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9201463911380411859}
+        m_TargetAssemblyTypeName: BotonInventario, Assembly-CSharp
+        m_MethodName: ClickInventario
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9201463911380411859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +307,8 @@ MonoBehaviour:
   stackeable: 0
   cantidad: 0
   icono: {fileID: 8426596008273372495}
+  textCantidad: {fileID: 2490239742374142833}
+  numeroClasificador: 0
 --- !u!1001 &793528872288287965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,7 +318,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2993826762167099306, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
       propertyPath: m_Name
-      value: Text
+      value: Text Cantidad
       objectReference: {fileID: 0}
     - target: {fileID: 2993826762167099307, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
       propertyPath: m_Pivot.x
@@ -412,6 +426,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
+--- !u!114 &2490239742374142833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
+  m_PrefabInstance: {fileID: 793528872288287965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2490239742374142838 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2993826762167099307, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}

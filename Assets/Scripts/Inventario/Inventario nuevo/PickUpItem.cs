@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
@@ -11,7 +9,7 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] Item item;//El item que se le sumará al inventario del jugador cuando recoja el objeto
 
     private bool permitirMovimiento;
-
+    private bool dentro = false;
 
     void Start()
     {
@@ -60,9 +58,14 @@ public class PickUpItem : MonoBehaviour
                     Debug.Log("Sumado");
                     Inventario.Instance.Sumar(i);
                     Destroy(gameObject);
+                    dentro = true;
                     break;
                 }
+            }
 
+            if (dentro == false)
+            for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
+            {
                 if (Inventario.Instance.slotInventario[i].nombre == "")
                 {
                     //Añade un nuevo espacio
@@ -72,6 +75,7 @@ public class PickUpItem : MonoBehaviour
                     break;
                 }
             }
+            dentro = false;
         }
     }
 }

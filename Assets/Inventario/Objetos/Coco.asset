@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Coco
   stackeable: 1
-  sprite: {fileID: 21300000, guid: c2d25901c84a7e347ad2be46363e7ca9, type: 3}
+  sprite: {fileID: 21300000, guid: 4f5016466dde87440bb94788485e2348, type: 3}
   descripcion: Es un coco

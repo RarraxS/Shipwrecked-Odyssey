@@ -34,7 +34,7 @@
 //            this.itemSlot.Copy(itemSlot);
 //            itemSlot.Clear();
 //        }
-//        else 
+//        else
 //        {
 //            Item item = itemSlot.item;
 //            int count = itemSlot.numItems;
@@ -42,13 +42,13 @@
 //            itemSlot.Copy(this.itemSlot);
 //            this.itemSlot.Set(item, count);
 //        }
-            
+
 //        ActualizarIcono();
 //    }
 
 //    void ActualizarIcono()
 //    {
-//        if(itemSlot.item == null)
+//        if (itemSlot.item == null)
 //        {
 //            itemIcon.SetActive(false);
 //        }
