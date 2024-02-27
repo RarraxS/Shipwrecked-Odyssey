@@ -47,6 +47,19 @@ public class DragAndDropController : MonoBehaviour
         //Actualiza la posición del objeto y su sprite
         iconTransform.position = Input.mousePosition + distancia;
         itemIconImage.sprite = spriteDnD;
+
+        //Cuando no hay ningún objeto en el DnD actual el sprite del
+        //DnD se oculta, cuando si qye hay un objeto se vuelve visible
+        if (nombreDnD != "")
+        {
+            itemIconImage.color = new Color(255, 255, 255, 255);
+        }
+
+        else
+        {
+            itemIconImage.color = new Color(255, 255, 255, 0);
+        }
+
     }
 
     public void Copiar(int numeroClasificatorio)
