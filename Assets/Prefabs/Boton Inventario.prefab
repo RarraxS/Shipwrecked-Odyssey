@@ -279,7 +279,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9201463911380411859}
         m_TargetAssemblyTypeName: BotonInventario, Assembly-CSharp
-        m_MethodName: ClickInventario
+        m_MethodName: ClickIzquierdoInventario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
