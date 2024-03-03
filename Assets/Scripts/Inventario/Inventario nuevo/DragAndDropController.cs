@@ -99,37 +99,53 @@ public class DragAndDropController : MonoBehaviour
     {
         //Permite intercambiar el objeto que hay en el inventario con el que hay en el Drag and Drop
 
-        //Rellena las variables "contenedoras" de los datos del objeto
-        nombreNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].nombre;
-        spriteNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].sprite;
-        descripcionNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].descripcion;
-        stackeableNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].stackeable;
-        cantidadNuevo = 1;
-        Inventario.Instance.slotInventario[numeroClasificatorio].cantidad -= 1;
-
-        if (Inventario.Instance.slotInventario[numeroClasificatorio].cantidad <= 0)
+        if (Inventario.Instance.slotInventario[numeroClasificatorio].nombre != "")
         {
-            //Actualiza los datos de las variables del inventario
+            //Rellena las variables "contenedoras" de los datos del objeto
+            nombreNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].nombre;
+            spriteNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].sprite;
+            descripcionNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].descripcion;
+            stackeableNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].stackeable;
+            cantidadNuevo = 1;
+            Inventario.Instance.slotInventario[numeroClasificatorio].cantidad -= 1;
+
+            if (Inventario.Instance.slotInventario[numeroClasificatorio].cantidad <= 0)
+            {
+                //Actualiza los datos de las variables del inventario
+                Inventario.Instance.slotInventario[numeroClasificatorio].nombre = nombreDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].sprite = spriteDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].descripcion = descripcionDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].stackeable = stackeableDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+            }
+
+            //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
+            nombreDnD = nombreNuevo;
+            spriteDnD = spriteNuevo;
+            descripcionDnD = descripcionNuevo;
+            stackeableDnD = stackeableNuevo;
+            cantidadDnD = cantidadNuevo;
+
+            //Limpia el "contenedor" para que pueda acoger al próximo objeto
+            nombreNuevo = "";
+            spriteNuevo = null;
+            descripcionNuevo = null;
+            stackeableNuevo = false;
+            cantidadNuevo = 0;
+        }
+
+        else
+        {
+            //Rellena las variables "contenedoras" de los datos del objeto
             Inventario.Instance.slotInventario[numeroClasificatorio].nombre = nombreDnD;
             Inventario.Instance.slotInventario[numeroClasificatorio].sprite = spriteDnD;
             Inventario.Instance.slotInventario[numeroClasificatorio].descripcion = descripcionDnD;
             Inventario.Instance.slotInventario[numeroClasificatorio].stackeable = stackeableDnD;
-            Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+            Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = 1;
+            cantidadDnD -= 1;
         }
 
-        //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
-        nombreDnD = nombreNuevo;
-        spriteDnD = spriteNuevo;
-        descripcionDnD = descripcionNuevo;
-        stackeableDnD = stackeableNuevo;
-        cantidadDnD = cantidadNuevo;
-
-        //Limpia el "contenedor" para que pueda acoger al próximo objeto
-        nombreNuevo = "";
-        spriteNuevo = null;
-        descripcionNuevo = null;
-        stackeableNuevo = false;
-        cantidadNuevo = 0;
+        Debug.Log("Añadir");
     }
 
     public void Anadir(int numeroClasificatorio)
@@ -156,6 +172,8 @@ public class DragAndDropController : MonoBehaviour
         //Pasa la unidad del DnD al inventario
         Inventario.Instance.slotInventario[numeroClasificatorio].cantidad += 1;
         cantidadDnD -= 1;
+
+        Debug.Log("Añadir");
 
         if (cantidadDnD <= 0)
         {
