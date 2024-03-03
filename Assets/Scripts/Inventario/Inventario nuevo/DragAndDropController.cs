@@ -136,13 +136,25 @@ public class DragAndDropController : MonoBehaviour
 
         else
         {
-            //Rellena las variables "contenedoras" de los datos del objeto
-            Inventario.Instance.slotInventario[numeroClasificatorio].nombre = nombreDnD;
-            Inventario.Instance.slotInventario[numeroClasificatorio].sprite = spriteDnD;
-            Inventario.Instance.slotInventario[numeroClasificatorio].descripcion = descripcionDnD;
-            Inventario.Instance.slotInventario[numeroClasificatorio].stackeable = stackeableDnD;
-            Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = 1;
-            cantidadDnD -= 1;
+            if (cantidadDnD > 0)
+            {
+                //Rellena las variables "contenedoras" de los datos del objeto
+                Inventario.Instance.slotInventario[numeroClasificatorio].nombre = nombreDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].sprite = spriteDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].descripcion = descripcionDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].stackeable = stackeableDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = 1;
+                cantidadDnD -= 1;
+
+                if (cantidadDnD <= 0)
+                {
+                    nombreDnD = "";
+                    spriteDnD = null;
+                    descripcionDnD = null;
+                    stackeableDnD = false;
+                    cantidadDnD = 0;
+                }
+            }
         }
 
         Debug.Log("Añadir");
