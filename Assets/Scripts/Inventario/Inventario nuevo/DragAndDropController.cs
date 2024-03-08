@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DragAndDropController : MonoBehaviour
 {
@@ -51,7 +52,14 @@ public class DragAndDropController : MonoBehaviour
         {
             dragAndDrop.SetActive(true);
             itemIconImage.sprite = itemDnD.sprite;
-            textDnD.text = cantidadDnD.ToString();
+            if (cantidadDnD > 1)
+            {
+                textDnD.text = cantidadDnD.ToString();
+            }
+            else
+            {
+                textDnD.text = "";
+            }
         }
 
         //Cuando no hay ningún objeto en el DnD actual el sprite del
@@ -68,6 +76,8 @@ public class DragAndDropController : MonoBehaviour
         //    itemIconImage.gameObject.SetActive(true);
         //}
 
+
+        Dropeos();
     }
 
     public void Copiar(int numeroClasificatorio)
@@ -167,6 +177,63 @@ public class DragAndDropController : MonoBehaviour
             //Limpia el los datos de las variables del DnD para que pueda acoger al próximo objeto
             itemDnD= null;
             cantidadDnD = 0;
+        }
+    }
+
+    private void Dropeos()
+    {
+        Dropear();
+        DropearIndividual();
+    }
+
+    public void Dropear()
+    {
+        if (dragAndDrop.activeInHierarchy == true)
+        {
+            iconTransform.position = Input.mousePosition;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (EventSystem.current.IsPointerOverGameObject() == false)
+                {
+                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    worldPosition.z = -5;
+
+                    for (int i = 0; i < cantidadDnD; i++)
+                    {
+                        GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
+                    }
+
+                    itemDnD = null;
+                    cantidadDnD = 0;
+                }
+            }
+        }       
+    }
+
+    public void DropearIndividual()
+    {
+        if (dragAndDrop.activeInHierarchy == true)
+        {
+            iconTransform.position = Input.mousePosition;
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (EventSystem.current.IsPointerOverGameObject() == false)
+                {
+                    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    worldPosition.z = -5;
+
+                    GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
+                    cantidadDnD -= 1;
+
+                    if (cantidadDnD <= 0)
+                    {
+                        itemDnD = null;
+                        cantidadDnD = 0;
+                    }
+                }
+            }
         }
     }
 }

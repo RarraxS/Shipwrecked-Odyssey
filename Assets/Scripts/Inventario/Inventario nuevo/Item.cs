@@ -8,4 +8,5 @@ public class Item : ScriptableObject
     public bool stackeable;
     public Sprite sprite;
     public string descripcion;
+    public GameObject objetoSuelo;
 }

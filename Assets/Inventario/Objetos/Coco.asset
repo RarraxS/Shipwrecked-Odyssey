@@ -16,3 +16,4 @@ MonoBehaviour:
   stackeable: 1
   sprite: {fileID: 21300000, guid: 4f5016466dde87440bb94788485e2348, type: 3}
   descripcion: Es un coco
+  objetoSuelo: {fileID: 7176542665701264434, guid: ee2a5d36d2db1804798fa5c09c61e886, type: 3}
