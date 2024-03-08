@@ -19,12 +19,9 @@ public class Inventario : MonoBehaviour
             Destroy(this);
     }
 
-    public void AnadirInventario(int posicion, string nombre, Sprite sprite, string descripcion, bool stackeable)
+    public void AnadirInventario(int posicion, Item item)
     {
-        slotInventario[posicion].nombre = nombre;
-        slotInventario[posicion].sprite = sprite;
-        slotInventario[posicion].descripcion = descripcion;
-        slotInventario[posicion].stackeable = stackeable;
+        slotInventario[posicion].item = item;
         slotInventario[posicion].cantidad = 1;
     }
 

@@ -32,8 +32,8 @@ public class PickUpItem : MonoBehaviour
         {
             permitirMovimiento = false;
 
-            if (item.nombre == Inventario.Instance.slotInventario[i].nombre && item.stackeable == true ||
-                Inventario.Instance.slotInventario[i].nombre == "")
+            if (item == Inventario.Instance.slotInventario[i].item && item.stackeable == true ||
+                Inventario.Instance.slotInventario[i].item == null)
             {
                 permitirMovimiento = true;
                 break;
@@ -52,7 +52,7 @@ public class PickUpItem : MonoBehaviour
             //entonces el objeto no segue al jugador
             for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
             {
-                if (item.nombre == Inventario.Instance.slotInventario[i].nombre && item.stackeable == true)
+                if (item == Inventario.Instance.slotInventario[i].item && item.stackeable == true)
                 {
                     //Suma objetos a un espacio ya existente
                     Debug.Log("Sumado");
@@ -66,11 +66,11 @@ public class PickUpItem : MonoBehaviour
             if (dentro == false)
             for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
             {
-                if (Inventario.Instance.slotInventario[i].nombre == "")
+                if (Inventario.Instance.slotInventario[i].item == null)
                 {
                     //Añade un nuevo espacio
                     Debug.Log("Añadido");
-                    Inventario.Instance.AnadirInventario(i, item.nombre, item.sprite, item.descripcion, item.stackeable);
+                    Inventario.Instance.AnadirInventario(i, item);
                     Destroy(gameObject);
                     break;
                 }

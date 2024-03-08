@@ -5,10 +5,7 @@ using UnityEngine.EventSystems;
 
 public class BotonInventario : MonoBehaviour, IPointerClickHandler
 {
-    public string nombre;
-    public Sprite sprite;
-    public string descripcion;
-    public bool stackeable;
+    public Item item;
     public int cantidad;
 
     [SerializeField] private Image icono;
@@ -30,7 +27,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         //Si una casilla está vacía se oculta tanto la imagen base de los objetos y también el texto
-        if (nombre == "")
+        if (item == null)
         {
             icono.gameObject.SetActive(false);
 
@@ -40,7 +37,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
         //Si una casilla está ocupada se muestra tanto la imagen base de los objetos y también el texto
         else
         {
-            icono.sprite = sprite;
+            icono.sprite = item.sprite;
             icono.gameObject.SetActive(true);
 
             if (cantidad == 1)
@@ -57,7 +54,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
 
     public void ClickIzquierdoInventario()
     {
-        if (DragAndDropController.Instance.nombreDnD == nombre)
+        if (DragAndDropController.Instance.itemDnD == item)
         {
             DragAndDropController.Instance.Anadir(numeroClasificador);
         }
@@ -70,7 +67,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
 
     private void ClickDerechoInventario()
     {
-        if (DragAndDropController.Instance.nombreDnD == nombre)
+        if (DragAndDropController.Instance.itemDnD == item)
         {
             DragAndDropController.Instance.AnadirIndividual(numeroClasificador);
         }
