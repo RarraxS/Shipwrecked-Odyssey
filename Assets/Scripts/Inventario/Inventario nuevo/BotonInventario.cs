@@ -12,6 +12,9 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TMP_Text textCantidad;
     [SerializeField] private int numeroClasificador;
 
+    [SerializeField] private DescripcionesController descripcionesController;
+
+
     private static BotonInventario instance;
     public static BotonInventario Instance
     {
@@ -22,6 +25,8 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
     {
         if (instance == null)
             instance = this;
+
+        descripcionesController = GetComponent<DescripcionesController>();
     }
 
     private void Update()
@@ -86,6 +91,20 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
             // Lógica para cuando pulsas el clic derecho del ratón
             ClickDerechoInventario();
             //Debug.Log("Clic derecho");
+        }
+    }
+
+    public void MostrarDescripcion()
+    {
+        if (EventSystem.current.IsPointerOverGameObject() == true)
+        {
+            descripcionesController.textDescripciones.text = item.descripcion;
+            descripcionesController.panelDescripciones.SetActive(true);
+        }
+
+        else if (EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            descripcionesController.panelDescripciones.SetActive(false);
         }
     }
 }
