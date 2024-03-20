@@ -37,14 +37,13 @@ public class DragAndDropController : MonoBehaviour
         iconTransform = dragAndDrop.GetComponent<RectTransform>();
         itemIconImage = dragAndDrop.GetComponent<Image>();
         textDnD = textDnD.GetComponent<TMP_Text>();
-        
     }
 
     void Update()
     {
         //Actualiza la posición del objeto y su sprite
         iconTransform.position = Input.mousePosition + distancia;
-
+        
         if (itemDnD == null)
         {
             dragAndDrop.SetActive(false);
@@ -62,6 +61,21 @@ public class DragAndDropController : MonoBehaviour
                 textDnD.text = "";
             }
         }
+
+        //Cuando no hay ningún objeto en el DnD actual el sprite del
+        //DnD se oculta, cuando si qye hay un objeto se vuelve visible
+        //if (itemDnD == null)
+        //{
+        //    //itemIconImage.color = new Color(255, 255, 255, 0);
+        //    itemIconImage.gameObject.SetActive(false);
+        //}
+
+        //else
+        //{
+        //    //itemIconImage.color = new Color(255, 255, 255, 255);
+        //    itemIconImage.gameObject.SetActive(true);
+        //}
+
 
         Dropeos();
     }
@@ -176,6 +190,8 @@ public class DragAndDropController : MonoBehaviour
     {
         if (dragAndDrop.activeInHierarchy == true)
         {
+            iconTransform.position = Input.mousePosition;
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject() == false)
@@ -199,6 +215,8 @@ public class DragAndDropController : MonoBehaviour
     {
         if (dragAndDrop.activeInHierarchy == true)
         {
+            iconTransform.position = Input.mousePosition;
+
             if (Input.GetMouseButtonDown(1))
             {
                 if (EventSystem.current.IsPointerOverGameObject() == false)
