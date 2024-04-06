@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class BotonInventario : MonoBehaviour, IPointerClickHandler
+public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Item item;
     public int cantidad;
@@ -13,7 +13,6 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int numeroClasificador;
 
     [SerializeField] private DescripcionesController descripcionesController;
-
 
     private static BotonInventario instance;
     public static BotonInventario Instance
@@ -94,17 +93,16 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void MostrarDescripcion()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (EventSystem.current.IsPointerOverGameObject() == true)
-        {
-            descripcionesController.textDescripciones.text = item.descripcion;
-            descripcionesController.panelDescripciones.SetActive(true);
-        }
+        Debug.Log("in");
+        descripcionesController.textDescripciones.text = item.descripcion;
+        descripcionesController.panelDescripciones.SetActive(true);
+    }
 
-        else if (EventSystem.current.IsPointerOverGameObject() == false)
-        {
-            descripcionesController.panelDescripciones.SetActive(false);
-        }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("out");
+        descripcionesController.panelDescripciones.SetActive(false);
     }
 }
