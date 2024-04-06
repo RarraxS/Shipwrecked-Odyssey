@@ -4,20 +4,26 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject canvasInventario, canvasDormir, canvasControles;
+    [SerializeField] public GameObject canvasInventario, descripciones, canvasDormir, canvasControles;
     [SerializeField] Image barraVida, barraEnergia, barraComida;
     [SerializeField] TMP_Text textVida, textEnergia, textComida, textHora, textDia;
 
     public static bool menuDormir = false;
     bool permitirAbrirInventario;
-    int hora, minutos;
-    [SerializeField] int dia = 1;
-    string estacion;
+    
     public string controles;
+
+    
+
+    // Variables de los días -------------------------------------------------------------------------------------------
+    [SerializeField] int dia = 1;
+    int hora, minutos;
+    string estacion;
     float temporizadorTiempo = 7f;
     int opcEstacion = 1;
     public static int diaEstaciones;
-    
+    //------------------------------------------------------------------------------------------------------------------
+
     public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menú está abierto 
     
     //public ItemContainerOld InventoryContainer;
@@ -157,6 +163,7 @@ public class GameManager : MonoBehaviour
             if (canvasInventario.activeSelf)
             {
                 canvasInventario.SetActive(false);
+                descripciones.SetActive(false);
                 pausa = false;
             }
             else

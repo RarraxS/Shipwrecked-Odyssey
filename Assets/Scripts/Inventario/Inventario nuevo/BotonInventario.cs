@@ -3,7 +3,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+
+public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     public Item item;
     public int cantidad;
@@ -25,7 +26,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if (instance == null)
             instance = this;
 
-        descripcionesController = GetComponent<DescripcionesController>();
+        icono.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -89,20 +90,21 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         {
             // Lógica para cuando pulsas el clic derecho del ratón
             ClickDerechoInventario();
-            //Debug.Log("Clic derecho");
         }
     }
 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("in");
-        descripcionesController.textDescripciones.text = item.descripcion;
-        descripcionesController.panelDescripciones.SetActive(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("out");
-        descripcionesController.panelDescripciones.SetActive(false);
+        if (item == null)
+        {
+            descripcionesController.panelDescripciones.SetActive(false);
+        }
+        else
+        {
+            descripcionesController.textNombre.text = item.nombre;
+            descripcionesController.textDescripciones.text = item.descripcion;
+            descripcionesController.panelDescripciones.SetActive(true);
+        }
     }
 }

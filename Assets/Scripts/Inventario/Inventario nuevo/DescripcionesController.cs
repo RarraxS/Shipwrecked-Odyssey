@@ -1,39 +1,29 @@
 using TMPro;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DescripcionesController : MonoBehaviour
 {
     public GameObject panelDescripciones;
-    public TMP_Text textDescripciones;
-    public RectTransform descripcionesTransform;
+    public TMP_Text textNombre, textDescripciones;
+    private RectTransform descripcionesTransform;
     [SerializeField] private Vector3 distancia;
-
-    private static DescripcionesController instance;
-    public static DescripcionesController Instance
-    {
-        get { return instance; }
-    }
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-
         descripcionesTransform = panelDescripciones.GetComponent<RectTransform>();
         textDescripciones = textDescripciones.GetComponent<TMP_Text>();
+        textNombre = textNombre.GetComponent<TMP_Text>();
     }
-
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
+        
+        
+        if (EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            panelDescripciones.SetActive(false);
+        }
+
         if (panelDescripciones.activeInHierarchy == true)
         {
             descripcionesTransform.position = Input.mousePosition + distancia;
