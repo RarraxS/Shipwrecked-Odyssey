@@ -26,7 +26,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if (instance == null)
             instance = this;
 
-        icono.gameObject.SetActive(false);
+        DesactivarVisualizacion();
     }
 
     private void Update()
@@ -34,9 +34,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         //Si una casilla está vacía se oculta tanto la imagen base de los objetos y también el texto
         if (item == null)
         {
-            icono.gameObject.SetActive(false);
-
-            textCantidad.text = "";
+            DesactivarVisualizacion();
         }
 
         //Si una casilla está ocupada se muestra tanto la imagen base de los objetos y también el texto
@@ -55,6 +53,13 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
                 textCantidad.text = cantidad.ToString("0");
             }
         }
+    }
+
+    private void DesactivarVisualizacion()
+    {
+        icono.gameObject.SetActive(false);
+
+        textCantidad.text = "";
     }
 
     public void ClickIzquierdoInventario()

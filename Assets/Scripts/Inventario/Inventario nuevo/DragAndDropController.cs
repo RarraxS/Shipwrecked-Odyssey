@@ -91,29 +91,41 @@ public class DragAndDropController : MonoBehaviour
     {
         //Permite intercambiar el objeto que hay en el inventario con el que hay en el Drag and Drop
 
+
+        //Permite añadir el objeto del DnD a la casilla del inventario
+        //siempre y cuando esta posea el mismo tipo de objeto que el DnD
         if (Inventario.Instance.slotInventario[numeroClasificatorio].item != null)
         {
-            //Rellena las variables "contenedoras" de los datos del objeto
-            itemNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].item;
-            cantidadNuevo = 1;
-            Inventario.Instance.slotInventario[numeroClasificatorio].cantidad -= 1;
-
-            if (Inventario.Instance.slotInventario[numeroClasificatorio].cantidad <= 0)
+            if (itemDnD == null)
             {
-                //Actualiza los datos de las variables del inventario
-                Inventario.Instance.slotInventario[numeroClasificatorio].item = itemDnD;
-                Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+                //Rellena las variables "contenedoras" de los datos del objeto
+                itemNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].item;
+                cantidadNuevo = 1;
+                Inventario.Instance.slotInventario[numeroClasificatorio].cantidad -= 1;
+
+                if (Inventario.Instance.slotInventario[numeroClasificatorio].cantidad <= 0)
+                {
+                    //Actualiza los datos de las variables del inventario
+                    Inventario.Instance.slotInventario[numeroClasificatorio].item = itemDnD;
+                    Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+                }
+
+                //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
+                itemDnD = itemNuevo;
+                cantidadDnD = cantidadNuevo;
+
+                //Limpia el "contenedor" para que pueda acoger al próximo objeto
+                itemNuevo = null;
+                cantidadNuevo = 0;
             }
 
-            //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
-            itemDnD = itemNuevo;
-            cantidadDnD = cantidadNuevo;
-
-            //Limpia el "contenedor" para que pueda acoger al próximo objeto
-            itemNuevo = null;
-            cantidadNuevo = 0;
+            else
+            {
+                Copiar(numeroClasificatorio);
+            }
         }
 
+        //Esta parte se encarga de cuando no hay ningún objeto en la casilla de poner una del objeto seleccionado
         else
         {
             if (cantidadDnD > 0)
