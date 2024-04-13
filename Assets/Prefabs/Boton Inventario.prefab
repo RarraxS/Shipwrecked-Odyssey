@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0010118, y: 0}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: 0.0000066757, y: 0.00013036}
+  m_SizeDelta: {x: 32.5261, y: 32.5261}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2250296453754356973
 CanvasRenderer:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.5137255, b: 0.24313726, a: 1}
+  m_Color: {r: 0.745, g: 0.37573916, b: 0, a: 0.45490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -307,6 +307,7 @@ MonoBehaviour:
   textCantidad: {fileID: 2490239742374142833}
   numeroClasificador: 0
   seleccionado: {fileID: 2738230129807804103}
+  casillaToolbar: 0
   descripcionesController: {fileID: 0}
 --- !u!1001 &793528872288287965
 PrefabInstance:
