@@ -33,6 +33,17 @@ public class Toolbar : MonoBehaviour
         }
     }
 
+    public void OnClick(int herramientaClick)
+    {
+        botonesToolbar[herramientaActual].seleccionado.SetActive(false);
+
+        herramientaActual = herramientaClick;
+
+        botonesToolbar[herramientaActual].seleccionado.SetActive(true);
+
+        herramientaSeleccionada = botonesToolbar[herramientaActual];
+    }
+
     private void ComprobarEstadoRaton()
     {
         float movimientoRaton = Input.mouseScrollDelta.y;

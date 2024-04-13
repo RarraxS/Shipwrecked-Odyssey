@@ -14,6 +14,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] private int numeroClasificador;
 
     public GameObject seleccionado;
+    public bool casillaToolbar;
 
     [SerializeField] private DescripcionesController descripcionesController;
 
@@ -66,7 +67,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void ClickIzquierdoInventario()
     {
-        if (DragAndDropController.Instance.itemDnD == item)
+        if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
         {
             DragAndDropController.Instance.Anadir(numeroClasificador);
         }
@@ -79,7 +80,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     private void ClickDerechoInventario()
     {
-        if (DragAndDropController.Instance.itemDnD == item)
+        if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
         {
             DragAndDropController.Instance.AnadirIndividual(numeroClasificador);
         }
@@ -103,15 +104,16 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (item == null)
-        {
-            descripcionesController.panelDescripciones.SetActive(false);
-        }
-        else
+        if (item != null && casillaToolbar == false)
         {
             descripcionesController.textNombre.text = item.nombre;
             descripcionesController.textDescripciones.text = item.descripcion;
             descripcionesController.panelDescripciones.SetActive(true);
+        }
+
+        else
+        {
+            descripcionesController.panelDescripciones.SetActive(false);
         }
     }
 }

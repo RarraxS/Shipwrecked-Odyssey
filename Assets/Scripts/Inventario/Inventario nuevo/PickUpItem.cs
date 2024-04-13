@@ -64,15 +64,17 @@ public class PickUpItem : MonoBehaviour
             }
 
             if (dentro == false)
-            for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
             {
-                if (Inventario.Instance.slotInventario[i].item == null)
+                for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
                 {
-                    //Añade un nuevo espacio
-                    Debug.Log("Añadido");
-                    Inventario.Instance.AnadirInventario(i, item);
-                    Destroy(gameObject);
-                    break;
+                    if (Inventario.Instance.slotInventario[i].item == null)
+                    {
+                        //Añade un nuevo espacio
+                        Debug.Log("Añadido");
+                        Inventario.Instance.AnadirInventario(i, item);
+                        Destroy(gameObject);
+                        break;
+                    }
                 }
             }
             dentro = false;

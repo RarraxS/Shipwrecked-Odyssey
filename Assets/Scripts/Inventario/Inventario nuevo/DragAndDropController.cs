@@ -53,7 +53,7 @@ public class DragAndDropController : MonoBehaviour
         {
             dragAndDrop.SetActive(true);
             itemIconImage.sprite = itemDnD.sprite;
-            if (cantidadDnD > 1)
+            if (cantidadDnD > 1 && itemDnD.stackeable == true)
             {
                 textDnD.text = cantidadDnD.ToString();
             }
@@ -150,6 +150,7 @@ public class DragAndDropController : MonoBehaviour
     {
         //Si el obeto que se está moviendo con el DnD se trata de colocar encima de una casilla
         //con el mismo objeto se suma a la casilla del inventario
+
 
         //Suma las cantidades
         Inventario.Instance.slotInventario[numeroClasificatorio].cantidad += cantidadDnD;

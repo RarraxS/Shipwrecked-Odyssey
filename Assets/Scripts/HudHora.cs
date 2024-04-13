@@ -17,7 +17,7 @@ public class HudHora : MonoBehaviour
         animator.SetInteger("numEstacion", estacion);
 
         //Cuando se llega al día 31 se cambia a la siguiente estación
-        if (GameManager.diaEstaciones > 30)
+        if (GameManager.Instance.diaEstaciones > 30)
         {
             estacion++;
         }

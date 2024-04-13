@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject canvasInventario, descripciones, canvasDormir, canvasControles;
+    public GameObject canvasToolbar, canvasInventario, descripciones, canvasDormir, canvasControles;
     [SerializeField] Image barraVida, barraEnergia, barraComida;
     [SerializeField] TMP_Text textVida, textEnergia, textComida, textHora, textDia;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     string estacion;
     float temporizadorTiempo = 7f;
     int opcEstacion = 1;
-    public static int diaEstaciones;
+    public int diaEstaciones;
     //------------------------------------------------------------------------------------------------------------------
 
     public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menú está abierto 
@@ -162,12 +162,14 @@ public class GameManager : MonoBehaviour
         {
             if (canvasInventario.activeSelf)
             {
+                canvasToolbar.SetActive(true);
                 canvasInventario.SetActive(false);
                 descripciones.SetActive(false);
                 pausa = false;
             }
             else
             {
+                canvasToolbar.SetActive(false);
                 canvasInventario.SetActive(true);
                 pausa = true;
             }
