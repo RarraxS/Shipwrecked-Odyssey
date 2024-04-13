@@ -301,14 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec47119d1e10654fb8408e4f36e8c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombre: 
-  sprite: {fileID: 0}
-  descripcion: 
-  stackeable: 0
+  item: {fileID: 0}
   cantidad: 0
   icono: {fileID: 8426596008273372495}
   textCantidad: {fileID: 2490239742374142833}
   numeroClasificador: 0
+  seleccionado: {fileID: 2738230129807804103}
+  descripcionesController: {fileID: 0}
 --- !u!1001 &793528872288287965
 PrefabInstance:
   m_ObjectHideFlags: 0

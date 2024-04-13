@@ -13,6 +13,8 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] private TMP_Text textCantidad;
     [SerializeField] private int numeroClasificador;
 
+    public GameObject seleccionado;
+
     [SerializeField] private DescripcionesController descripcionesController;
 
     private static BotonInventario instance;
