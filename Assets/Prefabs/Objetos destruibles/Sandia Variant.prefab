@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4060393969088925760, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_Name
-      value: Sandia
+      value: Sandia Variant (12)
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_RootOrder
@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -109.16249
+      value: -7.856698
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -42.275894
+      value: 0.39568138
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0.31991243
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33,15 +33,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -62,7 +62,7 @@ PrefabInstance:
     - target: {fileID: 4060393969088925765, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: objetoRecolectable
       value: 
-      objectReference: {fileID: 5959601081168313242}
+      objectReference: {fileID: 6499437764403443079, guid: 761b1b87c4de31942820a24a33074bff, type: 3}
     - target: {fileID: 4060393969088925765, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: energiaMaximaGastada
       value: 2
@@ -93,8 +93,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
---- !u!1 &5959601081168313242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4060393969088925760, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
-  m_PrefabInstance: {fileID: 7705002927277812698}
-  m_PrefabAsset: {fileID: 0}
