@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 11400000, guid: 0870fa267efc3c046b642e6a516cc9bc, type: 2}
+    - target: {fileID: 1907498137544446741, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
+      propertyPath: distanciaMaximaInteraccion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5851018211302393271, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: item
       value: 

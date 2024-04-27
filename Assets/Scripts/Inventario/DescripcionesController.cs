@@ -17,8 +17,13 @@ public class DescripcionesController : MonoBehaviour
     }
     void Update()
     {
-        
-        
+        //Este script lo posee el objeto del inventario para que se puedan actualizar 
+        //los valores cuando este desactivado el objeto de las descripciones. 
+        //Se encarga de que cuando el cursor está sobre el objeto "inventario"
+        //el objeto de las descripciones actualiza su posición, y cuando está fuera de 
+        //este objeto "inventario" las descripciones se desactivan. La activacion la 
+        //realizan los propios botones del inventario.
+
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
             panelDescripciones.SetActive(false);

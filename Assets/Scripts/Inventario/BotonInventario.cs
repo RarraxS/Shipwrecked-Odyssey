@@ -105,7 +105,8 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         //Si se intenta colocar un objeto sobre una casilla que ya contiene
         //ese objeto y el objeto es stackeable entonces se le suma una unidad
         //a la casilla del inventario con la que se está interactuando
-        if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
+        if (DragAndDropController.Instance.itemDnD == item && 
+            DragAndDropController.Instance.itemDnD.stackeable == true)
         {
             DragAndDropController.Instance.AnadirIndividual(numeroClasificador);
         }
