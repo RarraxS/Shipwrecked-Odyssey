@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248685, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -106.51233
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248685, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -40.181583
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248685, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248685, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248688, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_Name
-      value: Sandia Variant
+      value: Sandia
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248690, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_Sprite

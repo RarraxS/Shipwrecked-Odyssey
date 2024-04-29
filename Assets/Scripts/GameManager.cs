@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     
 
-    // Variables de los días -------------------------------------------------------------------------------------------
+    // Variables de los dias -------------------------------------------------------------------------------------------
     [SerializeField] int dia = 1;
     int hora, minutos;
     string estacion;
@@ -24,10 +24,8 @@ public class GameManager : MonoBehaviour
     public int diaEstaciones;
     //------------------------------------------------------------------------------------------------------------------
 
-    public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menú está abierto 
+    public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
     
-    //public ItemContainerOld InventoryContainer;
-    //public ItemDragAndDropControllerOld dragAndDropController;
     public Jugador Player;
 
     private static GameManager instance;

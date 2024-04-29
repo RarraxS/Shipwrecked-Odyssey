@@ -37,7 +37,6 @@ public class DragAndDropController : MonoBehaviour
         iconTransform = dragAndDrop.GetComponent<RectTransform>();
         itemIconImage = dragAndDrop.GetComponent<Image>();
         textDnD = textDnD.GetComponent<TMP_Text>();
-        
     }
 
     void Update()
@@ -45,6 +44,7 @@ public class DragAndDropController : MonoBehaviour
         //Actualiza la posición del objeto y su sprite
         iconTransform.position = Input.mousePosition + distancia;
 
+        //Si el DnD no tiene nada se oculta, sino, se muestra
         if (itemDnD == null)
         {
             dragAndDrop.SetActive(false);
@@ -53,6 +53,9 @@ public class DragAndDropController : MonoBehaviour
         {
             dragAndDrop.SetActive(true);
             itemIconImage.sprite = itemDnD.sprite;
+
+            //Si el objeto del DnD es stackeable y la cantidad es mayor a 1 entonces se muestra
+            //el texto con el número de unidades que se tiene, sino, el texto no se muestra
             if (cantidadDnD > 1 && itemDnD.stackeable == true)
             {
                 textDnD.text = cantidadDnD.ToString();
@@ -142,8 +145,6 @@ public class DragAndDropController : MonoBehaviour
                 }
             }
         }
-
-        //Debug.Log("Añadir");
     }
 
     public void Anadir(int numeroClasificatorio)
@@ -169,8 +170,6 @@ public class DragAndDropController : MonoBehaviour
         Inventario.Instance.slotInventario[numeroClasificatorio].cantidad += 1;
         cantidadDnD -= 1;
 
-        //Debug.Log("Añadir");
-
         if (cantidadDnD <= 0)
         {
             //Limpia el los datos de las variables del DnD para que pueda acoger al próximo objeto
@@ -181,12 +180,14 @@ public class DragAndDropController : MonoBehaviour
 
     private void Dropeos()
     {
+        //Agrupa todos los dropeos para que quede más limpio
         Dropear();
         DropearIndividual();
     }
 
     public void Dropear()
     {
+        //Dropea todos los objetos que tiene almacenado el DnD en ese momento
         if (dragAndDrop.activeInHierarchy == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -210,6 +211,7 @@ public class DragAndDropController : MonoBehaviour
 
     public void DropearIndividual()
     {
+        //Dropea unicamente una unidad los objetos que tiene almacenado el DnD en ese momento
         if (dragAndDrop.activeInHierarchy == true)
         {
             if (Input.GetMouseButtonDown(1))
