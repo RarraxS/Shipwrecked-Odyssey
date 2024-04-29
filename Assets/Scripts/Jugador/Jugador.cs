@@ -58,28 +58,28 @@ public class Jugador : MonoBehaviour
     void Movimiento()
     {
         if (((Input.GetKey(KeyCode.I) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausa == false)
+            (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
             rb.position += (Vector2)(Time.deltaTime * velocidad * transform.up);//Alante
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.K) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausa == false)
+            (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
             rb.position += (Vector2)(-transform.up * velocidad * Time.deltaTime);//Atrás
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausa == false)
+            (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
             rb.position += (Vector2)(-transform.right * velocidad * Time.deltaTime);//Izquierda
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.L) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausa == false)
+            (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
             rb.position += (Vector2)(transform.right * velocidad * Time.deltaTime);//Derecha
             andando = true;
@@ -97,7 +97,7 @@ public class Jugador : MonoBehaviour
         if (((mirandoDerecha == true && (((Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") ||
             ((Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) && GameManager.Instance.controles == "diestro"))) || (mirandoDerecha == false &&
             (((Input.GetKey(KeyCode.L)) && !Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") || (Input.GetKey(KeyCode.D)) &&
-            !Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro"))) && GameManager.Instance.pausa == false)
+            !Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro"))) && GameManager.Instance.menuAbierto == false)
         {
             mirandoDerecha = !mirandoDerecha;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -160,7 +160,7 @@ public class Jugador : MonoBehaviour
 
     void Hambre()
     {
-        if(GameManager.Instance.pausa == false)
+        if(GameManager.Instance.menuAbierto == false)
             temporizadorComida -= Time.deltaTime;
 
         if( temporizadorComida <= 0 )
@@ -176,7 +176,7 @@ public class Jugador : MonoBehaviour
             vida -= 10;
 
         if (collision.tag == "Cama")
-            GameManager.menuDormir = true;
+            GameManager.Instance.menuDormir = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

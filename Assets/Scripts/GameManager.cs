@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image barraVida, barraEnergia, barraComida;
     [SerializeField] TMP_Text textVida, textEnergia, textComida, textHora, textDia;
 
-    public static bool menuDormir = false;
+    public bool menuDormir = false;
     bool permitirAbrirInventario;
     
-    public string controles;
 
+    public string controles;
     
 
     // Variables de los dias -------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int diaEstaciones;
     //------------------------------------------------------------------------------------------------------------------
 
-    public bool pausa = false;//es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
+    public bool menuAbierto = false;//Es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
     
     public Jugador Player;
 
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     {
         textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
         //Paso del tiempo
-        if (pausa == false)
+        if (menuAbierto == false)
             temporizadorTiempo -=  Time.deltaTime;
         if(temporizadorTiempo <= 0)
         {
@@ -163,13 +163,13 @@ public class GameManager : MonoBehaviour
                 canvasToolbar.SetActive(true);
                 canvasInventario.SetActive(false);
                 descripciones.SetActive(false);
-                pausa = false;
+                menuAbierto = false;
             }
             else
             {
                 canvasToolbar.SetActive(false);
                 canvasInventario.SetActive(true);
-                pausa = true;
+                menuAbierto = true;
             }
         }
     }
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         if (menuDormir == true)
         {
             canvasDormir.SetActive(true);
-            pausa = true;
+            menuAbierto = true;
             permitirAbrirInventario = false;
         }
     }
@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
     {
         canvasDormir.SetActive(false);
         permitirAbrirInventario = true;
-        pausa = false;
+        menuAbierto = false;
         menuDormir = false;
     }
     

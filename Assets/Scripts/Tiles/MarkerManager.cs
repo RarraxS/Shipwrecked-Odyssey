@@ -23,7 +23,8 @@ public class MarkerManager : MonoBehaviour
 
     public void Show(bool seleccionado)
     {
-        //Dependiendo de si la variable "seleccionado" es true o flase se muestra el tile al que está apuntando el ratón
+        //Dependiendo de si la variable "seleccionado" es true o
+        //false se muestra el tile al que está apuntando el ratón
         show = seleccionado;
         targetTilemap.gameObject.SetActive(show);
     }
