@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
     public int diaEstaciones;
     //------------------------------------------------------------------------------------------------------------------
 
+    // Variables para recolectar objetos--------------------------------------------------------------------------------------------
+    public bool permitirUsarHerramineta;
+    //------------------------------------------------------------------------------------------------------------------
+
+
     public bool menuAbierto = false;//Es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
     
     public Jugador Player;

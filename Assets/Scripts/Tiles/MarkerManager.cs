@@ -27,5 +27,8 @@ public class MarkerManager : MonoBehaviour
         //false se muestra el tile al que está apuntando el ratón
         show = seleccionado;
         targetTilemap.gameObject.SetActive(show);
+
+        //Permite interactuar solo cuando el tilemap de marcado esta activo (cuando se esta a la distancia necesaria para interactuar)
+        GameManager.Instance.permitirUsarHerramineta = show;
     }
 }
