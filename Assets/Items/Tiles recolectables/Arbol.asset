@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: 463fe572ac0ca7543a0d23a57f69861d, type: 2}
   puntosDeVida: 10
+  objetoRecolectable: {fileID: 8184310260397840728, guid: b9b62a95a5fac0d448dce89b1da057c8, type: 3}
+  numeroRecolectables: 10
   herramienta: hacha

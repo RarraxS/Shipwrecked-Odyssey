@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: bd3c99e68b6863a488342a4a931ce14a, type: 2}
   puntosDeVida: 10
+  objetoRecolectable: {fileID: 2873664512146202689, guid: 2c34a5e3d52958847baabbc81c3d517a, type: 3}
+  numeroRecolectables: 10
   herramienta: pico

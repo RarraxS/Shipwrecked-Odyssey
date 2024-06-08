@@ -42,7 +42,7 @@ public class ObjetosDestruibles : HitHerramientas
         for (int i = 0; i < cantidadRecolectables; i++)
         {
             Vector3 posicionAleatoria = Random.insideUnitSphere * distanciaMaxima;
-            posicionAleatoria.y = 0f; // Para asegurarnos de que los recolectables se generen en el plano horizontal
+            posicionAleatoria.z = 0f; // Para asegurarnos de que los recolectables se generen en el plano horizontal
 
             Instantiate(objetoRecolectable, transform.position + posicionAleatoria, Quaternion.identity);
         }

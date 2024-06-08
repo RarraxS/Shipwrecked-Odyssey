@@ -16,16 +16,16 @@ public class ControladorHerramientas : MonoBehaviour
 
     [SerializeField] private float tamañoAreaInteractuable = 1.2f;
     [SerializeField] private MarkerManager markerManager;
-    [SerializeField] private float distanciaMaxima;
+    [SerializeField] private float distanciaMaximaMarcado;
 
     private Vector3Int posicionTileSeleccionado;
     private bool seleccionado;
 
     // Tiles Recolectables ------------------------------------------------
 
-    [SerializeField] private Tilemap tilemapRecolectables;
-    private VariablesTilemapRecolectables[,] datosRecolectables;
     [SerializeField] public Recolectables[] tilesRecolectables;
+    [SerializeField] private Tilemap tilemapRecolectables;
+    [SerializeField] private float distanciaMaximaAparicion;
 
     private List<SingleTile> tiles;
     private Vector3Int dimension;
@@ -125,7 +125,7 @@ public class ControladorHerramientas : MonoBehaviour
         Vector2 cameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //Si el ratón está más lejos de la distancia máxima permitida, el marcador tile del ratón no se mostrará
-        seleccionado = Vector2.Distance(characterPosition, cameraPosition) < distanciaMaxima;
+        seleccionado = Vector2.Distance(characterPosition, cameraPosition) < distanciaMaximaMarcado;
         markerManager.Show(seleccionado);
     }
 
@@ -150,45 +150,6 @@ public class ControladorHerramientas : MonoBehaviour
     // Guardar variables de tiles recolectables ----------------------------
     private void TilesRecolectablesOcupados()
     {
-        ////Obtiene los límites del tilemap en el que pueden haber tiles recolectables y crea una matriz de esas dimensiones
-        //BoundsInt limites = worldRecolectables.cellBounds;
-        //datosRecolectables = new VariablesTilemapRecolectables[limites.xMax, limites.yMax];
-
-        ////Recorre todas las posiciones de la matriz viendo si hay un objeto es esa casilla
-        ////o no, en caso de haberlo le establece los puntos de vida correspondientes a ese
-        ////objeto, en caso de no haber nada ahí establece los puntos de vida de ese tile a 0
-        //for (int x = limites.xMin; x < limites.xMax; x++)
-        //{
-
-        //    for (int y = limites.yMin; y < limites.yMax; y++)
-        //    {
-        //        Vector3Int tilePosition = new Vector3Int(x, y);
-
-        //        // Obtén el tile en la posición actual
-        //        TileBase tile = tilemapRecolectables.GetTile(tilePosition);
-
-        //        if (tile != null)
-        //        {
-        //            for (int i = 0; i < tilesRecolectables.Length; i++)
-        //            {
-        //                if (tile == tilesRecolectables[i])
-        //                {
-        //                    datosRecolectables[x, y].matrizPuntosVidaTile = tilesRecolectables[i].puntosDeVida;
-        //                    //Debug.Log("Hay un " + tilesRecolectables[i].);
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-
-
-
-
-
-
-
         tiles = new List<SingleTile>();
         dimension = tilemapRecolectables.size;
         BoundsInt limites = worldRecolectables.cellBounds;
@@ -201,6 +162,8 @@ public class ControladorHerramientas : MonoBehaviour
                 SingleTile tile = new();
                 TileBase tileReal = tilemapRecolectables.GetTile(posicion);
                 int ptsVida = 0;
+                GameObject recolectables = null;
+                int numDrops = 0;
                 string herramienta = null;
 
                 //Aquí hacer un bucle for para comprobar cual de todos los objetos es este tile y así ver cuánta vida tiene ese determinado tile
@@ -210,12 +173,14 @@ public class ControladorHerramientas : MonoBehaviour
                     {
                         ptsVida = tilesRecolectables[i].puntosDeVida;
                         herramienta = tilesRecolectables[i].herramienta;
-                        
+                        recolectables = tilesRecolectables[i].objetoRecolectable;
+                        numDrops = tilesRecolectables[i].numeroRecolectables;
+
                         break;
                     }
                 }
-                Debug.Log(tileReal + " vida: " + ptsVida + ", herramienta: " + herramienta);
-                tile.SetearTile(ptsVida, herramienta, posicion, tileReal != null);
+                //Debug.Log(tileReal + " vida: " + ptsVida + ", herramienta: " + herramienta + ", recolectable: " + recolectables);
+                tile.SetearTile(ptsVida, herramienta, posicion, recolectables, numDrops, tileReal != null);
                 tiles.Add(tile);
             }
         }
@@ -227,63 +192,6 @@ public class ControladorHerramientas : MonoBehaviour
 
     private void Hacha(Vector3Int posicion)
     {
-        ////Coge la posición del tile que se está seleccionando y al tileset que se le pasa por parámetro 
-        ////se le apllica el tile paasado por referencia
-        //Vector3Int posicionMouse = GetMouseTilePosition();
-        //TileBase tileEnPosicion = worldRecolectables.GetTile(posicionMouse);
-
-        //Debug.Log(tileEnPosicion);
-
-        //if (tileEnPosicion != null)
-        //{
-        //    datosRecolectables[posicionMouse.x, posicionMouse.y].matrizPuntosVidaTile -= 1;
-        //    Debug.Log(datosRecolectables[posicionMouse.x, posicionMouse.y].matrizPuntosVidaTile);
-        //    Jugador.Instance.energia -= energiaArar;
-        //}
-
-
-
-        // Obtiene la posición del mouse en el mundo
-        //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        //// Convierte la posición del mouse en coordenadas de celda del Tilemap original
-        //Vector3Int posicionCeldaOriginal = tilemapRecolectables.WorldToCell(mousePosition);
-
-        //Vector3Int posicionDestinoCelda = worldRecolectables.WorldToCell(tilemapRecolectables.GetCellCenterWorld(posicionCeldaOriginal));
-
-        //Vector3 destinationTileCenter = worldRecolectables.GetCellCenterWorld(posicionDestinoCelda);
-
-
-        //// Obtiene la fila y la columna del Tilemap de destino
-        //int row = posicionDestinoCelda.y;
-        //int column = posicionDestinoCelda.x;
-
-        //// Imprime la fila y la columna del Tilemap de destino en la consola
-        //Debug.Log("Fila: " + row + ", Columna: " + column);
-
-
-        ////Pilla la posición del tile
-        //Vector3Int posicionMouse = GetMouseTilePosition();
-        //TileBase tileEnPosicion = tilemapRecolectables.GetTile(posicionMouse);
-
-        //if (tileEnPosicion != null)
-        //{
-
-        //}
-
-        //if (tileEnPosicion == null)
-        //{
-        //    tilemapRecolectables.SetTile(posicionMouse, piezaArada);
-        //    Jugador.Instance.energia -= energiaArar;
-        //}
-
-
-
-
-
-
-
-
         TileBase tileEnPosicion = tilemapRecolectables.GetTile(posicion);
 
         if (tileEnPosicion != null)
@@ -298,16 +206,29 @@ public class ControladorHerramientas : MonoBehaviour
 
 
                     if (tile.puntosVida <= 0)
-                    {
-                        tile.hayTile = false;
-                        
+                    {                        
                         Tile newTile = ScriptableObject.CreateInstance<Tile>();     //Se crea un nuevo tile
                         newTile.sprite = null;                                      //Se le asigna el sprite de reemplazo
                         tilemapRecolectables.SetTile(posicion, newTile);            //Se reemplaza el tile
 
-                        //Programar el dropear items al romper (intentar transpasar esa parte del script "Objetosdestruibles" al
-                        //script de "Recolectables" y aprovechar la posición del ratón que se le pasa por parámetro para sacar el
-                        //centro del tile y ya de ahí sacar un círuclo en el que puedan aparecer los objetos)
+                        if (tile.hayTile == true)
+                        {
+                            Vector3 centroTile = worldRecolectables.GetCellCenterWorld(posicion);
+
+                            for (int i = 0; i < tile.numDropeables; i++)
+                            {
+                                float distanciaAparicion;
+
+                                distanciaAparicion = Random.Range(0, distanciaMaximaAparicion);
+
+                                Vector3 posicionAleatoria = (Random.insideUnitSphere * distanciaAparicion) + centroTile;
+                                posicionAleatoria.z = 0;
+
+                                Instantiate(tile.objetoRecolectable, posicionAleatoria, Quaternion.identity);
+                            }
+                        }
+
+                        tile.hayTile = false;
                     }
                 }
             });
@@ -359,18 +280,17 @@ public class SingleTile
 {
     public int puntosVida;
     public Vector3Int posicion;
+    public GameObject objetoRecolectable;
+    public int numDropeables;
     public bool hayTile;
 
-    public void SetearTile(int vidaTile, string herramienra, Vector3Int posicionTile, bool existeTile)
+    public void SetearTile(int vidaTile, string herramienra, Vector3Int posicionTile, GameObject recolectable, int numeroDrops, bool existeTile)
     {
         puntosVida = vidaTile;
         posicion = posicionTile;
+        objetoRecolectable = recolectable;
+        numDropeables = numeroDrops;
         hayTile = existeTile;
-    }
-
-    public void ResetearSprite()
-    {
-        //sprite = null;
     }
 }
 
