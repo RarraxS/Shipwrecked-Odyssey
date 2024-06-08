@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4060393969088925760, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_Name
-      value: Sandia Variant (12)
+      value: Sandia
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_RootOrder
@@ -88,8 +88,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: afd4eb185af34234fb487866a20f8a74, type: 3}
     - target: {fileID: 4060393969088925767, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060393969088925767, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -871328011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060393969088925767, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
+--- !u!1 &5959601081168313242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4060393969088925760, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
+  m_PrefabInstance: {fileID: 7705002927277812698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &-1126622554490930489
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5959601081168313242}
+  m_Enabled: 1
+  m_SortingLayerID: -871328011
+  m_SortingLayer: 4
+  m_SortingOrder: 0
