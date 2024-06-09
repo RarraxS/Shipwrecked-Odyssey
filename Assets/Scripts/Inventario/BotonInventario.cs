@@ -82,18 +82,21 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         //Se trata de la lógica que se ejecuta cuando se pulsa el
         //botón casilla con el botón izquierdo del ratón
 
-        //Si se intenta colocar un objeto sobre una casilla que ya contiene
-        //ese objeto y el objeto es stackeable entonces se suman las unidades
-        if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
+        if (DragAndDropController.Instance.itemDnD != null || item != null)
         {
-            DragAndDropController.Instance.Anadir(numeroClasificador);
-        }
+            //Si se intenta colocar un objeto sobre una casilla que ya contiene
+            //ese objeto y el objeto es stackeable entonces se suman las unidades
+            if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
+            {
+                DragAndDropController.Instance.Anadir(numeroClasificador);
+            }
 
-        //En cualquier otro caso lo que ocurre es que se intercambian el objeto
-        //que hay en la casilla clicada con el objeto que hay en el DnD
-        else
-        {
-            DragAndDropController.Instance.Copiar(numeroClasificador);
+            //En cualquier otro caso lo que ocurre es que se intercambian el objeto
+            //que hay en la casilla clicada con el objeto que hay en el DnD
+            else
+            {
+                DragAndDropController.Instance.Copiar(numeroClasificador);
+            }
         }
     }
 
@@ -102,20 +105,23 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         //Se trata de la lógica que se ejecuta cuando se pulsa el
         //botón casilla con el botón derecho del ratón
 
-        //Si se intenta colocar un objeto sobre una casilla que ya contiene
-        //ese objeto y el objeto es stackeable entonces se le suma una unidad
-        //a la casilla del inventario con la que se está interactuando
-        if (DragAndDropController.Instance.itemDnD == item && 
+        if (DragAndDropController.Instance.itemDnD != null || item != null)
+        {
+            //Si se intenta colocar un objeto sobre una casilla que ya contiene
+            //ese objeto y el objeto es stackeable entonces se le suma una unidad
+            //a la casilla del inventario con la que se está interactuando
+            if (DragAndDropController.Instance.itemDnD == item &&
             DragAndDropController.Instance.itemDnD.stackeable == true)
-        {
-            DragAndDropController.Instance.AnadirIndividual(numeroClasificador);
-        }
+            {
+                DragAndDropController.Instance.AnadirIndividual(numeroClasificador);
+            }
 
-        //En cualquier otro caso lo que ocurre es que se intercambian el objeto
-        //que hay en la casilla clicada con el objeto que hay en el DnD
-        else
-        {
-            DragAndDropController.Instance.CopiarIndividual(numeroClasificador);
+            //En cualquier otro caso lo que ocurre es que se intercambian el objeto
+            //que hay en la casilla clicada con el objeto que hay en el DnD
+            else
+            {
+                DragAndDropController.Instance.CopiarIndividual(numeroClasificador);
+            }
         }
     }
 

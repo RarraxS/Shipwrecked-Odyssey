@@ -64,12 +64,12 @@ public class Toolbar : MonoBehaviour
 
             if (movimientoRaton > 0)
             {
-                herramientaActual++;
+                herramientaActual--;
             }
 
             else
             {
-                herramientaActual--;
+                herramientaActual++;
             }
 
             if (herramientaActual >= numeroCasillasToolbar)
