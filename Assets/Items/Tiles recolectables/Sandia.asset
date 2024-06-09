@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: 9172e5348bc11d0459f2a855488aab37, type: 2}
   puntosDeVida: 1
-  objetoRecolectable: {fileID: 5959601081168313242, guid: f73fe75b0d371e840be9cda107969aa0, type: 3}
+  objetoRecolectable: {fileID: 6499437764403443079, guid: 761b1b87c4de31942820a24a33074bff, type: 3}
   numeroRecolectables: 1
   herramienta: mano

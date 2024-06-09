@@ -9,4 +9,5 @@ public class Recolectables : ScriptableObject
     public GameObject objetoRecolectable;
     public int numeroRecolectables;
     public string herramienta;
+    public int nivelMinimoHerramienta;
 }

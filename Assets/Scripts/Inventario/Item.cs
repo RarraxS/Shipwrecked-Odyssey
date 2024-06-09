@@ -9,4 +9,7 @@ public class Item : ScriptableObject
     public Sprite sprite;
     public string descripcion;
     public GameObject objetoSuelo;
+    public string herramienta;
+    public int nivel;
+    public int damageHerramienta;
 }

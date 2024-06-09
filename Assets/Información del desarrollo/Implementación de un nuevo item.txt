@@ -1,0 +1,37 @@
+1º - Importar el sprite de 16x16 y el de 24x24
+
+
+Tile recolectable
+	1º - Crear un tilebase usando el sprite de 16x16.
+	2º - Crear un tile recolectable --> "Proyect" > "Create" > "Data" > "Tile recolectable"
+	3º - Rellenar las casillas del tile recolectable:
+			·Tile - Es el tilebase que creamos anteriormente.
+			·Puntos De Vida - Son los puntos de vida que tiene ese tipo de tile.
+			·Objeto Recolectable - Es el item recolectable que va a spawnear tras destruir el tile.
+			·Numero Recolectables - Es el número de objetos que va a dropear al romperse el tile.
+			·Herramienta - Es el nombre de la herramienta con la que se puede picar el tile.
+				+"hacha" - Para las que se rompen con el hacha.
+				+"pico" - Para las que se rompen con el pico.
+				+"" - Para las que se rompen con la mano.
+			·Nivel Minimo Herramienta - Es el nivel que tiene que tener la herramienta como mínimo para poder. 
+	4º - Meter el tile recolectable creado en el array del script "ControladorHerramientas" en el objeto "Alex".
+
+Item
+	1º - Crear un item --> "Proyect" > "Create" > "Data" > "Item"
+	2º - Rellenar las variables del item:
+			·Nombre - Es el nombre del item.
+			·Stackeable - Marca si el item se puede stackear o no.
+			·Sprite - Es el sprite de 24x24 que se muestra en el inventario.
+			·Descripcion - Es la descripción del objeto que se muestra en el panel.
+			·Objeto Suelo - Es el item recolectable que spawnea cuando un item se tira del inventario.
+			·Herramienta - Es el nombre de la herramienta con la que se puede picar un tile.
+			·Nivel - Es el nivel de la herramienta.
+			·Damage Herramienta - Es el daño que inflinje la herramienta para ese nivel de la herramienta.
+
+Item recolectable
+	1º - Irese a "Project" > "Assets" > "Prefabs" > "Inventario" > "Recolectables".
+	2º - Sacar el prefab "Recolectables" a la escena.
+	3º - Aplicar el sprite de 24x24 al sprite renderer de ese prefab en la escena. 
+	4º - Adjuntarle su item correspondiente en el script "Pick Up Item".
+	5º - Cambiarle el nombre al objeto para identificar qué es.
+	6º - Arrastrar el prefab modificado desde "Hierarchy" hasta la carpeta del "Proyect" en la que se encuentran el resto de items recolectables y establecer el nuevo prefab como un prefab variant.
