@@ -16,4 +16,5 @@ MonoBehaviour:
   puntosDeVida: 1
   objetoRecolectable: {fileID: 7176542665701264434, guid: ee2a5d36d2db1804798fa5c09c61e886, type: 3}
   numeroRecolectables: 1
-  herramienta: mano
+  herramienta: 
+  nivelMinimoHerramienta: 0

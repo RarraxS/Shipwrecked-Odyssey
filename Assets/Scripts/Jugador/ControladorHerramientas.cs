@@ -165,6 +165,7 @@ public class ControladorHerramientas : MonoBehaviour
                 GameObject recolectables = null;
                 int numDrops = 0;
                 string herramienta = null;
+                int nivelMin;
 
                 //Aquí hacer un bucle for para comprobar cual de todos los objetos es este tile y así ver cuánta vida tiene ese determinado tile
                 for (int i = 0; i < tilesRecolectables.Length; i++)
@@ -173,6 +174,7 @@ public class ControladorHerramientas : MonoBehaviour
                     {
                         ptsVida = tilesRecolectables[i].puntosDeVida;
                         herramienta = tilesRecolectables[i].herramienta;
+                        nivelMin = tilesRecolectables[i].nivelMinimoHerramienta;
                         recolectables = tilesRecolectables[i].objetoRecolectable;
                         numDrops = tilesRecolectables[i].numeroRecolectables;
 
@@ -180,7 +182,7 @@ public class ControladorHerramientas : MonoBehaviour
                     }
                 }
                 //Debug.Log(tileReal + " vida: " + ptsVida + ", herramienta: " + herramienta + ", recolectable: " + recolectables);
-                tile.SetearTile(ptsVida, herramienta, posicion, recolectables, numDrops, tileReal != null);
+                tile.SetearTile(ptsVida, posicion, recolectables, numDrops, herramienta, nivelMin, tileReal != null);
                 tiles.Add(tile);
             }
         }
@@ -283,25 +285,17 @@ public class SingleTile
     public GameObject objetoRecolectable;
     public int numDropeables;
     public bool hayTile;
+    public string herramienta;
+    public int nivelMinimo;
 
-    public void SetearTile(int vidaTile, string herramienra, Vector3Int posicionTile, GameObject recolectable, int numeroDrops, bool existeTile)
+    public void SetearTile(int vidaTile, Vector3Int posicionTile, GameObject recolectable, int numeroDrops, string herramientaTile, int nivelMin, bool existeTile)
     {
         puntosVida = vidaTile;
         posicion = posicionTile;
         objetoRecolectable = recolectable;
         numDropeables = numeroDrops;
         hayTile = existeTile;
+        herramienta= herramientaTile;
+        nivelMinimo= nivelMin;
     }
 }
-
-//public class TileRecolectable : Tile
-//{
-//    public int puntosVida;
-
-//    public void SetupTile(Sprite _sprite)
-//    {
-//        sprite = _sprite;
-//        color = Random.ColorHSV();
-//        colliderType = Tile.ColliderType.Sprite;
-//    }
-//}
