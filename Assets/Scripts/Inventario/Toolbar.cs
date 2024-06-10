@@ -15,8 +15,20 @@ public class Toolbar : MonoBehaviour
     [SerializeField] private int numeroCasillasToolbar;
 
 
-    void Start()
+    private static Toolbar instance;
+    public static Toolbar Instance
     {
+        get { return instance; }
+    }
+
+    private void Start()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+
+
         //Al iniciar el juego la herramienta seleccionada es la primera casilla del inventario
         botonesToolbar[0].seleccionado.SetActive(true);
         herramientaSeleccionada = botonesToolbar[0];
