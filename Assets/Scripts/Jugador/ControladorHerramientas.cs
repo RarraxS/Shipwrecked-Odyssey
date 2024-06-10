@@ -165,7 +165,7 @@ public class ControladorHerramientas : MonoBehaviour
                 GameObject recolectables = null;
                 int numDrops = 0;
                 string herramienta = null;
-                int nivelMin;
+                int nivelMin = 0;
 
                 //Aquí hacer un bucle for para comprobar cual de todos los objetos es este tile y así ver cuánta vida tiene ese determinado tile
                 for (int i = 0; i < tilesRecolectables.Length; i++)
