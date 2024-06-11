@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
-  m_Name: New Item
+  m_Script: {fileID: 11500000, guid: c487c301e0dc87f4a94bd067fe9019d8, type: 3}
+  m_Name: Cereza
   m_EditorClassIdentifier: 
-  nombre: 
-  stackeable: 0
-  sprite: {fileID: 0}
-  descripcion: 
-  objetoSuelo: {fileID: 0}
+  tile: {fileID: 0}
+  puntosDeVida: 0
+  objetoRecolectable: {fileID: 0}
+  numeroRecolectables: 0
+  herramienta: 
+  nivelMinimoHerramienta: 0

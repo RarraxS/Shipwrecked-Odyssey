@@ -306,9 +306,9 @@ MonoBehaviour:
   icono: {fileID: 8426596008273372495}
   textCantidad: {fileID: 2490239742374142833}
   numeroClasificador: 0
+  descripcionesController: {fileID: 0}
   seleccionado: {fileID: 2738230129807804103}
   casillaToolbar: 0
-  descripcionesController: {fileID: 0}
 --- !u!1001 &793528872288287965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -413,12 +413,24 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
+      propertyPath: m_margin.w
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
+      propertyPath: m_margin.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
       propertyPath: m_fontSizeBase
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
       propertyPath: m_VerticalAlignment
       value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
+      propertyPath: m_wordWrappingRatios
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2993826762167099308, guid: 7eaf089028b897d4db39bc83b1bbeb04, type: 3}
       propertyPath: m_HorizontalAlignment
