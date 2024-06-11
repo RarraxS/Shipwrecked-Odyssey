@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c487c301e0dc87f4a94bd067fe9019d8, type: 3}
   m_Name: Cereza
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  puntosDeVida: 0
-  objetoRecolectable: {fileID: 0}
-  numeroRecolectables: 0
+  tile: {fileID: 11400000, guid: fd8cc26fc6761e345a6c252d460ad6cc, type: 2}
+  puntosDeVida: 1
+  objetoRecolectable: {fileID: 6090392258371669129, guid: f0a5f3d09085bc74a9cd987abf191e59, type: 3}
+  numeroRecolectables: 1
   herramienta: 
   nivelMinimoHerramienta: 0
