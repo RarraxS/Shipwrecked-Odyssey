@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Item")]
+[CreateAssetMenu(menuName = "Datos/Item")]
 public class Item : ScriptableObject
 {
     //Son las variables que posee un item de inventario

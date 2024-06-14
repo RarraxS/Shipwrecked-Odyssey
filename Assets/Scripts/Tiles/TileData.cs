@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Data/Tile Data")]
+[CreateAssetMenu(menuName = "Datos/Tile Data")]
 public class TileData : ScriptableObject
 {
     //Se trata de una lista en la cual se establece si un scriptable object que le

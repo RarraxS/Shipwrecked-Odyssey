@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.031868
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.408396
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33,15 +33,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925764, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -57,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925765, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: numGolpes
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925765, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: objetoRecolectable
       value: 
-      objectReference: {fileID: 7176542665701264434, guid: ee2a5d36d2db1804798fa5c09c61e886, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925765, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: cantidadRecolectables
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925766, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_Size.x
@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: c2d25901c84a7e347ad2be46363e7ca9, type: 3}
     - target: {fileID: 4060393969088925767, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4060393969088925767, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
       propertyPath: m_SortingLayerID
@@ -123,7 +123,8 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4060393969088925766, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fda7d39c463ca06478e50ed7ba94e4d7, type: 3}
 --- !u!1 &2942585140233653253 stripped
 GameObject:
@@ -139,5 +140,38 @@ SortingGroup:
   m_GameObject: {fileID: 2942585140233653253}
   m_Enabled: 1
   m_SortingLayerID: -871328011
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
+--- !u!60 &4806481810495327227
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2942585140233653253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37674987, y: -0.5}
+      - {x: -0.37305957, y: -0.5}
+      - {x: -0.4375, y: -0.4375}
+      - {x: -0.4375, y: -0.1875}
+      - {x: -0.375, y: -0.125}
+      - {x: 0.375, y: -0.125}
+      - {x: 0.4375, y: -0.1875}
+      - {x: 0.4375, y: -0.4375}

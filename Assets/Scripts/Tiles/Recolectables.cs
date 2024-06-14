@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Data/Tiles recolectables")]
+[CreateAssetMenu(menuName = "Datos/Tiles recolectables")]
 public class Recolectables : ScriptableObject
 {
     public TileBase tile;

@@ -17,3 +17,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 63c8cb7572c5a34439cc0cff4b6cdde2, type: 3}
   descripcion: Es una piedra.
   objetoSuelo: {fileID: 2873664512146202689, guid: 2c34a5e3d52958847baabbc81c3d517a, type: 3}
+  herramienta: 
+  nivel: 0
+  damageHerramienta: 0
