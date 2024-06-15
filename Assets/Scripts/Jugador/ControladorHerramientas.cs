@@ -78,14 +78,14 @@ public class ControladorHerramientas : MonoBehaviour
 
 
 
-            //Arar(posicionMouse);
+            Arar(posicionMouse);
 
             //if (Toolbar.Instance.herramientaSeleccionada.item != null)
             //{
             //    PicarRecolectable(posicionMouse, Toolbar.Instance.herramientaSeleccionada.item.herramienta);
             //}
 
-            //UsarHerramientaWorld();
+            UsarHerramientaWorld();
 
             AccederRecolectable(posicionMouse);
         }
@@ -318,13 +318,27 @@ public class ControladorHerramientas : MonoBehaviour
                 ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>(); 
 
 
-                //Si el objetoRecolectable no es nulo y la posición del mouse y la del objeto coinciden entonces modificamos las variables
+                //Si el objetoRecolectable no es nulo y la posición del mouse
+                //y la del objeto coinciden entonces modificamos las variables
                 if (objetoRecolectable != null && posicion == objetoRecolectable.transform.position)
                 {
+                    //Aqui llamamos a la funcion Golpear del objetoRecolectable en el que se ha clickado
 
-                    //Aqui comprobamos si la herramienta selecccionada y la herramienta necesaria por el objetoRecolectable es la misma,
-                    //entonces le quita vida
-                    Debug.Log(hitbox.gameObject.name);
+
+                    //Si se golpea con  se llama a esta funcion que comprobara si esa herramienta
+                    //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
+                    //de vida indicados establecidos en la propia herramienta
+                    if (Toolbar.Instance.herramientaSeleccionada.item == null ||
+                        Toolbar.Instance.herramientaSeleccionada.item.herramienta == "")
+                        objetoRecolectable.GolpearMano();
+
+                    //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
+                    //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
+                    //de vida indicados establecidos en la propia herramienta
+                    else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
+                        objetoRecolectable.GolpearHerramienta();
+
+                    
                 }
             }
         }
