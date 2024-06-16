@@ -323,22 +323,7 @@ public class ControladorHerramientas : MonoBehaviour
                 if (objetoRecolectable != null && posicion == objetoRecolectable.transform.position)
                 {
                     //Aqui llamamos a la funcion Golpear del objetoRecolectable en el que se ha clickado
-
-
-                    //Si se golpea con  se llama a esta funcion que comprobara si esa herramienta
-                    //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
-                    //de vida indicados establecidos en la propia herramienta
-                    if (Toolbar.Instance.herramientaSeleccionada.item == null ||
-                        Toolbar.Instance.herramientaSeleccionada.item.herramienta == "")
-                        objetoRecolectable.GolpearMano();
-
-                    //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
-                    //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
-                    //de vida indicados establecidos en la propia herramienta
-                    else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
-                        objetoRecolectable.GolpearHerramienta();
-
-                    
+                    objetoRecolectable.Golpear();
                 }
             }
         }
