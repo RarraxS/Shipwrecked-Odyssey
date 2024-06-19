@@ -9,11 +9,14 @@ public class ObjetosRecolectables : MonoBehaviour
     [SerializeField] private int puntosDeVida;
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
+    [SerializeField] private float distanciaMaximaAparicion;
+    [SerializeField] private Dropeables[] dropeables;
 
+    private Transform tr;
 
     private void Start()
     {
-        
+        tr = GetComponent<Transform>();
     }
     
     private void Update()
@@ -22,18 +25,17 @@ public class ObjetosRecolectables : MonoBehaviour
     }
 
 
-    public void Golpear () 
+    public void ClasificarGolpe() 
     {
-        //GolpearHerramienta();
-        //GolpearMano();
-
-
+        //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
+        //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
+        //de vida indicados establecidos en la propia herramienta
         if (Toolbar.Instance.herramientaSeleccionada.item != null)
         {
             if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria || 
                 herramientaNecesaria == "" && Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
             {
-                Debug.Log("Herramienta");
+                Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
             }
         }
 
@@ -42,58 +44,51 @@ public class ObjetosRecolectables : MonoBehaviour
         //cantidad de puntos de vida indicados establecidos en la propia herramienta
         else if (herramientaNecesaria == "")
         {
-            Debug.Log("No herramienta");
+            Golpear(1);
         }
 
         else
             return;
-
-
-
-        //if ((Toolbar.Instance.herramientaSeleccionada.item == null ||
-        //    Toolbar.Instance.herramientaSeleccionada.item.herramienta == "") &&
-        //    herramientaNecesaria == "")
-        //    GolpearMano();
-
-        //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
-        //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
-        //de vida indicados establecidos en la propia herramienta
-        //else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta != "" &&
-        //    Toolbar.Instance.herramientaSeleccionada.item != null)
-        //    GolpearHerramienta();
-
-        //else
-        //    return;
     }
 
-    public void GolpearHerramienta() 
+    public void Golpear(int damage) 
     {
-        if ((herramientaNecesaria == Toolbar.Instance.herramientaSeleccionada.item.herramienta
-            && Toolbar.Instance.herramientaSeleccionada.item.nivel >= nivelMinimoDeHerramienta) || 
-            herramientaNecesaria == "")
-        {
-            Debug.Log("Aqui estoy pegando con una HERRAMIENTA");
-            puntosDeVida -= Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta;
-
-            if (puntosDeVida <= 0)
-            {
-                OcultarObjeto();
-            }
-        }
-    }
-
-    public void GolpearMano()
-    {
-        Debug.Log("Aqui estoy pegando con la MANO");
-        puntosDeVida -= 1;
-
+        puntosDeVida -= damage;
+        
         if (puntosDeVida <= 0)
         {
+            puntosDeVida= 0;
+
             OcultarObjeto();
+
+            gameObject.SetActive(false);
         }
     }
+
     private void OcultarObjeto()
     {
-        //Debug.Log(this.name + " tiene " + puntosDeVida + " puntos de vida");
+        for (int i = 0; i < dropeables.Length; i++)
+        {
+            int random = Random.Range(1, 101);
+            Debug.Log(random);
+            for (int j = (dropeables[i].probabilidad.Length - 1); j >= 0 ; j--)
+            {
+                if (random <= dropeables[i].probabilidad[j])
+                {
+                    for (int k = dropeables[i].cantidad[j]; k > 0; k--)
+                    {
+                        float distanciaAparicion;
+
+                        distanciaAparicion = Random.Range(0, distanciaMaximaAparicion);
+
+                        Vector3 posicionAleatoria = (Random.insideUnitSphere * distanciaAparicion) + tr.position;
+                        posicionAleatoria.z = 0;
+
+                        Instantiate(dropeables[0].recolectable, posicionAleatoria, Quaternion.identity);
+                    }
+                    break;
+                }
+            }
+        }
     }
 }

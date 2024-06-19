@@ -61,7 +61,7 @@ public class ControladorHerramientas : MonoBehaviour
         personaje = GetComponent<Jugador>();
         rb = GetComponent<Rigidbody2D>();
 
-        TilesRecolectablesOcupados();
+        //TilesRecolectablesOcupados();
     }
 
     private void Update()
@@ -323,7 +323,7 @@ public class ControladorHerramientas : MonoBehaviour
                 if (objetoRecolectable != null && posicion == objetoRecolectable.transform.position)
                 {
                     //Aqui llamamos a la funcion Golpear del objetoRecolectable en el que se ha clickado
-                    objetoRecolectable.Golpear();
+                    objetoRecolectable.ClasificarGolpe();
                 }
             }
         }

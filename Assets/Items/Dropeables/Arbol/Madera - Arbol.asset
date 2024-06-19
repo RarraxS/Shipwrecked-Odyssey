@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a3e4e053a057e4ea97ccb056c676e1, type: 3}
+  m_Name: Madera - Arbol
+  m_EditorClassIdentifier: 
+  recolectable: {fileID: 8184310260397840728, guid: b9b62a95a5fac0d448dce89b1da057c8, type: 3}
+  cantidad: 050000000700000009000000
+  probabilidad: 64000000280000000a000000
