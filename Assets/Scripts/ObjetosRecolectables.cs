@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour
@@ -12,11 +8,26 @@ public class ObjetosRecolectables : MonoBehaviour
     [SerializeField] private float distanciaMaximaAparicion;
     [SerializeField] private Dropeables[] dropeables;
 
-    private Transform tr;
+    private Transform tr;// Esta variable es privada para poder generar luego los items al rededor del lugar en el que se encuentra este objeto
+
+    // Son las variables que van a permitir pasar la informacion de los objetos de un tipo a otro
+
+    [SerializeField] private GameObject[] objeto;// Es el array que contiene todos los distintos objetos recolectables del juego
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private ObjetosRecolectables objetoRecolectable;
+    [SerializeField] private Collider2D hitboxColision;
+    [SerializeField] private Collider2D hitboxSinColision;
+
 
     private void Start()
     {
         tr = GetComponent<Transform>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        objetoRecolectable = GetComponent<ObjetosRecolectables>();
+        hitboxColision = GetComponent<Collider2D>();
+        hitboxSinColision = GetComponent<Collider2D>();
     }
     
     private void Update()
