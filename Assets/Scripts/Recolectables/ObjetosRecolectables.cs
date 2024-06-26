@@ -115,8 +115,19 @@ public class ObjetosRecolectables : MonoBehaviour
         {
             if (objeto[i].gameObject.name == name)
             {
+                //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
+                //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
+
+                //Esta forma cambia las variables pero no las aplica
+
+                //spriteRenderer = objeto[i].spriteRenderer;
+                //objetoRecolectable = objeto[i].objetoRecolectable;
+                //hitboxColision = objeto[i].hitboxColision;
+                //hitboxSinColision = objeto[i].hitboxSinColision;
+
+
                 // Esto es provisional hasta que se encuentre una forma distinta de hacerlo --------------------
-                
+
                 spriteRenderer.sprite = objeto[i].spriteRenderer.sprite;
 
 
@@ -125,10 +136,10 @@ public class ObjetosRecolectables : MonoBehaviour
                 herramientaNecesaria = objeto[i].objetoRecolectable.herramientaNecesaria;
                 nivelMinimoDeHerramienta = objeto[i].objetoRecolectable.nivelMinimoDeHerramienta;
                 distanciaMaximaAparicion = objeto[i].objetoRecolectable.distanciaMaximaAparicion;
-                
+
                 for (int j = 0; j < dropeables.Length; j++)
                 {
-                    dropeables[j] = null; 
+                    dropeables[j] = null;
                 }
 
                 for (int k = 0; k < dropeables.Length; k++)
