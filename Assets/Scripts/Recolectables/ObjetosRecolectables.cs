@@ -39,7 +39,7 @@ public class ObjetosRecolectables : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            AparecerObjeto(spawneables[1].worldItem.name);
+            CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
     }
 
 
@@ -112,9 +112,8 @@ public class ObjetosRecolectables : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void AparecerObjeto(string name)
+    private void CambiarAndAparecerObjeto(string name)
     {
-        //Comprobamos que objeto es el que estamos buscando y cambiamos las variables de los componentes de este objeto por las del objeto objetivo
         for (int i = 0; i < spawneables.Count; i++)
         {
             if (spawneables[i].worldItem.gameObject.name == name)
@@ -122,9 +121,6 @@ public class ObjetosRecolectables : MonoBehaviour
                 //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
                 //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
 
-
-
-                // Esto es provisional hasta que se encuentre una forma distinta de hacerlo --------------------
 
                 componenteSpriteRenderer.sprite = spawneables[i].worldItem.componenteSpriteRenderer.sprite;
 
@@ -161,7 +157,7 @@ public class ObjetosRecolectables : MonoBehaviour
         }
     }
 
-        public void TransparentarObjeto()
+    public void TransparentarObjeto()
     {
         componenteSpriteRenderer.color = colorTransparencia;
     }
@@ -184,6 +180,9 @@ public class ItemAndProbability
     public float probabilidad;
 }
 
+//-----------------------------------------------------------------------------------------
+
+//Estas clases se van a encargar de almacenar la informacion de los dropeables
 
 [Serializable]
 public class Drops
