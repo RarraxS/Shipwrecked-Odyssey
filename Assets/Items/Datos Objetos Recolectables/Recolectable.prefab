@@ -187,22 +187,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df241b56f775e34e9e0b45599b1c100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntosDeVida: 1
   herramientaNecesaria: 
   nivelMinimoDeHerramienta: 0
+  puntosDeVida: 1
   distanciaMaximaAparicion: 2
-  dropeables:
-  - {fileID: 0}
-  - {fileID: 0}
-  colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
   objetoSinColision: {fileID: 1036944312968333535}
-  spriteRenderer: {fileID: 9199462507180230407}
-  objetoRecolectable: {fileID: 82235802063802777}
-  hitboxColision: {fileID: 82235802063802782}
-  hitboxSinColision: {fileID: 2224636285734665121}
-  objeto:
-  - {fileID: 7792818676749412848, guid: a6684d928a153574c89b1d83fd35897c, type: 3}
-  - {fileID: 7276041121302367, guid: deb8e9dd29160e2478e719b9c42c5a03, type: 3}
+  colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
+  componenteSpriteRenderer: {fileID: 9199462507180230407}
+  componenteObjetoRecolectable: {fileID: 82235802063802777}
+  componenteHitboxColision: {fileID: 82235802063802782}
+  componenteHitboxSinColision: {fileID: 2224636285734665121}
+  drops:
+  - dropeable: {fileID: 0}
+    probabilidades:
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+  - dropeable: {fileID: 0}
+    probabilidades:
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+  - dropeable: {fileID: 0}
+    probabilidades:
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+    - cantidad: 0
+      probabilidad: 0
+  spawneables:
+  - worldItem: {fileID: 7792818676749412848, guid: a6684d928a153574c89b1d83fd35897c, type: 3}
+    probabilidad: 0
+  - worldItem: {fileID: 7276041121302367, guid: deb8e9dd29160e2478e719b9c42c5a03, type: 3}
+    probabilidad: 0
 --- !u!60 &82235802063802782
 PolygonCollider2D:
   m_ObjectHideFlags: 0

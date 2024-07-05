@@ -1,43 +1,45 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour
 {
-    [SerializeField] private int puntosDeVida;
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
+    [SerializeField] private int puntosDeVida;
     [SerializeField] private float distanciaMaximaAparicion;
-    [SerializeField] private Dropeables[] dropeables;
-
-    [SerializeField] private Color colorTransparencia;
-
-    private Transform tr;// Esta variable es privada para poder generar luego los items al rededor del lugar en el que se encuentra este objeto
 
     [SerializeField] private GameObject objetoSinColision;
+    [SerializeField] private Color colorTransparencia;
 
-    // Son las variables que van a permitir pasar la informacion de los objetos de un tipo a otro
+    private Transform tr;
 
-    public SpriteRenderer spriteRenderer;
-    public ObjetosRecolectables objetoRecolectable;
-    public PolygonCollider2D hitboxColision;
-    public PolygonCollider2D hitboxSinColision;
+    public SpriteRenderer componenteSpriteRenderer;
+    public ObjetosRecolectables componenteObjetoRecolectable;
+    public PolygonCollider2D componenteHitboxColision;
+    public PolygonCollider2D componenteHitboxSinColision;
 
-    [SerializeField] private ObjetosRecolectables[] objeto;// Es el array que contiene todos los distintos objetos recolectables del juego
+
+    public List<Drops> drops;
+
+    [SerializeField] private List<ItemAndProbability> spawneables;
+
 
 
     private void Start()
     {
         tr = GetComponent<Transform>();
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        objetoRecolectable = GetComponent<ObjetosRecolectables>();
-        hitboxColision = GetComponent<PolygonCollider2D>();
-        hitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
+        componenteSpriteRenderer = GetComponent<SpriteRenderer>();
+        componenteObjetoRecolectable = GetComponent<ObjetosRecolectables>();
+        componenteHitboxColision = GetComponent<PolygonCollider2D>();
+        componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
     }
     
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            AparecerObjeto(objeto[1].name);
+            AparecerObjeto(spawneables[1].worldItem.name);
     }
 
 
@@ -75,82 +77,80 @@ public class ObjetosRecolectables : MonoBehaviour
         {
             puntosDeVida= 0;
 
-            OcultarObjeto();
-
-            gameObject.SetActive(false);
+            GenerarDropsAndOcultar();
         }
     }
 
-    private void OcultarObjeto()
+    private void GenerarDropsAndOcultar()
     {
-        for (int i = 0; i < dropeables.Length; i++)
+        for (int numDrop = 0; numDrop < drops.Count; numDrop++)
         {
-            int random = Random.Range(1, 101);
-            Debug.Log(random);
-            for (int j = (dropeables[i].probabilidad.Length - 1); j >= 0 ; j--)
+            if (drops[numDrop].dropeable != null)
             {
-                if (random <= dropeables[i].probabilidad[j])
+                for (int numProbabilidades = drops[numDrop].probabilidades.Count - 1; numProbabilidades >= 0; numProbabilidades--)
                 {
-                    for (int k = dropeables[i].cantidad[j]; k > 0; k--)
+                    int random = UnityEngine.Random.Range(1, 101);
+
+                    if (random <= drops[numDrop].probabilidades[numProbabilidades].probabilidad)
                     {
-                        float distanciaAparicion;
+                        for (int cantidadDrops = drops[numDrop].probabilidades[numProbabilidades].cantidad; cantidadDrops > 0; cantidadDrops--)
+                        {
+                            float distanciaAparicion;
 
-                        distanciaAparicion = Random.Range(0, distanciaMaximaAparicion);
+                            distanciaAparicion = UnityEngine.Random.Range(0, distanciaMaximaAparicion);
 
-                        Vector3 posicionAleatoria = (Random.insideUnitSphere * distanciaAparicion) + tr.position;
-                        posicionAleatoria.z = 0;
+                            Vector3 posicionAleatoria = (UnityEngine.Random.insideUnitSphere * distanciaAparicion) + tr.position;
+                            posicionAleatoria.z = 0;
 
-                        Instantiate(dropeables[0].recolectable, posicionAleatoria, Quaternion.identity);
+                            Instantiate(drops[numDrop].dropeable, posicionAleatoria, Quaternion.identity);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
+        gameObject.SetActive(false);
     }
 
     private void AparecerObjeto(string name)
     {
         //Comprobamos que objeto es el que estamos buscando y cambiamos las variables de los componentes de este objeto por las del objeto objetivo
-        for (int i = 0; i < objeto.Length; i++)
+        for (int i = 0; i < spawneables.Count; i++)
         {
-            if (objeto[i].gameObject.name == name)
+            if (spawneables[i].worldItem.gameObject.name == name)
             {
                 //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
                 //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
 
-                //Esta forma cambia las variables pero no las aplica
-
-                //spriteRenderer = objeto[i].spriteRenderer;
-                //objetoRecolectable = objeto[i].objetoRecolectable;
-                //hitboxColision = objeto[i].hitboxColision;
-                //hitboxSinColision = objeto[i].hitboxSinColision;
 
 
                 // Esto es provisional hasta que se encuentre una forma distinta de hacerlo --------------------
 
-                spriteRenderer.sprite = objeto[i].spriteRenderer.sprite;
+                componenteSpriteRenderer.sprite = spawneables[i].worldItem.componenteSpriteRenderer.sprite;
 
 
 
-                puntosDeVida = objeto[i].objetoRecolectable.puntosDeVida;
-                herramientaNecesaria = objeto[i].objetoRecolectable.herramientaNecesaria;
-                nivelMinimoDeHerramienta = objeto[i].objetoRecolectable.nivelMinimoDeHerramienta;
-                distanciaMaximaAparicion = objeto[i].objetoRecolectable.distanciaMaximaAparicion;
+                puntosDeVida = spawneables[i].worldItem.componenteObjetoRecolectable.puntosDeVida;
+                herramientaNecesaria = spawneables[i].worldItem.componenteObjetoRecolectable.herramientaNecesaria;
+                nivelMinimoDeHerramienta = spawneables[i].worldItem.componenteObjetoRecolectable.nivelMinimoDeHerramienta;
+                distanciaMaximaAparicion = spawneables[i].worldItem.componenteObjetoRecolectable.distanciaMaximaAparicion;
 
-                for (int j = 0; j < dropeables.Length; j++)
+                for (int j = 0; j < drops.Count; j++)
                 {
-                    dropeables[j] = null;
+                    if (spawneables[i].worldItem.drops[j] != null)
+                    {
+                        drops[j] = spawneables[i].worldItem.drops[j];
+                    }
+
+                    else
+                    {
+                        drops[j] = null;
+                    }
                 }
 
-                for (int k = 0; k < dropeables.Length; k++)
-                {
-                    dropeables[k] = objeto[i].dropeables[k];
-                }
 
-
-
-                hitboxColision.points = objeto[i].hitboxColision.points;
-                hitboxSinColision.points = objeto[i].hitboxSinColision.points;
+                componenteHitboxColision.points = spawneables[i].worldItem.componenteHitboxColision.points;
+                componenteHitboxSinColision.points = spawneables[i].worldItem.componenteHitboxSinColision.points;
 
                 //----------------------------------------------------------------------------------------------
 
@@ -161,13 +161,42 @@ public class ObjetosRecolectables : MonoBehaviour
         }
     }
 
-    public void TransparentarObjeto()
+        public void TransparentarObjeto()
     {
-        spriteRenderer.color = colorTransparencia;
+        componenteSpriteRenderer.color = colorTransparencia;
     }
 
     public void RestablecerColor()
     {
-        spriteRenderer.color = new Color(1, 1, 1, 1);
+        componenteSpriteRenderer.color = new Color(1, 1, 1, 1);
     }
+}
+
+
+//Esta va a ser la clase que contenga las variables de probabilidad y los gameobjects
+//que van a swawnear de forma aleatoria por el mapa a lo largo de los dias
+
+[Serializable]
+public class ItemAndProbability
+{
+    public ObjetosRecolectables worldItem;
+
+    public float probabilidad;
+}
+
+
+[Serializable]
+public class Drops
+{
+    public GameObject dropeable;
+
+    public List<CuantityProbabilities> probabilidades;
+}
+
+[Serializable]
+public class CuantityProbabilities
+{
+    public int cantidad;
+
+    public float probabilidad;
 }
