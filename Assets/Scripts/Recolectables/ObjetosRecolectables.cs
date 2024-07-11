@@ -6,8 +6,12 @@ public class ObjetosRecolectables : MonoBehaviour
 {
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
+    [SerializeField] private bool permitirGolpear;
+    [SerializeField] private int energiaGolpear;
     [SerializeField] private int puntosDeVida;
     [SerializeField] private float distanciaMaximaAparicion;
+    [SerializeField] private bool ignorarTransparencia;
+    [SerializeField] private bool rotarEntrarColision;
 
     [SerializeField] private GameObject objetoSinColision;
     [SerializeField] private Color colorTransparencia;
@@ -15,9 +19,9 @@ public class ObjetosRecolectables : MonoBehaviour
     private Transform tr;
 
     public SpriteRenderer componenteSpriteRenderer;
-    public ObjetosRecolectables componenteObjetoRecolectable;
     public PolygonCollider2D componenteHitboxColision;
     public PolygonCollider2D componenteHitboxSinColision;
+    public Animator componenteAnimator;
 
 
     public List<Drops> drops;
@@ -31,9 +35,9 @@ public class ObjetosRecolectables : MonoBehaviour
         tr = GetComponent<Transform>();
 
         componenteSpriteRenderer = GetComponent<SpriteRenderer>();
-        componenteObjetoRecolectable = GetComponent<ObjetosRecolectables>();
         componenteHitboxColision = GetComponent<PolygonCollider2D>();
         componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
+        componenteAnimator = GetComponent<Animator>();
     }
     
     private void Update()
@@ -43,30 +47,33 @@ public class ObjetosRecolectables : MonoBehaviour
     }
 
 
-    public void ClasificarGolpe() 
+    public void ClasificarGolpe()
     {
-        //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
-        //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
-        //de vida indicados establecidos en la propia herramienta
-        if (Toolbar.Instance.herramientaSeleccionada.item != null)
+        if (permitirGolpear == true)
         {
-            if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria || 
-                herramientaNecesaria == "" && Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
+            //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
+            //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
+            //de vida indicados establecidos en la propia herramienta
+            if (Toolbar.Instance.herramientaSeleccionada.item != null)
             {
-                Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
+                if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria ||
+                    herramientaNecesaria == "" && Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
+                {
+                    Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
+                }
             }
-        }
 
-        //Si se golpea con la mano u otro ojeto se llama a esta funcion que comprobara si esa
-        //herramienta es la adecuada para ese tipo de objeto y en caso de ser asi le resta una
-        //cantidad de puntos de vida indicados establecidos en la propia herramienta
-        else if (herramientaNecesaria == "")
-        {
-            Golpear(1);
-        }
+            //Si se golpea con la mano u otro ojeto se llama a esta funcion que comprobara si esa
+            //herramienta es la adecuada para ese tipo de objeto y en caso de ser asi le resta una
+            //cantidad de puntos de vida indicados establecidos en la propia herramienta
+            else if (herramientaNecesaria == "")
+            {
+                Golpear(1);
+            }
 
-        else
-            return;
+            else
+                return;
+        }
     }
 
     public void Golpear(int damage) 
@@ -109,7 +116,11 @@ public class ObjetosRecolectables : MonoBehaviour
                 }
             }
         }
-        gameObject.SetActive(false);
+
+        componenteSpriteRenderer.enabled = false;
+        componenteHitboxColision.enabled = false;
+        componenteHitboxSinColision.enabled = false;
+        componenteAnimator.enabled = false;
     }
 
     private void CambiarAndAparecerObjeto(string name)
@@ -126,10 +137,15 @@ public class ObjetosRecolectables : MonoBehaviour
 
 
 
-                puntosDeVida = spawneables[i].worldItem.componenteObjetoRecolectable.puntosDeVida;
-                herramientaNecesaria = spawneables[i].worldItem.componenteObjetoRecolectable.herramientaNecesaria;
-                nivelMinimoDeHerramienta = spawneables[i].worldItem.componenteObjetoRecolectable.nivelMinimoDeHerramienta;
-                distanciaMaximaAparicion = spawneables[i].worldItem.componenteObjetoRecolectable.distanciaMaximaAparicion;
+                puntosDeVida = spawneables[i].worldItem.puntosDeVida;
+                herramientaNecesaria = spawneables[i].worldItem.herramientaNecesaria;
+                nivelMinimoDeHerramienta = spawneables[i].worldItem.nivelMinimoDeHerramienta;
+                distanciaMaximaAparicion = spawneables[i].worldItem.distanciaMaximaAparicion;
+                permitirGolpear = spawneables[i].worldItem.permitirGolpear;
+                energiaGolpear = spawneables[i].worldItem.energiaGolpear;
+                ignorarTransparencia = spawneables[i].worldItem.ignorarTransparencia;
+                rotarEntrarColision = spawneables[i].worldItem.rotarEntrarColision;
+
 
                 for (int j = 0; j < drops.Count; j++)
                 {
@@ -150,7 +166,10 @@ public class ObjetosRecolectables : MonoBehaviour
 
                 //----------------------------------------------------------------------------------------------
 
-                gameObject.SetActive(true);
+                componenteSpriteRenderer.enabled = true;
+                componenteHitboxColision.enabled = true;
+                componenteHitboxSinColision.enabled = true;
+                componenteAnimator.enabled = true;
 
                 break;
             }
@@ -159,12 +178,18 @@ public class ObjetosRecolectables : MonoBehaviour
 
     public void TransparentarObjeto()
     {
-        componenteSpriteRenderer.color = colorTransparencia;
+        if (ignorarTransparencia == false)
+        {
+            componenteSpriteRenderer.color = colorTransparencia;
+        }
     }
 
     public void RestablecerColor()
     {
-        componenteSpriteRenderer.color = new Color(1, 1, 1, 1);
+        if (ignorarTransparencia == false)
+        {
+            componenteSpriteRenderer.color = new Color(1, 1, 1, 1);
+        }
     }
 }
 

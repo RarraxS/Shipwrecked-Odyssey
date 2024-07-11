@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: permitirGolpear
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: hitboxSinColision
       value: 
       objectReference: {fileID: 2297555344254414183}

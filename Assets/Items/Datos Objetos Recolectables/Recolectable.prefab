@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 82235802063802783}
   - component: {fileID: 82235802063802777}
   - component: {fileID: 82235802063802782}
+  - component: {fileID: 1052049730215737564}
   m_Layer: 0
   m_Name: Recolectable
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9199462507180230400}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8, y: -15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -189,14 +190,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herramientaNecesaria: 
   nivelMinimoDeHerramienta: 0
+  permitirGolpear: 1
+  energiaGolpear: 0
   puntosDeVida: 1
   distanciaMaximaAparicion: 2
+  ignorarTransparencia: 0
+  rotarEntrarColision: 0
+  rotacion: 1
   objetoSinColision: {fileID: 1036944312968333535}
   colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
   componenteSpriteRenderer: {fileID: 9199462507180230407}
-  componenteObjetoRecolectable: {fileID: 82235802063802777}
   componenteHitboxColision: {fileID: 82235802063802782}
   componenteHitboxSinColision: {fileID: 2224636285734665121}
+  componenteAnimator: {fileID: 1052049730215737564}
   drops:
   - dropeable: {fileID: 0}
     probabilidades:
@@ -260,3 +266,23 @@ PolygonCollider2D:
       - {x: 0.375, y: 0.1875}
       - {x: 0.5, y: 0.0625}
       - {x: 0.5, y: -0.25}
+--- !u!95 &1052049730215737564
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199462507180230400}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

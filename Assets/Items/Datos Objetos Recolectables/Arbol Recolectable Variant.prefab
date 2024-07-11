@@ -12,6 +12,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: energiaGolpear
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: permitirGolpear
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: herramientaNecesaria
       value: hacha
       objectReference: {fileID: 0}
@@ -39,6 +47,10 @@ PrefabInstance:
       propertyPath: drops.Array.data[0].dropeable
       value: 
       objectReference: {fileID: 8184310260397840728, guid: b9b62a95a5fac0d448dce89b1da057c8, type: 3}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: spawneables.Array.data[0].worldItem
+      value: 
+      objectReference: {fileID: 7792818676749412848}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].cantidad
       value: 5
