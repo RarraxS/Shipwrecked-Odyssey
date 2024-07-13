@@ -2,19 +2,31 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjetosRecolectables : MonoBehaviour
+public class ObjetosRecolectables : MonoBehaviour, IObserver
 {
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
     [SerializeField] private bool permitirGolpear;
     [SerializeField] private int energiaGolpear;
     [SerializeField] private int puntosDeVida;
+
+    public List<Drops> drops;
     [SerializeField] private float distanciaMaximaAparicion;
+
+
+    [SerializeField] private bool semilla;
+    [SerializeField] private bool estacionDeCultivo;
+    private int numDiasPasados;
+
+
+    public bool rotarEntrarColision;
     [SerializeField] private bool ignorarTransparencia;
-    [SerializeField] private bool rotarEntrarColision;
+    private bool observando;
+
 
     [SerializeField] private GameObject objetoSinColision;
     [SerializeField] private Color colorTransparencia;
+
 
     private Transform tr;
 
@@ -23,8 +35,6 @@ public class ObjetosRecolectables : MonoBehaviour
     public PolygonCollider2D componenteHitboxSinColision;
     public Animator componenteAnimator;
 
-
-    public List<Drops> drops;
 
     [SerializeField] private List<ItemAndProbability> spawneables;
 
@@ -38,6 +48,8 @@ public class ObjetosRecolectables : MonoBehaviour
         componenteHitboxColision = GetComponent<PolygonCollider2D>();
         componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
+
+        Observar();
     }
     
     private void Update()
@@ -46,7 +58,7 @@ public class ObjetosRecolectables : MonoBehaviour
             CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
     }
 
-
+    #region Golpear objetos
     public void ClasificarGolpe()
     {
         if (permitirGolpear == true)
@@ -88,6 +100,9 @@ public class ObjetosRecolectables : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Aparecer y desaparecer objetos
     private void GenerarDropsAndOcultar()
     {
         for (int numDrop = 0; numDrop < drops.Count; numDrop++)
@@ -171,10 +186,21 @@ public class ObjetosRecolectables : MonoBehaviour
                 componenteHitboxSinColision.enabled = true;
                 componenteAnimator.enabled = true;
 
+                if (semilla == true)
+                {
+                    numDiasPasados = componenteAnimator.GetInteger("dias");
+                }
+
+                Observar();
+
                 break;
             }
         }
     }
+
+    #endregion
+
+    #region Alternar color
 
     public void TransparentarObjeto()
     {
@@ -189,6 +215,42 @@ public class ObjetosRecolectables : MonoBehaviour
         if (ignorarTransparencia == false)
         {
             componenteSpriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    #endregion
+
+    private void Observar()
+    {
+        if (semilla == true || gameObject.activeSelf)
+        {
+            ObserverManager.Instance.AddObserver(this);
+            observando = true;
+        }
+
+        else if (observando == true)
+        {
+            ObserverManager.Instance.RemoveObserver(this);
+            observando = false;
+        }
+    }
+
+    public void OnNotify(string eventInfo)
+    {
+        if (eventInfo == "dia completado")
+        {
+            //Programar el paso de un dia para las plantas regadas, y la probabilidad de aparicion para cuando no hay ningun objeto
+            if (!gameObject.activeSelf)
+            {
+                //Programar aqui el tirar los dados para ver si spawnea algún objeto al cambiar de dia
+            }
+
+            if (semilla == true)
+            {
+                //Programar el avance de dia para las semillas
+                componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+                Debug.Log(numDiasPasados);
+            }
         }
     }
 }

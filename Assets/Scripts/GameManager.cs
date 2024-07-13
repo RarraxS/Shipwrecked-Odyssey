@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     // Variables de los dias -------------------------------------------------------------------------------------------
     [SerializeField] int dia = 1;
-    int hora, minutos;
+    [SerializeField] int hora, minutos;
     string estacion;
     float temporizadorTiempo = 7f;
     int opcEstacion = 1;
@@ -112,18 +112,24 @@ public class GameManager : MonoBehaviour
         //Paso del tiempo
         if (menuAbierto == false)
             temporizadorTiempo -=  Time.deltaTime;
+
         if(temporizadorTiempo <= 0)
         {
             temporizadorTiempo = 7f;
             minutos += 10;
         }
+
         if(minutos >= 60)
         {
             minutos -= 60;
             hora++;
         }
+
         if (hora >= 24)
+        {
             hora -= 24;
+            ObserverManager.Instance.NotifyObserver("dia completado");
+        }
     }
     
     void ActualizarDia()

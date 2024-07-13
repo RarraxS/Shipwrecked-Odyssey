@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RecolectablesSinColision : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class RecolectablesSinColision : MonoBehaviour
     private void Start()
     {
         objeto = objetoPrincipal.GetComponent<ObjetosRecolectables>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == Jugador.Instance.gameObject.name
+            && objeto.rotarEntrarColision == true)
+        {
+            objeto.componenteAnimator.SetTrigger("rotar");
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

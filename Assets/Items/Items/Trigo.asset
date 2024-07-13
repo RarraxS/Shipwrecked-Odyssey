@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Trigo
   m_EditorClassIdentifier: 
-  nombre: 
-  stackeable: 0
-  sprite: {fileID: 0}
-  descripcion: 
-  objetoSuelo: {fileID: 0}
+  nombre: Trigo
+  stackeable: 1
+  sprite: {fileID: 21300000, guid: 67cbb92e8fbfa574d8f7631465968512, type: 3}
+  descripcion: "Es uno de los alimentos m\xE1s b\xE1sicos, puede convertirsde en
+    productos m\xE1s \xFAtiles si se elabora."
+  objetoSuelo: {fileID: 4096900679469209668, guid: defb776acc598264283fccdea946f72a, type: 3}
   herramienta: 
   nivel: 0
   damageHerramienta: 0
