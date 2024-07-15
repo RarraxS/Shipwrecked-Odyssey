@@ -55,29 +55,30 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
+        {
+            //CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
+            //componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+        }
     }
 
     #region Golpear objetos
     public void ClasificarGolpe()
     {
+        Debug.Log("Golpear");
         if (permitirGolpear == true)
         {
-            //Si se golpea con una herramienta se llama a esta funcion que comprobara si esa herramienta
-            //es la adecuada para ese tipo de objeto y en caso de ser asi le resta una cantidad de puntos
-            //de vida indicados establecidos en la propia herramienta
             if (Toolbar.Instance.herramientaSeleccionada.item != null)
             {
-                if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria ||
-                    herramientaNecesaria == "" && Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
+                if ((Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria ||
+                herramientaNecesaria == "") && Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
                 {
                     Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
                 }
+
+                else
+                    Golpear(1);
             }
 
-            //Si se golpea con la mano u otro ojeto se llama a esta funcion que comprobara si esa
-            //herramienta es la adecuada para ese tipo de objeto y en caso de ser asi le resta una
-            //cantidad de puntos de vida indicados establecidos en la propia herramienta
             else if (herramientaNecesaria == "")
             {
                 Golpear(1);
@@ -111,10 +112,12 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             {
                 for (int numProbabilidades = drops[numDrop].probabilidades.Count - 1; numProbabilidades >= 0; numProbabilidades--)
                 {
+                    Debug.Log("Bucle");
                     int random = UnityEngine.Random.Range(1, 101);
 
                     if (random <= drops[numDrop].probabilidades[numProbabilidades].probabilidad)
                     {
+                        Debug.Log(numProbabilidades);
                         for (int cantidadDrops = drops[numDrop].probabilidades[numProbabilidades].cantidad; cantidadDrops > 0; cantidadDrops--)
                         {
                             float distanciaAparicion;
@@ -177,6 +180,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
 
                 componenteHitboxColision.points = spawneables[i].worldItem.componenteHitboxColision.points;
+                componenteHitboxColision.isTrigger = spawneables[i].worldItem.componenteHitboxColision.isTrigger;
                 componenteHitboxSinColision.points = spawneables[i].worldItem.componenteHitboxSinColision.points;
 
                 //----------------------------------------------------------------------------------------------
@@ -249,7 +253,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             {
                 //Programar el avance de dia para las semillas
                 componenteAnimator.SetInteger("dias", numDiasPasados += 1);
-                Debug.Log(numDiasPasados);
             }
         }
     }

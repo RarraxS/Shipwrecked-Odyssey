@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036944312968333535}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07113838, y: 0.40581036, z: -0.009993216}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -193,16 +193,6 @@ MonoBehaviour:
   permitirGolpear: 1
   energiaGolpear: 0
   puntosDeVida: 1
-  distanciaMaximaAparicion: 2
-  ignorarTransparencia: 0
-  rotarEntrarColision: 0
-  rotacion: 1
-  objetoSinColision: {fileID: 1036944312968333535}
-  colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
-  componenteSpriteRenderer: {fileID: 9199462507180230407}
-  componenteHitboxColision: {fileID: 82235802063802782}
-  componenteHitboxSinColision: {fileID: 2224636285734665121}
-  componenteAnimator: {fileID: 1052049730215737564}
   drops:
   - dropeable: {fileID: 0}
     probabilidades:
@@ -228,6 +218,17 @@ MonoBehaviour:
       probabilidad: 0
     - cantidad: 0
       probabilidad: 0
+  distanciaMaximaAparicion: 2
+  semilla: 0
+  estacionDeCultivo: 0
+  rotarEntrarColision: 0
+  ignorarTransparencia: 0
+  objetoSinColision: {fileID: 1036944312968333535}
+  colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
+  componenteSpriteRenderer: {fileID: 9199462507180230407}
+  componenteHitboxColision: {fileID: 82235802063802782}
+  componenteHitboxSinColision: {fileID: 2224636285734665121}
+  componenteAnimator: {fileID: 1052049730215737564}
   spawneables:
   - worldItem: {fileID: 7792818676749412848, guid: a6684d928a153574c89b1d83fd35897c, type: 3}
     probabilidad: 0

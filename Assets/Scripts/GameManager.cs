@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject canvasToolbar, canvasInventario, descripciones, canvasDormir, canvasControles;
     [SerializeField] Image barraVida, barraEnergia, barraComida;
-    [SerializeField] TMP_Text textVida, textEnergia, textComida, textHora, textDia;
+    [SerializeField] TMP_Text textVida, textEnergia, textComida;
 
     public bool menuDormir = false;
     bool permitirAbrirInventario;
@@ -15,14 +15,6 @@ public class GameManager : MonoBehaviour
     public string controles;
     
 
-    // Variables de los dias -------------------------------------------------------------------------------------------
-    [SerializeField] int dia = 1;
-    [SerializeField] int hora, minutos;
-    string estacion;
-    float temporizadorTiempo = 7f;
-    int opcEstacion = 1;
-    public int diaEstaciones;
-    //------------------------------------------------------------------------------------------------------------------
 
     // Variables para recolectar objetos--------------------------------------------------------------------------------------------
     public bool permitirUsarHerramineta;
@@ -51,8 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        hora = 6;
-        minutos = 0;
         canvasInventario.SetActive(false);
         canvasDormir.SetActive(false);
         ActivarMenuControles();
@@ -62,8 +52,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        diaEstaciones = dia;
-
         ComprobarEnergiaYSaludDelJugador();
         ActualizarHUD();
         AbrirInventario();
@@ -84,8 +72,6 @@ public class GameManager : MonoBehaviour
         ActualizarVida();
         ActualizarEnergia();
         ActualizarComida();
-        ActualizarHora();
-        ActualizarDia();
     }
     
     void ActualizarVida()
@@ -106,64 +92,9 @@ public class GameManager : MonoBehaviour
         barraComida.fillAmount = Player.comida / Player.comidaMaximaHUD;
     }
 
-    void ActualizarHora()
-    {
-        textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
-        //Paso del tiempo
-        if (menuAbierto == false)
-            temporizadorTiempo -=  Time.deltaTime;
-
-        if(temporizadorTiempo <= 0)
-        {
-            temporizadorTiempo = 7f;
-            minutos += 10;
-        }
-
-        if(minutos >= 60)
-        {
-            minutos -= 60;
-            hora++;
-        }
-
-        if (hora >= 24)
-        {
-            hora -= 24;
-            ObserverManager.Instance.NotifyObserver("dia completado");
-        }
-    }
     
-    void ActualizarDia()
-    {
-        textDia.text = dia.ToString("0") + ". " + estacion;
-
-        if (dia > 30)
-        {
-            dia = 1;
-            opcEstacion++;
-        }
-
-        if (dia >= 30 && estacion == "Inv.")
-            opcEstacion = 1;
-
-        switch(opcEstacion)
-        {
-            case 1:
-                estacion = "Prim.";
-                break;
-            
-            case 2:
-                estacion = "Ver.";
-                break;
-
-            case 3:
-                estacion = "Oto.";
-                break;
-
-            case 4:
-                estacion = "Inv.";
-                break;
-        }
-    }
+    
+    
     
     void AbrirInventario()
     {
@@ -184,7 +115,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
+    #region Dormir
     void AbrirMenuDormir()
     {
         if (menuDormir == false)
@@ -200,14 +132,14 @@ public class GameManager : MonoBehaviour
     
     public void Dormir()
     {
-        hora = 6;
-        minutos = 0;
-        dia++;
+        //hora = 6;
+        //minutos = 0;
+        //dia++;
     }
 
     public void DormirSi()
     {
-        dia++;
+        //dia++;
         Player.StatsComienzoDiaNormal();
         CerrarMenuDormir();
     }
@@ -224,7 +156,9 @@ public class GameManager : MonoBehaviour
         menuAbierto = false;
         menuDormir = false;
     }
-    
+    #endregion
+
+    #region Menu controles
     void AbrirMenuControles()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -254,4 +188,5 @@ public class GameManager : MonoBehaviour
         controles = "zurdo";
         CerrarMenuControles();
     }
+    #endregion
 }
