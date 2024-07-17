@@ -36,6 +36,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4096900679469209668, guid: defb776acc598264283fccdea946f72a, type: 3}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].dropeable
+      value: 
+      objectReference: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].cantidad
       value: 2
       objectReference: {fileID: 0}
@@ -45,6 +49,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[2].cantidad
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[0].cantidad
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[1].cantidad
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[2].cantidad
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
@@ -229,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9199462507180230400, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: m_Name
-      value: Seed Trigo
+      value: Seed Trigo Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9199462507180230404, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: m_RootOrder

@@ -57,7 +57,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
-            //componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+            componenteAnimator.SetInteger("dias", numDiasPasados += 1);
         }
     }
 
