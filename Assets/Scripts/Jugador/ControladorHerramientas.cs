@@ -154,40 +154,33 @@ public class ControladorHerramientas : MonoBehaviour
 
     private void AccederRecolectable(Vector3Int posicion)
     {
-        //Actualizamos el Vector3 para acomodarlo al centro de cada tile y así detectar mejor los objetos
         posicion.x = posicion.x + 1;
         posicion.y = posicion.y + 1;
         posicion.z = 0;
 
 
-        //Convertimos ese Vector3 a un Vector2 para poder usarlo para detectar las colisiones
         Vector2 posicionMouse = new Vector2(posicion.x, posicion.y);
 
 
-        //Detectamos en un radio de una casilla (las casillas miden 1, asique el radio es 0.5, pero para evitar
-        //solapamientos entre casillas lo ponemos un poco por debajo)
         Collider2D[] colliders = Physics2D.OverlapCircleAll(posicionMouse, distanciaEntreTiles);
 
 
-        //Para cada objeto con un collider que se encuentre en ese radio y que no sea el propio jugador se
-        //obtiene el GameObject correspondiente a dicho objeto´compribamos si tiene un componente/script 
-        //"ObjetosRecolectables", y en caso de que lo tenga hacemos cambios en las variables de ese objeto
         foreach (Collider2D hitbox in colliders)
         {
             if(hitbox != null && hitbox.gameObject.name != this.gameObject.name)
             {
-                //Creamos una variable de tipo ObjetosRecolectables que acceda al objeto que tenemos y comprueba si
-                //dicho objeto tiene el componente/script con el mismo nombre, en caso positivo continuamos con el
-                //proceso, en caso negativo acaba ahí el proceso
                 ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>(); 
 
 
-                //Si el objetoRecolectable no es nulo y la posición del mouse
-                //y la del objeto coinciden entonces modificamos las variables
                 if (objetoRecolectable != null && posicion == objetoRecolectable.transform.position)
                 {
-                    //Aqui llamamos a la funcion Golpear del objetoRecolectable en el que se ha clickado
                     objetoRecolectable.ClasificarGolpe();
+                }
+
+                if (objetoRecolectable.componenteSpriteRenderer.enabled == false && 
+                    Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
+                {
+                    objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
                 }
             }
         }

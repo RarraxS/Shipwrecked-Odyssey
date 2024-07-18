@@ -21,3 +21,5 @@ MonoBehaviour:
   herramienta: 
   nivel: 0
   damageHerramienta: 0
+  semilla: 1
+  worldItem: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}

@@ -64,8 +64,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     #region Golpear objetos
     public void ClasificarGolpe()
     {
-        Debug.Log("Golpear");
-        if (permitirGolpear == true)
+        if (permitirGolpear == true && componenteSpriteRenderer.enabled == true)
         {
             if (Toolbar.Instance.herramientaSeleccionada.item != null)
             {
@@ -112,12 +111,10 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             {
                 for (int numProbabilidades = drops[numDrop].probabilidades.Count - 1; numProbabilidades >= 0; numProbabilidades--)
                 {
-                    Debug.Log("Bucle");
                     int random = UnityEngine.Random.Range(1, 101);
 
                     if (random <= drops[numDrop].probabilidades[numProbabilidades].probabilidad)
                     {
-                        Debug.Log(numProbabilidades);
                         for (int cantidadDrops = drops[numDrop].probabilidades[numProbabilidades].cantidad; cantidadDrops > 0; cantidadDrops--)
                         {
                             float distanciaAparicion;
@@ -136,70 +133,64 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         }
 
         componenteSpriteRenderer.enabled = false;
-        componenteHitboxColision.enabled = false;
+        componenteHitboxColision.isTrigger = true;
         componenteHitboxSinColision.enabled = false;
         componenteAnimator.enabled = false;
     }
 
-    private void CambiarAndAparecerObjeto(string name)
+    public void CambiarAndAparecerObjeto(ObjetosRecolectables objeto)
     {
-        for (int i = 0; i < spawneables.Count; i++)
+        //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
+        //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
+
+
+        componenteSpriteRenderer.sprite = objeto.componenteSpriteRenderer.sprite;
+
+
+        puntosDeVida = objeto.puntosDeVida;
+        herramientaNecesaria = objeto.herramientaNecesaria;
+        nivelMinimoDeHerramienta = objeto.nivelMinimoDeHerramienta;
+        distanciaMaximaAparicion = objeto.distanciaMaximaAparicion;
+        permitirGolpear = objeto.permitirGolpear;
+        energiaGolpear = objeto.energiaGolpear;
+        ignorarTransparencia = objeto.ignorarTransparencia;
+        rotarEntrarColision = objeto.rotarEntrarColision;
+
+
+        for (int j = 0; j < drops.Count; j++)
         {
-            if (spawneables[i].worldItem.gameObject.name == name)
+            if (objeto.drops[j] != null)
             {
-                //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
-                //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
+                drops[j] = objeto.drops[j];
+            }
 
-
-                componenteSpriteRenderer.sprite = spawneables[i].worldItem.componenteSpriteRenderer.sprite;
-
-
-
-                puntosDeVida = spawneables[i].worldItem.puntosDeVida;
-                herramientaNecesaria = spawneables[i].worldItem.herramientaNecesaria;
-                nivelMinimoDeHerramienta = spawneables[i].worldItem.nivelMinimoDeHerramienta;
-                distanciaMaximaAparicion = spawneables[i].worldItem.distanciaMaximaAparicion;
-                permitirGolpear = spawneables[i].worldItem.permitirGolpear;
-                energiaGolpear = spawneables[i].worldItem.energiaGolpear;
-                ignorarTransparencia = spawneables[i].worldItem.ignorarTransparencia;
-                rotarEntrarColision = spawneables[i].worldItem.rotarEntrarColision;
-
-
-                for (int j = 0; j < drops.Count; j++)
-                {
-                    if (spawneables[i].worldItem.drops[j] != null)
-                    {
-                        drops[j] = spawneables[i].worldItem.drops[j];
-                    }
-
-                    else
-                    {
-                        drops[j] = null;
-                    }
-                }
-
-
-                componenteHitboxColision.points = spawneables[i].worldItem.componenteHitboxColision.points;
-                componenteHitboxColision.isTrigger = spawneables[i].worldItem.componenteHitboxColision.isTrigger;
-                componenteHitboxSinColision.points = spawneables[i].worldItem.componenteHitboxSinColision.points;
-
-                //----------------------------------------------------------------------------------------------
-
-                componenteSpriteRenderer.enabled = true;
-                componenteHitboxColision.enabled = true;
-                componenteHitboxSinColision.enabled = true;
-                componenteAnimator.enabled = true;
-
-                if (semilla == true)
-                {
-                    numDiasPasados = componenteAnimator.GetInteger("dias");
-                }
-
-                Observar();
-
-                break;
+            else
+            {
+                drops[j] = null;
             }
         }
+
+
+        componenteHitboxColision.points = objeto.componenteHitboxColision.points;
+        componenteHitboxColision.isTrigger = objeto.componenteHitboxColision.isTrigger;
+        componenteHitboxSinColision.points = objeto.componenteHitboxSinColision.points;
+        //componenteAnimator. controller = el controller del otro
+
+        //----------------------------------------------------------------------------------------------
+
+        componenteSpriteRenderer.enabled = true;
+        componenteHitboxColision.enabled = true;
+        componenteHitboxSinColision.enabled = true;
+        componenteAnimator.enabled = true;
+
+        if (semilla == true)
+        {
+            numDiasPasados = componenteAnimator.GetInteger("dias");
+        }
+
+        Observar();
+
+
     }
 
     #endregion
@@ -269,7 +260,6 @@ public class ItemAndProbability
 
     public float probabilidad;
 }
-
 //-----------------------------------------------------------------------------------------
 
 //Estas clases se van a encargar de almacenar la informacion de los dropeables
