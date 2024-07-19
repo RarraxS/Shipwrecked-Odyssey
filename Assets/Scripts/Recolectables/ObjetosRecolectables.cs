@@ -15,7 +15,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
 
     [SerializeField] private bool semilla;
-    [SerializeField] private bool estacionDeCultivo;
+    [SerializeField] private string estacionDeCultivo;
     private int numDiasPasados;
 
 
@@ -155,6 +155,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         energiaGolpear = objeto.energiaGolpear;
         ignorarTransparencia = objeto.ignorarTransparencia;
         rotarEntrarColision = objeto.rotarEntrarColision;
+        numDiasPasados = objeto.numDiasPasados;
 
 
         for (int j = 0; j < drops.Count; j++)
@@ -174,7 +175,8 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         componenteHitboxColision.points = objeto.componenteHitboxColision.points;
         componenteHitboxColision.isTrigger = objeto.componenteHitboxColision.isTrigger;
         componenteHitboxSinColision.points = objeto.componenteHitboxSinColision.points;
-        //componenteAnimator. controller = el controller del otro
+        componenteAnimator.runtimeAnimatorController = null;
+        componenteAnimator.runtimeAnimatorController = objeto.componenteAnimator.runtimeAnimatorController;
 
         //----------------------------------------------------------------------------------------------
 
@@ -189,8 +191,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         }
 
         Observar();
-
-
     }
 
     #endregion

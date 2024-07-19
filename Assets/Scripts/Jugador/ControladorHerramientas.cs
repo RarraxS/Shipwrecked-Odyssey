@@ -169,18 +169,21 @@ public class ControladorHerramientas : MonoBehaviour
         {
             if(hitbox != null && hitbox.gameObject.name != this.gameObject.name)
             {
-                ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>(); 
+                ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>();
 
-
-                if (objetoRecolectable != null && posicion == objetoRecolectable.transform.position)
+                if (objetoRecolectable != null)
                 {
-                    objetoRecolectable.ClasificarGolpe();
-                }
+                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicion == objetoRecolectable.transform.position)
+                    {
+                        objetoRecolectable.ClasificarGolpe();
+                    }
 
-                if (objetoRecolectable.componenteSpriteRenderer.enabled == false && 
-                    Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
-                {
-                    objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+                    else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                        Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
+                    {
+                        objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+                        Toolbar.Instance.herramientaSeleccionada.cantidad -= 1;
+                    }
                 }
             }
         }
