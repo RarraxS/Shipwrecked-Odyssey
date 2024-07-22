@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
 {
+    public VariablesObjeto objeto;
+
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
     [SerializeField] private bool permitirGolpear;
@@ -36,7 +39,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     public Animator componenteAnimator;
 
 
-    [SerializeField] private List<ItemAndProbability> spawneables;
+    [SerializeField] private List<ItemAndProbability> spawneables;//Esta lista solo es para los objetos que pueden spawnear con el paso de los dias
 
 
 
@@ -56,7 +59,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //CambiarAndAparecerObjeto(spawneables[1].worldItem.name);
+            //Provisional hasta rehacer el script del GameManager
             componenteAnimator.SetInteger("dias", numDiasPasados += 1);
         }
     }
@@ -156,20 +159,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         ignorarTransparencia = objeto.ignorarTransparencia;
         rotarEntrarColision = objeto.rotarEntrarColision;
         numDiasPasados = objeto.numDiasPasados;
-
-
-        for (int j = 0; j < drops.Count; j++)
-        {
-            if (objeto.drops[j] != null)
-            {
-                drops[j] = objeto.drops[j];
-            }
-
-            else
-            {
-                drops[j] = null;
-            }
-        }
+        drops = objeto.drops;
 
 
         componenteHitboxColision.points = objeto.componenteHitboxColision.points;
@@ -249,6 +239,34 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     }
 }
 
+//-----------------------------------------------------------------------------------
+
+[Serializable]
+public class VariablesObjeto
+{
+    public string herramientaNecesaria;
+    [SerializeField] private int nivelMinimoDeHerramienta;
+    [SerializeField] private bool permitirGolpear;
+    [SerializeField] private int energiaGolpear;
+    [SerializeField] private int puntosDeVida;
+
+    public List<Drops> drops;
+    [SerializeField] private float distanciaMaximaAparicion;
+
+
+    [SerializeField] private bool semilla;
+    [SerializeField] private string estacionDeCultivo;
+    private int numDiasPasados;
+
+
+    public bool rotarEntrarColision;
+    [SerializeField] private bool ignorarTransparencia;
+    private bool observando;
+
+
+    [SerializeField] private GameObject objetoSinColision;
+    [SerializeField] private Color colorTransparencia;
+}
 
 //Esta va a ser la clase que contenga las variables de probabilidad y los gameobjects
 //que van a swawnear de forma aleatoria por el mapa a lo largo de los dias

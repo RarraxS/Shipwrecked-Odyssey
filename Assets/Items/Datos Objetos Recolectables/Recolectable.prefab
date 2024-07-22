@@ -188,6 +188,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df241b56f775e34e9e0b45599b1c100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objeto:
+    herramientaNecesaria: 
+    nivelMinimoDeHerramienta: 0
+    permitirGolpear: 0
+    energiaGolpear: 0
+    puntosDeVida: 0
+    drops: []
+    distanciaMaximaAparicion: 0
+    semilla: 0
+    estacionDeCultivo: 
+    rotarEntrarColision: 0
+    ignorarTransparencia: 0
+    objetoSinColision: {fileID: 1036944312968333535}
+    colorTransparencia: {r: 0, g: 0, b: 0, a: 0}
   herramientaNecesaria: 
   nivelMinimoDeHerramienta: 0
   permitirGolpear: 1

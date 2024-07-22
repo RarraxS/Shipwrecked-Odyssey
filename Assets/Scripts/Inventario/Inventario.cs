@@ -39,6 +39,13 @@ public class Inventario : MonoBehaviour, IObserverNum
     public void Restar(int posicion)
     {
         slotInventario[posicion].cantidad -= 1;
+
+        if (slotInventario[posicion].cantidad <= 0)
+        {
+            slotInventario[posicion].item = null;
+            slotInventario[posicion].cantidad = 0;
+        }
+
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 

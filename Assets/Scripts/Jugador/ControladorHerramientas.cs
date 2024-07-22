@@ -10,7 +10,7 @@ public class ControladorHerramientas : MonoBehaviour
 
     // General ------------------------------------------------------------
 
-    [SerializeField] private Tilemap worldRecolectables;//Tilemap que contiene todaslas posiciones en las que pueden haber objetos recolectables
+    [SerializeField] private Tilemap worldSinColisiones;
 
     // Marcar casilla actual ----------------------------------------------
 
@@ -22,15 +22,16 @@ public class ControladorHerramientas : MonoBehaviour
 
     // Objetos Recolectables ------------------------------------------------
 
-
     [SerializeField] private float distanciaEntreTiles;
-
 
     // Arar ---------------------------------------------------------------
 
-    [SerializeField] private TileBase piezaArada;
-    [SerializeField] private Tilemap arado;
     [SerializeField] private int energiaArar;
+    [SerializeField] private Tilemap arado;
+    [SerializeField] private TileBase piezaAradaTierra;
+    [SerializeField] private TileBase piezaAradaArena;
+    [SerializeField] private List<TileBase> tilesArablesTierra;
+    [SerializeField] private List<TileBase> tilesArablesArena;
 
     //----------------------------------------------------------------------
 
@@ -88,7 +89,7 @@ public class ControladorHerramientas : MonoBehaviour
         }
 
         //Convierte esa posicion del mundo en una posicion de tile
-        Vector3Int gridPosition = worldRecolectables.WorldToCell(worldPosition);
+        Vector3Int gridPosition = worldSinColisiones.WorldToCell(worldPosition);
 
         posicionTileSeleccionado = gridPosition;
     }
@@ -118,7 +119,7 @@ public class ControladorHerramientas : MonoBehaviour
     {
         //Coje la posición del tile marcado por el ratón
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return worldRecolectables.WorldToCell(mouseWorldPos);
+        return worldSinColisiones.WorldToCell(mouseWorldPos);
     }
 
     //------------------------------------------------------------------------------------------------------------
@@ -129,13 +130,34 @@ public class ControladorHerramientas : MonoBehaviour
 
     private void Arar(Vector3Int posicion)
     {
+        TileBase tileSinColision = worldSinColisiones.GetTile(posicion);
+
         TileBase tileEnPosicion = arado.GetTile(posicion);
+
 
         if (tileEnPosicion == null)
         {
-            // No hay un tile en la posición actual, puedes hacer algo aquí
-            arado.SetTile(posicion, piezaArada); // Ejemplo: establecer un nuevo tile en la posición
-            Jugador.Instance.energia -= energiaArar;
+            for (int i = 0; i < tilesArablesTierra.Count; i++)
+            {
+                if (tilesArablesTierra[i] == tileSinColision)
+                {
+                    arado.SetTile(posicion, piezaAradaTierra);
+                    Jugador.Instance.energia -= energiaArar;
+                    
+                    return;
+                }
+            }
+
+            for (int i = 0; i < tilesArablesArena.Count; i++)
+            {
+                if (tilesArablesArena[i] == tileSinColision)
+                {
+                    arado.SetTile(posicion, piezaAradaArena);
+                    Jugador.Instance.energia -= energiaArar;
+
+                    return;
+                }
+            }
         }
     }
 
@@ -143,12 +165,10 @@ public class ControladorHerramientas : MonoBehaviour
 
     private void AccederRecolectable(Vector3Int posicion)
     {
-        posicion.x = posicion.x + 1;
-        posicion.y = posicion.y + 1;
-        posicion.z = 0;
+        Vector3Int posicionObjeto = new Vector3Int(posicion.x + 1, posicion.y + 1, 0);
 
 
-        Vector2 posicionMouse = new Vector2(posicion.x, posicion.y);
+        Vector2 posicionMouse = new Vector2(posicionObjeto.x, posicionObjeto.y);
 
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(posicionMouse, distanciaEntreTiles);
@@ -162,7 +182,7 @@ public class ControladorHerramientas : MonoBehaviour
 
                 if (objetoRecolectable != null)
                 {
-                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicion == objetoRecolectable.transform.position)
+                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicionObjeto == objetoRecolectable.transform.position)
                     {
                         objetoRecolectable.ClasificarGolpe();
                     }
@@ -170,9 +190,14 @@ public class ControladorHerramientas : MonoBehaviour
                     else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
                         Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
                     {
-                        objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+                        TileBase tileComprobarArado = arado.GetTile(posicion);
 
-                        ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
+                        if (tileComprobarArado != null)
+                        {
+                            objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+
+                            ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
+                        }
                     }
                 }
             }
