@@ -34,21 +34,10 @@ public class ControladorHerramientas : MonoBehaviour
 
     //----------------------------------------------------------------------
 
-    private static ControladorHerramientas instance;
-    public static ControladorHerramientas Instance
-    {
-        get { return instance; }
-    }
+    
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
-
-
         personaje = GetComponent<Jugador>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -182,7 +171,8 @@ public class ControladorHerramientas : MonoBehaviour
                         Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
                     {
                         objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
-                        Toolbar.Instance.herramientaSeleccionada.cantidad -= 1;
+
+                        ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
                     }
                 }
             }

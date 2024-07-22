@@ -23,6 +23,8 @@ public class ObserverManager : MonoBehaviour
 
     #endregion
 
+    // Interfaz STRING --------------------------------------------------------------------
+
     private readonly List<IObserver> observers = new();
 
     public void AddObserver(IObserver observer)
@@ -40,6 +42,28 @@ public class ObserverManager : MonoBehaviour
         foreach (IObserver observer in observers)
         {
             observer.OnNotify(eventInfo);
+        }
+    }
+
+    // Interfaz STRING y NUM --------------------------------------------------------------
+
+    private readonly List<IObserverNum> observersNum = new();
+
+    public void AddObserverNum(IObserverNum observer)
+    {
+        observersNum.Add(observer);
+    }
+
+    public void RemoveObserverNum(IObserverNum observer)
+    {
+        observersNum.Remove(observer);
+    }
+
+    public void NotifyObserverNum(string eventInfo, int numInfo)
+    {
+        foreach (IObserverNum observer in observersNum)
+        {
+            observer.OnNotify(eventInfo, numInfo);
         }
     }
 }

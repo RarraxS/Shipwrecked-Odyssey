@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Toolbar : MonoBehaviour
+public class Toolbar : MonoBehaviour, IObserver
 {
     //Las variables que van a conectar el inventario con la toolbar --------------
     [SerializeField] private BotonInventario[] botonesToolbar;
@@ -8,7 +8,7 @@ public class Toolbar : MonoBehaviour
     //----------------------------------------------------------------------------
 
     //Herramienta actual ---------------------------------------------------------
-    private int herramientaActual;
+    public int herramientaActual;
     public BotonInventario herramientaSeleccionada;
     //----------------------------------------------------------------------------
 
@@ -32,12 +32,12 @@ public class Toolbar : MonoBehaviour
         //Al iniciar el juego la herramienta seleccionada es la primera casilla del inventario
         botonesToolbar[0].seleccionado.SetActive(true);
         herramientaSeleccionada = botonesToolbar[0];
+
+        ObserverManager.Instance.AddObserver(this);
     }
 
     void Update()
     {
-        EnlazarToolbarInventario();
-
         ComprobarEstadoRaton();
     }
 
@@ -97,6 +97,19 @@ public class Toolbar : MonoBehaviour
             botonesToolbar[herramientaActual].seleccionado.SetActive(true);
 
             herramientaSeleccionada = botonesToolbar[herramientaActual];
+        }
+    }
+
+    public void OnNotify(string eventInfo)
+    {
+        if (eventInfo == "Cambio en la toolbar")
+        {
+            EnlazarToolbarInventario();
+        }
+
+        if (eventInfo == "Cambio en el inventario")
+        {
+            ObserverManager.Instance.NotifyObserverNum("Cambio en el inventario", Toolbar.Instance.herramientaActual);
         }
     }
 }
