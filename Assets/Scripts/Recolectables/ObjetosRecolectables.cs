@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
 {
-    public VariablesObjeto objeto;
-
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
     [SerializeField] private bool permitirGolpear;
@@ -143,32 +141,36 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     public void CambiarAndAparecerObjeto(ObjetosRecolectables objeto)
     {
-        //Necesario buscar una forma optima y escalable de pasar los datos de un objeto recolectable a otro
-        //para no tener que andar modificando esta parte del código cada que se implemente una nueva variable
-
-
         componenteSpriteRenderer.sprite = objeto.componenteSpriteRenderer.sprite;
 
-
-        puntosDeVida = objeto.puntosDeVida;
+        // Variables sobre la herramienta para recolectar y los drops -----------------------------
         herramientaNecesaria = objeto.herramientaNecesaria;
         nivelMinimoDeHerramienta = objeto.nivelMinimoDeHerramienta;
-        distanciaMaximaAparicion = objeto.distanciaMaximaAparicion;
         permitirGolpear = objeto.permitirGolpear;
         energiaGolpear = objeto.energiaGolpear;
-        ignorarTransparencia = objeto.ignorarTransparencia;
-        rotarEntrarColision = objeto.rotarEntrarColision;
-        numDiasPasados = objeto.numDiasPasados;
+
+        puntosDeVida = objeto.puntosDeVida;
+
         drops = objeto.drops;
+        //-----------------------------------------------------------------------------------------
 
+        // Variables para las semillas y el paso del tiempo ---------------------------------------
+        semilla = objeto.semilla;
+        estacionDeCultivo = objeto.estacionDeCultivo;
+        //-----------------------------------------------------------------------------------------
 
+        // Variables de interaccion fisica --------------------------------------------------------
+        rotarEntrarColision = objeto.rotarEntrarColision;
+        ignorarTransparencia = objeto.ignorarTransparencia;
+        //-----------------------------------------------------------------------------------------
+
+        // Variables para el resto de componentes -------------------------------------------------
         componenteHitboxColision.points = objeto.componenteHitboxColision.points;
         componenteHitboxColision.isTrigger = objeto.componenteHitboxColision.isTrigger;
         componenteHitboxSinColision.points = objeto.componenteHitboxSinColision.points;
         componenteAnimator.runtimeAnimatorController = null;
         componenteAnimator.runtimeAnimatorController = objeto.componenteAnimator.runtimeAnimatorController;
-
-        //----------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------
 
         componenteSpriteRenderer.enabled = true;
         componenteHitboxColision.enabled = true;
@@ -237,35 +239,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             }
         }
     }
-}
-
-//-----------------------------------------------------------------------------------
-
-[Serializable]
-public class VariablesObjeto
-{
-    public string herramientaNecesaria;
-    [SerializeField] private int nivelMinimoDeHerramienta;
-    [SerializeField] private bool permitirGolpear;
-    [SerializeField] private int energiaGolpear;
-    [SerializeField] private int puntosDeVida;
-
-    public List<Drops> drops;
-    [SerializeField] private float distanciaMaximaAparicion;
-
-
-    [SerializeField] private bool semilla;
-    [SerializeField] private string estacionDeCultivo;
-    private int numDiasPasados;
-
-
-    public bool rotarEntrarColision;
-    [SerializeField] private bool ignorarTransparencia;
-    private bool observando;
-
-
-    [SerializeField] private GameObject objetoSinColision;
-    [SerializeField] private Color colorTransparencia;
 }
 
 //Esta va a ser la clase que contenga las variables de probabilidad y los gameobjects
