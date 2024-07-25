@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Olas
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: b1c26657eb7d1024f86cc92a37c97de2, type: 3}
-  - {fileID: 21300000, guid: fce719d4dcd7a524e80cdd2bcccd3ea1, type: 3}
-  - {fileID: 21300000, guid: f5e2d5d22684bcb48a8992586dc5cbd2, type: 3}
-  - {fileID: 21300000, guid: 5f9a31c063cceee42b2c95794b38b4e9, type: 3}
+  - {fileID: -1998935549, guid: e81d6165d4fd8544cb13197accd736a6, type: 3}
+  - {fileID: -887890616, guid: e81d6165d4fd8544cb13197accd736a6, type: 3}
+  - {fileID: 544999925, guid: e81d6165d4fd8544cb13197accd736a6, type: 3}
+  - {fileID: -287631244, guid: e81d6165d4fd8544cb13197accd736a6, type: 3}
   m_MinSpeed: 3
   m_MaxSpeed: 3
   m_AnimationStartTime: 0

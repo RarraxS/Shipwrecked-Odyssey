@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -28,10 +29,9 @@ public class ControladorHerramientas : MonoBehaviour
 
     [SerializeField] private int energiaArar;
     [SerializeField] private Tilemap arado;
-    [SerializeField] private TileBase piezaAradaTierra;
-    [SerializeField] private TileBase piezaAradaArena;
-    [SerializeField] private List<TileBase> tilesArablesTierra;
-    [SerializeField] private List<TileBase> tilesArablesArena;
+    [SerializeField] private TileBase piezaArada;
+    [SerializeField] private Color colorTierra, colorArena;
+    [SerializeField] private List<TileBase> tilesArablesTierra, tilesArablesArena;
 
     //----------------------------------------------------------------------
 
@@ -137,22 +137,42 @@ public class ControladorHerramientas : MonoBehaviour
 
         if (tileEnPosicion == null)
         {
-            for (int i = 0; i < tilesArablesTierra.Count; i++)
+            List<TileBase> tilesTotales = new List<TileBase>();
+            tilesTotales.AddRange(tilesArablesTierra);
+            tilesTotales.AddRange(tilesArablesArena);
+
+
+            for (int i = 0; i < tilesTotales.Count; i++)
             {
-                if (tilesArablesTierra[i] == tileSinColision)
+                if (tilesTotales[i] == tileSinColision)
                 {
-                    arado.SetTile(posicion, piezaAradaTierra);
+                    arado.SetTile(posicion, piezaArada);
+
+                    if (i < tilesArablesTierra.Count)
+                    {
+                        arado.SetColor(posicion, colorTierra);
+                    }
+
+                    else
+                    {
+                        arado.SetColor(posicion, colorArena);
+                    }
+
                     Jugador.Instance.energia -= energiaArar;
                     
                     return;
                 }
             }
 
+
+
+
+
             for (int i = 0; i < tilesArablesArena.Count; i++)
             {
                 if (tilesArablesArena[i] == tileSinColision)
                 {
-                    arado.SetTile(posicion, piezaAradaArena);
+                    arado.SetTile(posicion, piezaArada);
                     Jugador.Instance.energia -= energiaArar;
 
                     return;
