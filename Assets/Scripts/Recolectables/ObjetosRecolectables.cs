@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
 {
+    [SerializeField] private bool iniciarSinObjeto;
+
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
     [SerializeField] private bool permitirGolpear;
@@ -51,6 +54,11 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         componenteAnimator = GetComponent<Animator>();
 
         Observar();
+
+        if (iniciarSinObjeto == true)
+        {
+            DesactivarObjeto();
+        }
     }
     
     private void Update()
@@ -97,14 +105,14 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         {
             puntosDeVida= 0;
 
-            GenerarDropsAndOcultar();
+            GenerarDrops();
         }
     }
 
     #endregion
 
     #region Aparecer y desaparecer objetos
-    private void GenerarDropsAndOcultar()
+    private void GenerarDrops()
     {
         for (int numDrop = 0; numDrop < drops.Count; numDrop++)
         {
@@ -133,6 +141,11 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             }
         }
 
+        DesactivarObjeto();
+    }
+
+    private void DesactivarObjeto()
+    {
         componenteSpriteRenderer.enabled = false;
         componenteHitboxColision.isTrigger = true;
         componenteHitboxSinColision.enabled = false;

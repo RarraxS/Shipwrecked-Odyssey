@@ -27,6 +27,7 @@ public class ControladorHerramientas : MonoBehaviour
 
     // Arar ---------------------------------------------------------------
 
+    [SerializeField] private string nombreHerramientaParaArar;
     [SerializeField] private int energiaArar;
     [SerializeField] private Tilemap arado;
     [SerializeField] private TileBase piezaArada;
@@ -54,10 +55,7 @@ public class ControladorHerramientas : MonoBehaviour
             //se le apllica el tile paasado por referencia
             Vector3Int posicionMouse = GetMouseTilePosition();
 
-
             AccederRecolectable(posicionMouse);
-
-            Arar(posicionMouse);
         }
     }
 
@@ -124,7 +122,7 @@ public class ControladorHerramientas : MonoBehaviour
 
     //------------------------------------------------------------------------------------------------------------
     #endregion
-    
+
 
     // Arar ----------------------------------------------------------------
 
@@ -159,21 +157,6 @@ public class ControladorHerramientas : MonoBehaviour
                     }
 
                     Jugador.Instance.energia -= energiaArar;
-                    
-                    return;
-                }
-            }
-
-
-
-
-
-            for (int i = 0; i < tilesArablesArena.Count; i++)
-            {
-                if (tilesArablesArena[i] == tileSinColision)
-                {
-                    arado.SetTile(posicion, piezaArada);
-                    Jugador.Instance.energia -= energiaArar;
 
                     return;
                 }
@@ -196,7 +179,7 @@ public class ControladorHerramientas : MonoBehaviour
 
         foreach (Collider2D hitbox in colliders)
         {
-            if(hitbox != null && hitbox.gameObject.name != this.gameObject.name)
+            if(hitbox != null && hitbox.gameObject.name != gameObject.name)
             {
                 ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>();
 
@@ -205,6 +188,12 @@ public class ControladorHerramientas : MonoBehaviour
                     if (objetoRecolectable.componenteSpriteRenderer.enabled && posicionObjeto == objetoRecolectable.transform.position)
                     {
                         objetoRecolectable.ClasificarGolpe();
+                    }
+
+                    else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                        Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
+                    {
+                        Arar(posicion);
                     }
 
                     else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
