@@ -190,22 +190,25 @@ public class ControladorHerramientas : MonoBehaviour
                         objetoRecolectable.ClasificarGolpe();
                     }
 
-                    else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
-                        Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
+                    else if (Toolbar.Instance.herramientaSeleccionada.item != null)
                     {
-                        Arar(posicion);
-                    }
-
-                    else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
-                        Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
-                    {
-                        TileBase tileComprobarArado = arado.GetTile(posicion);
-
-                        if (tileComprobarArado != null)
+                        if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                            Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
                         {
-                            objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+                            Arar(posicion);
+                        }
 
-                            ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
+                        else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                            Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
+                        {
+                            TileBase tileComprobarArado = arado.GetTile(posicion);
+
+                            if (tileComprobarArado != null)
+                            {
+                                objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+
+                                ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
+                            }
                         }
                     }
                 }
