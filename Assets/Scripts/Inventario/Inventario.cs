@@ -26,6 +26,7 @@ public class Inventario : MonoBehaviour, IObserverNum
         //Cuando no tienes ese objeto en el inventario el objeto se establece al objeto en concreto con cantidad 1 
         slotInventario[posicion].item = item;
         slotInventario[posicion].cantidad = 1;
+        slotInventario[posicion].ActualizarInformacion();
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 
@@ -33,6 +34,8 @@ public class Inventario : MonoBehaviour, IObserverNum
     {
         //Si el obejto si existe en el inventario entonces se le suma 1 a la cantidad
         slotInventario[posicion].cantidad += 1;
+        slotInventario[posicion].ActualizarInformacion();
+
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 
@@ -45,6 +48,8 @@ public class Inventario : MonoBehaviour, IObserverNum
             slotInventario[posicion].item = null;
             slotInventario[posicion].cantidad = 0;
         }
+
+        slotInventario[posicion].ActualizarInformacion();
 
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }

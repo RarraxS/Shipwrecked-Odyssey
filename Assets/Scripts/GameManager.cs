@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
         {
             if (canvasInventario.activeSelf)
             {
-                Debug.Log("Cambio en la toolbar");
                 ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
                 canvasToolbar.SetActive(true);
                 canvasInventario.SetActive(false);

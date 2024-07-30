@@ -25,12 +25,15 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     private void Awake()
     {
-        DesactivarVisualizacion();
+        if (item == null)
+        {
+            DesactivarVisualizacion();
+        }
     }
 
-    private void Update()
+    public void ActualizarInformacion()
     {
-        //Si una casilla está vacía se oculta tanto la imagen base de los
+        //Si una casilla esta vacia se oculta tanto la imagen base de los
         //objetos como también el texto que indica la cantidad de los mismos
         if (item == null)
         {
@@ -38,7 +41,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         }
 
         //Si una casilla está ocupada por un objeto se muestra
-        //tanto la imagen base de los objetos y también el texto
+        //tanto la imagen base de los objetos y tambien el texto
         else
         {
             //Se actualiza la imagen de icono por
@@ -89,6 +92,7 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
             if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
             {
                 DragAndDropController.Instance.Anadir(numeroClasificador);
+                
             }
 
             //En cualquier otro caso lo que ocurre es que se intercambian el objeto
@@ -97,6 +101,8 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
             {
                 DragAndDropController.Instance.Copiar(numeroClasificador);
             }
+
+            ActualizarInformacion();
         }
     }
 
@@ -122,6 +128,8 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
             {
                 DragAndDropController.Instance.CopiarIndividual(numeroClasificador);
             }
+
+            ActualizarInformacion();
         }
     }
 

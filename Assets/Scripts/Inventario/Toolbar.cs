@@ -44,10 +44,11 @@ public class Toolbar : MonoBehaviour, IObserver
     private void EnlazarToolbarInventario()
     {
         //Copia los items de la primera barra del inventario en la toolbar
-        for(int i = 0; i<botonesToolbar.Length; i++)
+        for (int i = 0; i<botonesToolbar.Length; i++)
         {
             botonesToolbar[i].item = botonesInventario[i].item;
             botonesToolbar[i].cantidad = botonesInventario[i].cantidad;
+            botonesToolbar[i].ActualizarInformacion();
         }
     }
 
