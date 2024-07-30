@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
@@ -10,7 +8,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     public string herramientaNecesaria;
     [SerializeField] private int nivelMinimoDeHerramienta;
-    [SerializeField] private bool permitirGolpear;
+    public bool permitirGolpear;
     [SerializeField] private int energiaGolpear;
     [SerializeField] private int puntosDeVida;
 
@@ -20,7 +18,8 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     [SerializeField] private bool semilla;
     [SerializeField] private string estacionDeCultivo;
-    private int numDiasPasados;
+    public int numDiasPasados, numDiasParaCrecer;
+    public bool regado;
 
 
     public bool rotarEntrarColision;
@@ -53,7 +52,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
 
-        Observar();
 
         if (iniciarSinObjeto == true)
         {
@@ -66,7 +64,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Provisional hasta rehacer el script del GameManager
-            componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+            //OnNotify("dia completado");
         }
     }
 
@@ -83,8 +81,10 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
                     Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
                 }
 
-                else
+                else if (herramientaNecesaria == "")
+                {
                     Golpear(1);
+                }
             }
 
             else if (herramientaNecesaria == "")
@@ -170,6 +170,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         // Variables para las semillas y el paso del tiempo ---------------------------------------
         semilla = objeto.semilla;
         estacionDeCultivo = objeto.estacionDeCultivo;
+        numDiasParaCrecer = objeto.numDiasParaCrecer;
         //-----------------------------------------------------------------------------------------
 
         // Variables de interaccion fisica --------------------------------------------------------
@@ -222,7 +223,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     private void Observar()
     {
-        if (semilla == true || gameObject.activeSelf)
+        if ((semilla == true && numDiasPasados <= numDiasParaCrecer) || !gameObject.activeSelf)
         {
             ObserverManager.Instance.AddObserver(this);
             observando = true;
@@ -245,10 +246,14 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
                 //Programar aqui el tirar los dados para ver si spawnea algún objeto al cambiar de dia
             }
 
-            if (semilla == true)
+            if (regado == true)
             {
-                //Programar el avance de dia para las semillas
-                componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+                if (semilla == true)
+                {
+                    componenteAnimator.SetInteger("dias", numDiasPasados += 1);
+                }
+
+                regado = false;
             }
         }
     }

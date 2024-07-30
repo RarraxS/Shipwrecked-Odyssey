@@ -22,3 +22,5 @@ MonoBehaviour:
   damageHerramienta: 0
   semilla: 0
   worldItem: {fileID: 0}
+  cantidadBarraActual: 30
+  cantidadBarraMaxima: 30

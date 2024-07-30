@@ -1,19 +1,18 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ControladorHerramientas : MonoBehaviour
+public class ControladorHerramientas : MonoBehaviour, IObserver
 {
     private Jugador personaje;
     private Rigidbody2D rb;
 
-    // General ------------------------------------------------------------
+    // General -------------------------------------------------------------------
 
     [SerializeField] private Tilemap worldSinColisiones;
 
-    // Marcar casilla actual ----------------------------------------------
+    // Marcar casilla actual -----------------------------------------------------
 
     [SerializeField] private MarkerManager markerManager;
     [SerializeField] private float distanciaMaximaMarcador;
@@ -21,11 +20,11 @@ public class ControladorHerramientas : MonoBehaviour
     private Vector3Int posicionTileSeleccionado;
     private bool seleccionado;
 
-    // Objetos Recolectables ------------------------------------------------
+    // Objetos Recolectables -----------------------------------------------------
 
     [SerializeField] private float distanciaEntreTiles;
 
-    // Arar ---------------------------------------------------------------
+    // Arar ----------------------------------------------------------------------
 
     [SerializeField] private string nombreHerramientaParaArar;
     [SerializeField] private int energiaArar;
@@ -34,18 +33,32 @@ public class ControladorHerramientas : MonoBehaviour
     [SerializeField] private Color colorTierra, colorArena;
     [SerializeField] private List<TileBase> tilesArablesTierra, tilesArablesArena;
 
-    //----------------------------------------------------------------------
+    // Regar ---------------------------------------------------------------------
 
-    
+    [SerializeField] private string nombreHerramientaParaRegar;
+    [SerializeField] private int energiaRegar;
+    [SerializeField] private Tilemap regar;
+    [SerializeField] private TileBase piezaRegar;
 
-    private void Awake()
+    //----------------------------------------------------------------------------
+
+    private void Start()
     {
         personaje = GetComponent<Jugador>();
         rb = GetComponent<Rigidbody2D>();
+
+        ObserverManager.Instance.AddObserver(this);
     }
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ObserverManager.Instance.NotifyObserver("dia completado");
+        }
+
+
         Indicador();
 
         
@@ -56,7 +69,7 @@ public class ControladorHerramientas : MonoBehaviour
             Vector3Int posicionMouse = GetMouseTilePosition();
 
             AccederRecolectable(posicionMouse);
-        }
+        }      
     }
 
     #region Marcador
@@ -166,6 +179,25 @@ public class ControladorHerramientas : MonoBehaviour
 
     //----------------------------------------------------------------------
 
+    // Regar ---------------------------------------------------------------
+
+    private void Regar(Vector3Int posicion, ObjetosRecolectables objetoRecolectable)
+    {
+        TileBase tileArado = arado.GetTile(posicion);
+
+        TileBase tileRegar = regar.GetTile(posicion);
+
+
+        if (tileArado != null)
+        {
+            regar.SetTile(posicion, piezaRegar);
+            objetoRecolectable.regado = true;
+            Jugador.Instance.energia -= energiaArar;
+        }
+    }
+
+    //----------------------------------------------------------------------
+
     private void AccederRecolectable(Vector3Int posicion)
     {
         Vector3Int posicionObjeto = new Vector3Int(posicion.x + 1, posicion.y + 1, 0);
@@ -185,9 +217,16 @@ public class ControladorHerramientas : MonoBehaviour
 
                 if (objetoRecolectable != null)
                 {
-                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicionObjeto == objetoRecolectable.transform.position)
+                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicionObjeto == objetoRecolectable.transform.position 
+                        && objetoRecolectable.permitirGolpear == true )
                     {
                         objetoRecolectable.ClasificarGolpe();
+
+                        if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar &&
+                            objetoRecolectable.regado == false)
+                        {
+                            Regar(posicion, objetoRecolectable);
+                        }
                     }
 
                     else if (Toolbar.Instance.herramientaSeleccionada.item != null)
@@ -196,6 +235,12 @@ public class ControladorHerramientas : MonoBehaviour
                             Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
                         {
                             Arar(posicion);
+                        }
+
+                        else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar && 
+                            objetoRecolectable.regado == false)
+                        {
+                            Regar(posicion, objetoRecolectable);
                         }
 
                         else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
@@ -215,5 +260,14 @@ public class ControladorHerramientas : MonoBehaviour
             }
         }
     }
+
     //-------------------------------------------------------------------------
+
+    public void OnNotify(string eventInfo)
+    {
+        if (eventInfo == "dia completado")
+        {
+            regar.ClearAllTiles();
+        }
+    }
 }
