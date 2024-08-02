@@ -48,6 +48,8 @@ public class Toolbar : MonoBehaviour, IObserver
         {
             botonesToolbar[i].item = botonesInventario[i].item;
             botonesToolbar[i].cantidad = botonesInventario[i].cantidad;
+            botonesToolbar[i].cantidadBarraActual = botonesInventario[i].cantidadBarraActual;
+            botonesToolbar[i].cantidadBarraMaxima = botonesInventario[i].cantidadBarraMaxima;
             botonesToolbar[i].ActualizarInformacion();
         }
     }
@@ -108,9 +110,9 @@ public class Toolbar : MonoBehaviour, IObserver
             EnlazarToolbarInventario();
         }
 
-        if (eventInfo == "Cambio en el inventario")
+        if (eventInfo == "Restar en el inventario")
         {
-            ObserverManager.Instance.NotifyObserverNum("Cambio en el inventario", Toolbar.Instance.herramientaActual);
+            ObserverManager.Instance.NotifyObserverNum("Restar en el inventario", Toolbar.Instance.herramientaActual);
         }
     }
 }

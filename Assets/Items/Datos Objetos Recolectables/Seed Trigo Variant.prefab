@@ -79,6 +79,18 @@ PrefabInstance:
       propertyPath: drops.Array.data[0].probabilidades.Array.data[2].probabilidad
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[0].probabilidad
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[1].probabilidad
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilidades.Array.data[2].probabilidad
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 82235802063802782, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: m_Enabled
       value: 1

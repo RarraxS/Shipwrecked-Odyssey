@@ -12,6 +12,8 @@ public class PickUpItem : MonoBehaviour
     private bool distanciaAceptada;//El objeto esta a una distancia menor a la distancia maxima por lo que se puede acercar al jugador
     private bool dentro = false;//Comprueba si el objeto esta lo suficientemente cerca del jugador como para anadirse al inventario
 
+    public float cantidadBarraActual, cantidadBarraMaxima;
+
     void Start()
     {
         jugador = GameManager.Instance.Player.transform;
@@ -96,7 +98,7 @@ public class PickUpItem : MonoBehaviour
                     if (Inventario.Instance.slotInventario[i].item == null)
                     {
                         //Añade un nuevo espacio
-                        Inventario.Instance.AnadirInventario(i, item);
+                        Inventario.Instance.AnadirInventario(i, item, cantidadBarraActual, cantidadBarraMaxima);
                         Destroy(gameObject);
                         break;
                     }

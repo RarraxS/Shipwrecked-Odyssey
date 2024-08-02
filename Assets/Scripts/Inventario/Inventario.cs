@@ -21,11 +21,13 @@ public class Inventario : MonoBehaviour, IObserverNum
         ObserverManager.Instance.AddObserverNum(this);
     }
 
-    public void AnadirInventario(int posicion, Item item)
+    public void AnadirInventario(int posicion, Item item, float cantBarraActual, float cantBarraMaxima)
     {
         //Cuando no tienes ese objeto en el inventario el objeto se establece al objeto en concreto con cantidad 1 
         slotInventario[posicion].item = item;
         slotInventario[posicion].cantidad = 1;
+        slotInventario[posicion].cantidadBarraActual= cantBarraActual;
+        slotInventario[posicion].cantidadBarraMaxima= cantBarraMaxima;
         slotInventario[posicion].ActualizarInformacion();
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
@@ -39,7 +41,7 @@ public class Inventario : MonoBehaviour, IObserverNum
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 
-    public void Restar(int posicion)
+    private void Restar(int posicion)
     {
         slotInventario[posicion].cantidad -= 1;
 
@@ -54,11 +56,25 @@ public class Inventario : MonoBehaviour, IObserverNum
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 
+    private void ReducirBarraInventario(int posicion)
+    {
+        slotInventario[posicion].cantidadBarraActual -= 1;
+
+        slotInventario[posicion].ActualizarInformacion();
+
+        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+    }
+
     public void OnNotify(string eventInfo, int numInfo)
     {
-        if (eventInfo == "Cambio en el inventario")
+        if (eventInfo == "Restar en el inventario")
         {
             Restar(numInfo);
+        }
+
+        else if(eventInfo == "Cambio en la barra de utilidad")
+        {
+            ReducirBarraInventario(numInfo);
         }
     }
 }

@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 11400000, guid: 7f4fd324a8d61154aa1e5bb40678fe16, type: 2}
+    - target: {fileID: 1907498137544446741, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
+      propertyPath: cantidadBarraActual
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907498137544446741, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
+      propertyPath: cantidadBarraMaxima
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248685, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248688, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_Name
-      value: Regadera Recolectable
+      value: Regadera Madera Recolectable
       objectReference: {fileID: 0}
     - target: {fileID: 6453705441346248690, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
       propertyPath: m_Sprite

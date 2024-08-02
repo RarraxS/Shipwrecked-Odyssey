@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2461f938abe41f446917082408389b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaximaInteraccion: 8
+  distanciaMaximaInteraccion: 4
   velocidad: 8
   item: {fileID: 0}
+  cantidadBarraActual: 0
+  cantidadBarraMaxima: 0

@@ -57,6 +57,8 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         {
             DesactivarObjeto();
         }
+
+        Observar();
     }
     
     private void Update()
@@ -223,7 +225,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     private void Observar()
     {
-        if ((semilla == true && numDiasPasados <= numDiasParaCrecer) || !gameObject.activeSelf)
+        if ((semilla == true && numDiasPasados <= numDiasParaCrecer) || !componenteSpriteRenderer.enabled)
         {
             ObserverManager.Instance.AddObserver(this);
             observando = true;
@@ -240,10 +242,15 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     {
         if (eventInfo == "dia completado")
         {
-            //Programar el paso de un dia para las plantas regadas, y la probabilidad de aparicion para cuando no hay ningun objeto
-            if (!gameObject.activeSelf)
+            if (componenteSpriteRenderer.enabled == false)
             {
                 //Programar aqui el tirar los dados para ver si spawnea algún objeto al cambiar de dia
+                
+                
+                if (regado == true)
+                {
+                    regado = false;
+                }
             }
 
             if (regado == true)

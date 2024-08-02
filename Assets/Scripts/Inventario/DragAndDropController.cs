@@ -15,10 +15,12 @@ public class DragAndDropController : MonoBehaviour
     //Parámetros del item que se está mostrando actualmente
     public Item itemDnD;
     [SerializeField] private int cantidadDnD;
+    [SerializeField] private float cantBarraActualDnD, cantBarraMaxDnD;    
 
     //Parámetros del item a copiar
     private Item itemNuevo;
     [SerializeField] private int cantidadNuevo;
+    [SerializeField] private float cantBarraActualNuevo, cantBarraMaxNuevo;
 
 
     private static DragAndDropController instance;
@@ -76,18 +78,26 @@ public class DragAndDropController : MonoBehaviour
         //Rellena las variables "contenedoras" de los datos del objeto
         itemNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].item;
         cantidadNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].cantidad;
+        cantBarraActualNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraActual;
+        cantBarraMaxNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraMaxima;
 
         //Actualiza los datos de las variables del inventario
         Inventario.Instance.slotInventario[numeroClasificatorio].item = itemDnD;
         Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+        Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraActual = cantBarraActualDnD;
+        Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraMaxima = cantBarraMaxDnD;
 
         //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
         itemDnD = itemNuevo;
         cantidadDnD = cantidadNuevo;
+        cantBarraActualDnD = cantBarraActualNuevo;
+        cantBarraMaxDnD = cantBarraMaxNuevo;
 
         //Limpia el "contenedor" para que pueda acoger al próximo objeto
         itemNuevo = null;
         cantidadNuevo = 0;
+        cantBarraActualNuevo = 0;
+        cantBarraMaxNuevo = 0;
     }
 
     public void CopiarIndividual(int numeroClasificatorio)
@@ -95,7 +105,7 @@ public class DragAndDropController : MonoBehaviour
         //Permite intercambiar el objeto que hay en el inventario con el que hay en el Drag and Drop
 
 
-        //Permite añadir el objeto del DnD a la casilla del inventario
+        //Permite anadir el objeto del DnD a la casilla del inventario
         //siempre y cuando esta posea el mismo tipo de objeto que el DnD
         if (Inventario.Instance.slotInventario[numeroClasificatorio].item != null)
         {
@@ -105,21 +115,29 @@ public class DragAndDropController : MonoBehaviour
                 itemNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].item;
                 cantidadNuevo = 1;
                 Inventario.Instance.slotInventario[numeroClasificatorio].cantidad -= 1;
+                cantBarraActualNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraActual;
+                cantBarraMaxNuevo = Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraMaxima;
 
                 if (Inventario.Instance.slotInventario[numeroClasificatorio].cantidad <= 0)
                 {
                     //Actualiza los datos de las variables del inventario
                     Inventario.Instance.slotInventario[numeroClasificatorio].item = itemDnD;
                     Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = cantidadDnD;
+                    Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraActual = cantBarraActualDnD;
+                    Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraMaxima = cantBarraMaxDnD;
                 }
 
                 //Pasa las variables del "contenedor" a las variables que realmente utiliza el Drag and Drop
                 itemDnD = itemNuevo;
                 cantidadDnD = cantidadNuevo;
+                cantBarraActualDnD = cantBarraActualNuevo;
+                cantBarraMaxDnD = cantBarraMaxNuevo;
 
                 //Limpia el "contenedor" para que pueda acoger al próximo objeto
                 itemNuevo = null;
                 cantidadNuevo = 0;
+                cantBarraActualNuevo = 0;
+                cantBarraMaxNuevo = 0;
             }
 
             else
@@ -137,11 +155,13 @@ public class DragAndDropController : MonoBehaviour
                 Inventario.Instance.slotInventario[numeroClasificatorio].item = itemDnD;
                 Inventario.Instance.slotInventario[numeroClasificatorio].cantidad = 1;
                 cantidadDnD -= 1;
+                Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraActual = cantBarraActualDnD;
+                Inventario.Instance.slotInventario[numeroClasificatorio].cantidadBarraMaxima = cantBarraMaxDnD;
+
 
                 if (cantidadDnD <= 0)
                 {
-                    itemDnD = null;
-                    cantidadDnD = 0;
+                    ReiniciarContenedorDnD(); ;
                 }
             }
         }
@@ -157,8 +177,7 @@ public class DragAndDropController : MonoBehaviour
         Inventario.Instance.slotInventario[numeroClasificatorio].cantidad += cantidadDnD;
 
         //Limpia el los datos de las variables del DnD para que pueda acoger al próximo objeto
-        itemDnD = null;
-        cantidadDnD = 0;
+        ReiniciarContenedorDnD();
     }
 
     public void AnadirIndividual(int numeroClasificatorio)
@@ -173,8 +192,7 @@ public class DragAndDropController : MonoBehaviour
         if (cantidadDnD <= 0)
         {
             //Limpia el los datos de las variables del DnD para que pueda acoger al próximo objeto
-            itemDnD= null;
-            cantidadDnD = 0;
+            ReiniciarContenedorDnD();
         }
     }
 
@@ -195,15 +213,22 @@ public class DragAndDropController : MonoBehaviour
                 if (EventSystem.current.IsPointerOverGameObject() == false)
                 {
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    worldPosition.z = -5;
+                    worldPosition.z = 0;
 
                     for (int i = 0; i < cantidadDnD; i++)
                     {
+                        if (cantBarraMaxDnD > 0)
+                        {
+                            PickUpItem pickUpDrop = itemDnD.objetoSuelo.gameObject.GetComponent<PickUpItem>();
+
+                            pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
+                            pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
+                        }
+
                         GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
                     }
 
-                    itemDnD = null;
-                    cantidadDnD = 0;
+                    ReiniciarContenedorDnD();
                 }
             }
         }       
@@ -219,18 +244,33 @@ public class DragAndDropController : MonoBehaviour
                 if (EventSystem.current.IsPointerOverGameObject() == false)
                 {
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    worldPosition.z = -5;
+                    worldPosition.z = 0;
+
+                    if (cantBarraMaxDnD > 0)
+                    {
+                        PickUpItem pickUpDrop = itemDnD.objetoSuelo.gameObject.GetComponent<PickUpItem>();
+
+                        pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
+                        pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
+                    }
 
                     GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
                     cantidadDnD -= 1;
 
                     if (cantidadDnD <= 0)
                     {
-                        itemDnD = null;
-                        cantidadDnD = 0;
+                        ReiniciarContenedorDnD();
                     }
                 }
             }
         }
+    }
+
+    private void ReiniciarContenedorDnD()
+    {
+        itemDnD = null;
+        cantidadDnD = 0;
+        cantBarraActualDnD = 0;
+        cantBarraMaxDnD = 0;
     }
 }

@@ -188,7 +188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0000015199, y: 0}
   m_SizeDelta: {x: 30, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8464430966817153368
@@ -220,10 +220,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 1334456150, guid: 85fce54914f93594fa602bf401ad5364, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -457,10 +457,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   cantidad: 0
+  cantidadBarraActual: 0
+  cantidadBarraMaxima: 0
   icono: {fileID: 8426596008273372495}
   textCantidad: {fileID: 2490239742374142833}
   numeroClasificador: 0
   descripcionesController: {fileID: 0}
+  barra: {fileID: 258556473636802450}
+  rellenoBarra: {fileID: 2060765398650606400}
+  alto: {r: 0.12687784, g: 0.9339623, b: 0.260269, a: 1}
+  medio: {r: 0.9150943, g: 0.8992717, b: 0.16747947, a: 1}
+  bajo: {r: 0.7264151, g: 0.1123887, b: 0.18849024, a: 1}
   seleccionado: {fileID: 2738230129807804103}
   casillaToolbar: 0
 --- !u!1001 &793528872288287965

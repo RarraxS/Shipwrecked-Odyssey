@@ -187,10 +187,11 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         TileBase tileRegar = regar.GetTile(posicion);
 
 
-        if (tileArado != null)
+        if (tileArado != null && Toolbar.Instance.herramientaSeleccionada.cantidadBarraActual > 0 )
         {
             regar.SetTile(posicion, piezaRegar);
             objetoRecolectable.regado = true;
+            ObserverManager.Instance.NotifyObserverNum("Cambio en la barra de utilidad", Toolbar.Instance.herramientaActual);
             Jugador.Instance.energia -= energiaArar;
         }
     }
@@ -251,7 +252,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                             {
                                 objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
 
-                                ObserverManager.Instance.NotifyObserver("Cambio en el inventario");
+                                ObserverManager.Instance.NotifyObserver("Restar en el inventario");
                             }
                         }
                     }

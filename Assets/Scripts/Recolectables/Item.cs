@@ -16,7 +16,4 @@ public class Item : ScriptableObject
 
     public bool semilla;
     public ObjetosRecolectables worldItem;
-
-    public int cantidadBarraActual;
-    public int cantidadBarraMaxima;
 }

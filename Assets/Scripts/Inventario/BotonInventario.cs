@@ -2,13 +2,15 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
-
+using Unity.VisualScripting;
 
 public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     //Variables referentes a los items a nivel técnico --------------------------------------------
     public Item item;
     public int cantidad;
+
+    public float cantidadBarraActual, cantidadBarraMaxima;
     //---------------------------------------------------------------------------------------------
 
     //Variables referentes a los items a nivel visual ---------------------------------------------
@@ -16,6 +18,10 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
     [SerializeField] private TMP_Text textCantidad;
     [SerializeField] private int numeroClasificador;
     [SerializeField] private DescripcionesController descripcionesController;
+
+    [SerializeField] private GameObject barra;
+    [SerializeField] private Image rellenoBarra;
+    [SerializeField] private Color alto, medio, bajo;
     //---------------------------------------------------------------------------------------------
 
     //Variables referentes a la toolbar -----------------------------------------------------------
@@ -38,6 +44,11 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if (item == null)
         {
             DesactivarVisualizacion();
+
+            if (barra.activeSelf)
+            {
+                barra.SetActive(false);
+            }
         }
 
         //Si una casilla está ocupada por un objeto se muestra
@@ -66,6 +77,19 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
             {
                 textCantidad.text = cantidad.ToString("0");
             }
+
+
+            if (cantidadBarraMaxima > 0)
+            {
+                barra.SetActive(true);
+
+                ComprobarEstadoBarra();
+            }
+
+            else
+            {
+                barra.SetActive(false);
+            }
         }
     }
 
@@ -80,6 +104,32 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
         textCantidad.text = "";
     }
 
+    private void ComprobarEstadoBarra()
+    {
+        if (cantidadBarraMaxima > 0)
+        {
+            float rellenoActual = cantidadBarraActual / cantidadBarraMaxima;
+
+            if (rellenoActual > 0.5)
+            {
+                rellenoBarra.color = alto;
+            }
+
+            else if (rellenoActual > 0.25)
+            {
+                rellenoBarra.color = medio;
+            }
+
+            else
+            {
+                rellenoBarra.color = bajo;
+            }
+
+
+            rellenoBarra.fillAmount = rellenoActual;
+        }
+    }
+
     public void ClickIzquierdoInventario()
     {
         //Se trata de la lógica que se ejecuta cuando se pulsa el
@@ -92,7 +142,6 @@ public class BotonInventario : MonoBehaviour, IPointerClickHandler, IPointerEnte
             if (DragAndDropController.Instance.itemDnD == item && DragAndDropController.Instance.itemDnD.stackeable == true)
             {
                 DragAndDropController.Instance.Anadir(numeroClasificador);
-                
             }
 
             //En cualquier otro caso lo que ocurre es que se intercambian el objeto
