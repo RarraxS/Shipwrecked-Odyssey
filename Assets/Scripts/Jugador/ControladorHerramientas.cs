@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.Tilemaps;
 
 public class ControladorHerramientas : MonoBehaviour, IObserver
@@ -36,8 +38,8 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
     [SerializeField] private string nombreHerramientaParaRegar;
     [SerializeField] private int energiaRegar;
-    [SerializeField] private Tilemap regar;
     [SerializeField] private TileBase piezaRegar;
+    [SerializeField] private Tilemap regar, mar;
 
     //----------------------------------------------------------------------------
 
@@ -60,15 +62,22 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
         Indicador();
 
-        
-        if (Input.GetMouseButtonDown(0) && GameManager.Instance.permitirUsarHerramineta == true)
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && GameManager.Instance.permitirUsarHerramineta == true)
         {
             //Coge la posición del tile que se está seleccionando y al tileset que se le pasa por parámetro 
             //se le apllica el tile paasado por referencia
             Vector3Int posicionMouse = GetMouseTilePosition();
 
-            AccederRecolectable(posicionMouse);
-        }      
+            if (Input.GetMouseButtonDown(0))
+            {
+                AccederRecolectable(posicionMouse);
+            }
+
+            else if (Input.GetMouseButtonDown(1))
+            {
+                RecargarRegadera(posicionMouse);
+            }
+        }
     }
 
     #region Marcador
@@ -136,6 +145,8 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
     #endregion
 
 
+    #region Arar y regar
+
     // Arar ----------------------------------------------------------------
 
     private void Arar(Vector3Int posicion)
@@ -176,9 +187,8 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         }
     }
 
-    //----------------------------------------------------------------------
 
-    // Regar ---------------------------------------------------------------
+    // Regar ------------------------------------------------------------------
 
     private void Regar(Vector3Int posicion, ObjetosRecolectables objetoRecolectable)
     {
@@ -191,10 +201,27 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         {
             regar.SetTile(posicion, piezaRegar);
             objetoRecolectable.regado = true;
-            ObserverManager.Instance.NotifyObserverNum("Cambio en la barra de utilidad", Toolbar.Instance.herramientaActual);
+            ObserverManager.Instance.NotifyObserverNum("Restar en la barra de utilidad", Toolbar.Instance.herramientaActual);
             Jugador.Instance.energia -= energiaArar;
         }
     }
+
+    // Recargae la regadera ---------------------------------------------------
+
+    private void RecargarRegadera(Vector3Int posicion)
+    {
+        if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar)
+        {
+            TileBase tileAgua = mar.GetTile(posicion);
+
+            if (tileAgua != null)
+            {
+                ObserverManager.Instance.NotifyObserverNum("Recargar la barra de utilidad", Toolbar.Instance.herramientaActual);
+            }
+        }
+    }
+
+    #endregion
 
     //----------------------------------------------------------------------
 

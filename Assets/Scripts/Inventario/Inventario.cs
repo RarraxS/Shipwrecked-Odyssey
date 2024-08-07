@@ -65,6 +65,15 @@ public class Inventario : MonoBehaviour, IObserverNum
         ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
     }
 
+    private void RecargarBarraInventario(int posicion)
+    {
+        slotInventario[posicion].cantidadBarraActual = slotInventario[posicion].cantidadBarraMaxima;
+
+        slotInventario[posicion].ActualizarInformacion();
+
+        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+    }
+
     public void OnNotify(string eventInfo, int numInfo)
     {
         if (eventInfo == "Restar en el inventario")
@@ -72,9 +81,14 @@ public class Inventario : MonoBehaviour, IObserverNum
             Restar(numInfo);
         }
 
-        else if(eventInfo == "Cambio en la barra de utilidad")
+        else if(eventInfo == "Restar en la barra de utilidad")
         {
             ReducirBarraInventario(numInfo);
+        }
+
+        else if (eventInfo == "Recargar la barra de utilidad")
+        {
+            RecargarBarraInventario(numInfo);
         }
     }
 }
