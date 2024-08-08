@@ -28,7 +28,6 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
     // Arar ----------------------------------------------------------------------
 
     [SerializeField] private string nombreHerramientaParaArar;
-    [SerializeField] private int energiaArar;
     [SerializeField] private Tilemap arado;
     [SerializeField] private TileBase piezaArada;
     [SerializeField] private Color colorTierra, colorArena;
@@ -179,7 +178,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                         arado.SetColor(posicion, colorArena);
                     }
 
-                    Jugador.Instance.energia -= energiaArar;
+                    Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
 
                     return;
                 }
@@ -202,7 +201,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
             regar.SetTile(posicion, piezaRegar);
             objetoRecolectable.regado = true;
             ObserverManager.Instance.NotifyObserverNum("Restar en la barra de utilidad", Toolbar.Instance.herramientaActual);
-            Jugador.Instance.energia -= energiaArar;
+            Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
         }
     }
 

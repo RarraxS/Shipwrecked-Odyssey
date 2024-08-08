@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public string herramienta;
     public int nivel;
     public int damageHerramienta;
+    public int energiaPorGolpe;
 
     public bool semilla;
     public ObjetosRecolectables worldItem;
