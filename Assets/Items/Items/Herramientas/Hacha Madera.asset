@@ -21,3 +21,6 @@ MonoBehaviour:
   herramienta: hacha
   nivel: 1
   damageHerramienta: 2
+  energiaPorGolpe: 2
+  semilla: 0
+  worldItem: {fileID: 0}

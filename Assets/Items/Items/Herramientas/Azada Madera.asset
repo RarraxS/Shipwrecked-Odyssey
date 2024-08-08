@@ -21,5 +21,6 @@ MonoBehaviour:
   herramienta: azada
   nivel: 1
   damageHerramienta: 1
+  energiaPorGolpe: 2
   semilla: 0
   worldItem: {fileID: 0}

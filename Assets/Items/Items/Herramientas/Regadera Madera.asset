@@ -20,7 +20,6 @@ MonoBehaviour:
   herramienta: regadera
   nivel: 1
   damageHerramienta: 0
+  energiaPorGolpe: 2
   semilla: 0
   worldItem: {fileID: 0}
-  cantidadBarraActual: 30
-  cantidadBarraMaxima: 30
