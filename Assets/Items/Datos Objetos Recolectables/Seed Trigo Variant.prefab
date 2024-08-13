@@ -44,6 +44,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: spawneables.Array.data[0].probabilidad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: spawneables.Array.data[1].probabilidad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].cantidad
       value: 2
       objectReference: {fileID: 0}

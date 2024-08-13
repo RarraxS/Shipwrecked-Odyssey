@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
@@ -199,8 +200,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         {
             numDiasPasados = componenteAnimator.GetInteger("dias");
         }
-
-        Observar();
     }
 
     #endregion
@@ -225,6 +224,27 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     #endregion
 
+    private void ProbabilidadSpawnear()
+    {
+        float probabilidad = UnityEngine.Random.Range(0f,100f);
+
+        Debug.Log(probabilidad);
+
+        float probabilidadTecho = 0;
+
+        for (int i = 0; i < spawneables.Count; i++)
+        {
+            probabilidadTecho += spawneables[i].probabilidad;
+
+            if(probabilidad <= probabilidadTecho)
+            {
+                CambiarAndAparecerObjeto(spawneables[i].worldItem);
+
+                return;
+            }
+        }
+    }
+
     private void Observar()
     {
         if ((semilla == true && numDiasPasados <= numDiasParaCrecer) || !componenteSpriteRenderer.enabled)
@@ -246,9 +266,9 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         {
             if (componenteSpriteRenderer.enabled == false)
             {
-                //Programar aqui el tirar los dados para ver si spawnea algún objeto al cambiar de dia
-                
-                
+                ProbabilidadSpawnear();
+
+
                 if (regado == true)
                 {
                     regado = false;
