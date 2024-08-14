@@ -13,8 +13,6 @@ public class Jugador : MonoBehaviour
     [SerializeField] public float vidaMaximaHUD, energiaMaximaHUD, comidaMaximaHUD;
     [SerializeField] public int vidaMaxima, vida, energiaMaxima, energia, comida, comidaMaxima;
 
-    public Vector2 motionVector;
-    public Vector2 ultimoMotionVector;
     private Rigidbody2D rb;
 
     float temporizadorComida = 30f;
@@ -49,7 +47,6 @@ public class Jugador : MonoBehaviour
     void Update()
     {
         Movimiento();
-        Posicion();
         Animaciones();
         Hambre();
     }
@@ -57,31 +54,33 @@ public class Jugador : MonoBehaviour
 
     void Movimiento()
     {
+        Vector2 movimiento = new Vector2(0, 0);
+
         if (((Input.GetKey(KeyCode.I) && GameManager.Instance.controles == "zurdo") ||
             (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
-            rb.position += (Vector2)(Time.deltaTime * velocidad * transform.up);//Alante
+            movimiento += (Vector2)(transform.up);//Alante
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.K) && GameManager.Instance.controles == "zurdo") ||
             (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
-            rb.position += (Vector2)(-transform.up * velocidad * Time.deltaTime);//Atrás
+            movimiento += (Vector2)(-transform.up);//Atrás
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") ||
             (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
-            rb.position += (Vector2)(-transform.right * velocidad * Time.deltaTime);//Izquierda
+            movimiento += (Vector2)(-transform.right);//Izquierda
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.L) && GameManager.Instance.controles == "zurdo") ||
             (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
         {
-            rb.position += (Vector2)(transform.right * velocidad * Time.deltaTime);//Derecha
+            movimiento += (Vector2)(transform.right);//Derecha
             andando = true;
         }
 
@@ -89,6 +88,14 @@ public class Jugador : MonoBehaviour
             && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") || ((!Input.GetKey(KeyCode.W)
             && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) && GameManager.Instance.controles == "diestro"))
             andando = false;
+
+
+
+        movimiento.Normalize();
+
+        movimiento *= velocidad * Time.deltaTime;
+
+        rb.position += movimiento;
     }
 
     void Animaciones()
@@ -111,19 +118,6 @@ public class Jugador : MonoBehaviour
         else//Animación de idle
         {
             animator.SetBool("Andando", false);
-        }
-    }
-
-    public virtual void Posicion()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        motionVector = new Vector3(horizontal, vertical);
-
-        if (horizontal != 0 || vertical != 0)
-        {
-            ultimoMotionVector = new Vector3(horizontal, vertical).normalized;
         }
     }
 
