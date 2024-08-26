@@ -1,111 +1,109 @@
 using TMPro;
 using UnityEngine;
 
-public class HudHora : MonoBehaviour
+public class HudHora : MonoBehaviour, IObserver
 {
-    [SerializeField] TMP_Text textHora, textDia;
+    [SerializeField] private TMP_Text textHora, textDia;
 
     
-    [SerializeField] int dia, hora, minutos;
-    [SerializeField] float temporizadorPasoDelTiempo;
+    [SerializeField] private int dia, hora, minutos, horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
+
+    [SerializeField] private float temporizadorPasoDelTiempo;
+    private float contenedorTimerTiempo;
 
 
-    string estacion;
-    
-    int opcEstacion = 1;
-    
+
+    [SerializeField] private int numeroDeEstacionesTotales, estacionActualNumerica;
 
 
-    [SerializeField] private int numEstacion = 1;
-    public static Animator animator;
-    
+
+    [SerializeField] private GameObject objetoEstaciones;
+    private Animator animatorEstaciones;
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //estacionActualNumerica = animator.GetInteger("dias");
+
+
+        animatorEstaciones = objetoEstaciones.gameObject.GetComponent<Animator>();
+
+        ObserverManager.Instance.AddObserver(this);
+
+        contenedorTimerTiempo = temporizadorPasoDelTiempo;
+
+        textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
+        textDia.text = "Día " + dia.ToString("0");
     }
 
     
     void Update()
     {
-        //Programar las animaciones
-        //Programar el actualizar el dia
-        //Programar el actualizar la hora
-        //Programar el actualizar el HUD
+        ActualizarHora();
     }
 
-    //void Animaciones()
-    //{
-    //    //Actualiza el animator de las estaciones con el sprite de la estación correspondiente 
-    //    animator.SetInteger("numEstacion", numEstacion);
+    void ActualizarHora()
+    {
+        //Paso del tiempo
+        if (GameManager.Instance.pausarTiempo == false)
+        {
+            temporizadorPasoDelTiempo -= Time.deltaTime;
 
-    //    //Cuando se llega al día 31 se cambia a la siguiente estación
-    //    if (dia > 30)
-    //    {
-    //        numEstacion++;
-    //    }
 
-    //    if (numEstacion == 5)
-    //    {
-    //        numEstacion = 1;
-    //    }
-    //}
+            if (temporizadorPasoDelTiempo <= 0)
+            {
+                temporizadorPasoDelTiempo = contenedorTimerTiempo;
+                minutos += 10;
 
-    //void ActualizarHora()
-    //{
-    //    textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
-    //    //Paso del tiempo
-    //    if (GameManager.Instance.menuAbierto == false)
-    //        temporizadorTiempo -= Time.deltaTime;
+                if (minutos >= minutosEnUnaHora)
+                {
+                    minutos -= minutosEnUnaHora;
+                    hora++;
 
-    //    if (temporizadorTiempo <= 0)
-    //    {
-    //        temporizadorTiempo = 7f;
-    //        minutos += 10;
-    //    }
+                    if (hora >= horasEnUnDia)
+                    {
+                        hora -= horasEnUnDia;
+                    }
 
-    //    if (minutos >= 60)
-    //    {
-    //        minutos -= 60;
-    //        hora++;
-    //    }
+                    else if (hora >= horaDeFinalDelDia && hora < horaDeInicioDelDia)
+                    {
+                        ObserverManager.Instance.NotifyObserver("dia completado");
+                    }
+                }
 
-    //    if (hora >= 24)
-    //    {
-    //        hora -= 24;
-    //        ObserverManager.Instance.NotifyObserver("dia completado");
-    //    }
-    //}
+                textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
+            }
+        }
+    }
 
-    //void ActualizarDia()
-    //{
-    //    textDia.text = dia.ToString("0") + ". " + estacion;
+    void ActualizarDia()
+    {
+        dia++;
 
-    //    if (dia > 30)
-    //    {
-    //        dia = 1;
-    //        opcEstacion++;
-    //    }
+        hora = horaDeInicioDelDia;
 
-    //    if (dia >= 30 && estacion == "Inv.")
-    //        opcEstacion = 1;
 
-    //    switch (opcEstacion)
-    //    {
-    //        case 1:
-    //            estacion = "Prim.";
-    //            break;
+        if (dia > diasEnUnMes)
+        {
+            estacionActualNumerica++;
 
-    //        case 2:
-    //            estacion = "Ver.";
-    //            break;
+            dia = 1;
 
-    //        case 3:
-    //            estacion = "Oto.";
-    //            break;
+            if (estacionActualNumerica >= numeroDeEstacionesTotales)
+            {
+                estacionActualNumerica = 0;
+            }
 
-    //        case 4:
-    //            estacion = "Inv.";
-    //            break;
-    //    }
-    //}
+            animatorEstaciones.SetInteger("estacion", estacionActualNumerica);
+        }
+
+        textDia.text = "Día " + dia.ToString("0");
+    }
+
+    public void OnNotify(string eventInfo)
+    {
+        if (eventInfo == "dia completado")
+        {
+            ActualizarDia();
+        }
+    }
 }

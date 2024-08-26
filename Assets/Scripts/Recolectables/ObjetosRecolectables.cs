@@ -64,11 +64,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Provisional hasta rehacer el script del GameManager
-            //OnNotify("dia completado");
-        }
+        
     }
 
     #region Golpear objetos
@@ -227,8 +223,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     private void ProbabilidadSpawnear()
     {
         float probabilidad = UnityEngine.Random.Range(0f,100f);
-
-        Debug.Log(probabilidad);
 
         float probabilidadTecho = 0;
 

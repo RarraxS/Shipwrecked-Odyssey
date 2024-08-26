@@ -57,28 +57,28 @@ public class Jugador : MonoBehaviour
         Vector2 movimiento = new Vector2(0, 0);
 
         if (((Input.GetKey(KeyCode.I) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
+            (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
         {
             movimiento += (Vector2)(transform.up);//Alante
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.K) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
+            (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
         {
             movimiento += (Vector2)(-transform.up);//Atrás
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
+            (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
         {
             movimiento += (Vector2)(-transform.right);//Izquierda
             andando = true;
         }
 
         if (((Input.GetKey(KeyCode.L) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.menuAbierto == false)
+            (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
         {
             movimiento += (Vector2)(transform.right);//Derecha
             andando = true;
@@ -104,7 +104,7 @@ public class Jugador : MonoBehaviour
         if (((mirandoDerecha == true && (((Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") ||
             ((Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) && GameManager.Instance.controles == "diestro"))) || (mirandoDerecha == false &&
             (((Input.GetKey(KeyCode.L)) && !Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") || (Input.GetKey(KeyCode.D)) &&
-            !Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro"))) && GameManager.Instance.menuAbierto == false)
+            !Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro"))) && GameManager.Instance.pausarTiempo == false)
         {
             mirandoDerecha = !mirandoDerecha;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -154,7 +154,7 @@ public class Jugador : MonoBehaviour
 
     void Hambre()
     {
-        if(GameManager.Instance.menuAbierto == false)
+        if(GameManager.Instance.pausarTiempo == false)
             temporizadorComida -= Time.deltaTime;
 
         if( temporizadorComida <= 0 )

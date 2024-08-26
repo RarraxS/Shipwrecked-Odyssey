@@ -52,13 +52,6 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ObserverManager.Instance.NotifyObserver("dia completado");
-        }
-
-
         Indicador();
 
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && GameManager.Instance.permitirUsarHerramineta == true)

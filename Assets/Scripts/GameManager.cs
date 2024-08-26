@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
     
 
 
-    // Variables para recolectar objetos--------------------------------------------------------------------------------------------
+    // Variables para recolectar objetos-------------------------------------------------
+
     public bool permitirUsarHerramineta;
-    //------------------------------------------------------------------------------------------------------------------
+
+    //-----------------------------------------------------------------------------------
 
 
-    public bool menuAbierto = false;//Es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
+    public bool pausarTiempo = false;//Es lo que hace que tanto el jugador como el tiempo no pase cuando un menu esta abierto 
     
     public Jugador Player;
 
@@ -106,13 +108,13 @@ public class GameManager : MonoBehaviour
                 canvasToolbar.SetActive(true);
                 canvasInventario.SetActive(false);
                 descripciones.SetActive(false);
-                menuAbierto = false;
+                pausarTiempo = false;
             }
             else
             {
                 canvasToolbar.SetActive(false);
                 canvasInventario.SetActive(true);
-                menuAbierto = true;
+                pausarTiempo = true;
             }
         }
     }
@@ -126,7 +128,7 @@ public class GameManager : MonoBehaviour
         if (menuDormir == true)
         {
             canvasDormir.SetActive(true);
-            menuAbierto = true;
+            pausarTiempo = true;
             permitirAbrirInventario = false;
         }
     }
@@ -154,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         canvasDormir.SetActive(false);
         permitirAbrirInventario = true;
-        menuAbierto = false;
+        pausarTiempo = false;
         menuDormir = false;
     }
     #endregion
