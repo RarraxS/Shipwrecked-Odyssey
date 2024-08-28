@@ -86,10 +86,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9199462507180230404}
   - component: {fileID: 9199462507180230407}
-  - component: {fileID: 82235802063802783}
   - component: {fileID: 82235802063802777}
   - component: {fileID: 82235802063802782}
   - component: {fileID: 1052049730215737564}
+  - component: {fileID: 5546828475296798260}
   m_Layer: 0
   m_Name: Recolectable
   m_TagString: Untagged
@@ -165,17 +165,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!210 &82235802063802783
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9199462507180230400}
-  m_Enabled: 1
-  m_SortingLayerID: -871328011
-  m_SortingLayer: 3
-  m_SortingOrder: 0
 --- !u!114 &82235802063802777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,3 +280,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &5546828475296798260
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199462507180230400}
+  m_Enabled: 1
+  m_SortingLayerID: -871328011
+  m_SortingLayer: 3
+  m_SortingOrder: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class CicloDia : MonoBehaviour
+public class CicloDia : MonoBehaviour, IObserver
 {
     [SerializeField] private Light2D luz;
     [SerializeField] private List<EstadosDia> estadosDia;
@@ -12,6 +12,8 @@ public class CicloDia : MonoBehaviour
 
     void Start()
     {
+        ObserverManager.Instance.AddObserver(this);
+
         luz= GetComponent<Light2D>();
     }
 
@@ -56,6 +58,14 @@ public class CicloDia : MonoBehaviour
         {
             i++;
         }        
+    }
+
+    public void OnNotify(string eventInfo)
+    {
+        if (eventInfo == "dia completado")
+        {
+            i = 0;
+        }
     }
 }
 

@@ -37,11 +37,8 @@ public class HudHora : MonoBehaviour, IObserver
         DontDestroyOnLoad(this);
     }
 
-        void Start()
+    void Start()
     {
-        //estacionActualNumerica = animator.GetInteger("dias");
-
-
         animatorEstaciones = objetoEstaciones.gameObject.GetComponent<Animator>();
 
         ObserverManager.Instance.AddObserver(this);
