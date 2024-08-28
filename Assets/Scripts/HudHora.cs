@@ -9,14 +9,11 @@ public class HudHora : MonoBehaviour, IObserver
     public int dia, hora, minutos;
     [SerializeField] private int horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
 
-
     [SerializeField] private float temporizadorPasoDelTiempo;
     private float contenedorTimerTiempo;
 
 
-
     [SerializeField] private int numeroDeEstacionesTotales, estacionActualNumerica;
-
 
 
     [SerializeField] private GameObject objetoEstaciones;
@@ -40,9 +37,10 @@ public class HudHora : MonoBehaviour, IObserver
         DontDestroyOnLoad(this);
     }
 
-    void Start()
+        void Start()
     {
         //estacionActualNumerica = animator.GetInteger("dias");
+
 
         animatorEstaciones = objetoEstaciones.gameObject.GetComponent<Animator>();
 

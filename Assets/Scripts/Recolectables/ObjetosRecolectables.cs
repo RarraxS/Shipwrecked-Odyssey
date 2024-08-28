@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
@@ -49,7 +50,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
         componenteSpriteRenderer = GetComponent<SpriteRenderer>();
         componenteHitboxColision = GetComponent<PolygonCollider2D>();
-        componenteHitboxSinColision = GetComponent<PolygonCollider2D>();
+        componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
 
 
@@ -277,31 +278,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
                 regado = false;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == Jugador.Instance.gameObject.name
-            && rotarEntrarColision == true)
-        {
-            componenteAnimator.SetTrigger("rotar");
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == Jugador.Instance.gameObject.name)
-        {
-            TransparentarObjeto();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == Jugador.Instance.gameObject.name)
-        {
-            RestablecerColor();
         }
     }
 }
