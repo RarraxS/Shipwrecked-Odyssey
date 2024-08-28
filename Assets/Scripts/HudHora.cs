@@ -6,7 +6,9 @@ public class HudHora : MonoBehaviour, IObserver
     [SerializeField] private TMP_Text textHora, textDia;
 
     
-    [SerializeField] private int dia, hora, minutos, horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
+    public int dia, hora, minutos;
+    [SerializeField] private int horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
+
 
     [SerializeField] private float temporizadorPasoDelTiempo;
     private float contenedorTimerTiempo;
@@ -20,10 +22,27 @@ public class HudHora : MonoBehaviour, IObserver
     [SerializeField] private GameObject objetoEstaciones;
     private Animator animatorEstaciones;
 
+
+
+    private static HudHora instance;
+    public static HudHora Instance
+    {
+        get { return instance; }
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(this);
+    }
+
     void Start()
     {
         //estacionActualNumerica = animator.GetInteger("dias");
-
 
         animatorEstaciones = objetoEstaciones.gameObject.GetComponent<Animator>();
 
