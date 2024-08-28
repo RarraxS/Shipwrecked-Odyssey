@@ -49,7 +49,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
         componenteSpriteRenderer = GetComponent<SpriteRenderer>();
         componenteHitboxColision = GetComponent<PolygonCollider2D>();
-        componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
+        componenteHitboxSinColision = GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
 
 
