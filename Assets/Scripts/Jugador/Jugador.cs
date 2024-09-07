@@ -1,23 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-//Dedicado a Carlos Martín, Mauricio Gavidia y Carlos Saldaña
+using UnityEngine.InputSystem;
+
+//Juego dedicado a Carlos Martin, Mauricio Gavidia, Carlos Saldana, Guillermo Perez y Luis Rubio por toda su ayuda durante el desarrollo
 
 public class Jugador : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     [SerializeField] private bool mirandoDerecha = true;
     [SerializeField] private bool andando = false;
-    [SerializeField] public float vidaMaximaHUD, energiaMaximaHUD, comidaMaximaHUD;
-    [SerializeField] public int vidaMaxima, vida, energiaMaxima, energia, comida, comidaMaxima;
+    public float vidaMaximaHUD, energiaMaximaHUD, comidaMaximaHUD;
+    public int vidaMaxima, vida, energiaMaxima, energia, comida, comidaMaxima;
 
     private Rigidbody2D rb;
 
-    float temporizadorComida = 30f;
+    private float temporizadorComida = 30f;
 
-    Animator animator;
+    private Animator animator;
+
+
+    [SerializeField] private Controles controles;
 
     private static Jugador instance;
     public static Jugador Instance
@@ -31,9 +32,21 @@ public class Jugador : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        controles = new();
     }
 
-        void Start()
+    private void OnEnable()
+    {
+        controles.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controles.Disable();
+    }
+
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         vidaMaxima = 100;
@@ -43,62 +56,35 @@ public class Jugador : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
     void Update()
     {
         Movimiento();
-        Animaciones();
+        AnimacionesOld();
         Hambre();
     }
 
+    
 
-    void Movimiento()
+    private void Movimiento()
     {
-        Vector2 movimiento = new Vector2(0, 0);
+        Vector2 direccion = new Vector2();
 
-        if (((Input.GetKey(KeyCode.I) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.W) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
+        direccion = controles.Base.Movimiento.ReadValue<Vector2>();
+
+        rb.position += direccion * Time.deltaTime * velocidad;
+
+        if (direccion != new Vector2(0, 0))
         {
-            movimiento += (Vector2)(transform.up);//Alante
             andando = true;
         }
 
-        if (((Input.GetKey(KeyCode.K) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.S) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
+        else
         {
-            movimiento += (Vector2)(-transform.up);//Atrás
-            andando = true;
-        }
-
-        if (((Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
-        {
-            movimiento += (Vector2)(-transform.right);//Izquierda
-            andando = true;
-        }
-
-        if (((Input.GetKey(KeyCode.L) && GameManager.Instance.controles == "zurdo") ||
-            (Input.GetKey(KeyCode.D) && GameManager.Instance.controles == "diestro")) && GameManager.Instance.pausarTiempo == false)
-        {
-            movimiento += (Vector2)(transform.right);//Derecha
-            andando = true;
-        }
-
-        if (((!Input.GetKey(KeyCode.I) && !Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.K)
-            && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") || ((!Input.GetKey(KeyCode.W)
-            && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) && GameManager.Instance.controles == "diestro"))
             andando = false;
-
-
-
-        movimiento.Normalize();
-
-        movimiento *= velocidad * Time.deltaTime;
-
-        rb.position += movimiento;
+        }
     }
 
-    void Animaciones()
+    void AnimacionesOld()
     {
         //El personaje se gira
         if (((mirandoDerecha == true && (((Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") ||
