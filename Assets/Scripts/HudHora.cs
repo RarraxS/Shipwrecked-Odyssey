@@ -9,7 +9,7 @@ public class HudHora : MonoBehaviour, IObserver
     public int dia, hora, minutos;
     [SerializeField] private int horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
 
-    [SerializeField] private float temporizadorPasoDelTiempo;
+    public float temporizadorPasoDelTiempo;
     private float contenedorTimerTiempo;
 
 
