@@ -59,7 +59,7 @@ public class Jugador : MonoBehaviour
     void Update()
     {
         Movimiento();
-        AnimacionesOld();
+
         Hambre();
     }
 
@@ -82,28 +82,27 @@ public class Jugador : MonoBehaviour
         {
             andando = false;
         }
+
+        Animaciones(direccion);
     }
 
-    void AnimacionesOld()
+    private void Animaciones(Vector2 direccion)
     {
-        //El personaje se gira
-        if (((mirandoDerecha == true && (((Input.GetKey(KeyCode.J) && !Input.GetKey(KeyCode.L)) && GameManager.Instance.controles == "zurdo") ||
-            ((Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) && GameManager.Instance.controles == "diestro"))) || (mirandoDerecha == false &&
-            (((Input.GetKey(KeyCode.L)) && !Input.GetKey(KeyCode.J) && GameManager.Instance.controles == "zurdo") || (Input.GetKey(KeyCode.D)) &&
-            !Input.GetKey(KeyCode.A) && GameManager.Instance.controles == "diestro"))) && GameManager.Instance.pausarTiempo == false)
-        {
-            mirandoDerecha = !mirandoDerecha;
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }
-
-        //Animaciones
-        if (andando == true)//Animación de andar
+        if (direccion != new Vector2 (0, 0))
         {
             animator.SetBool("Andando", true);
         }
-        else//Animación de idle
+
+        else
         {
             animator.SetBool("Andando", false);
+        }
+
+
+        if ((mirandoDerecha == true && direccion.x < 0) || (mirandoDerecha == false && direccion.x > 0))
+        {
+            mirandoDerecha = !mirandoDerecha;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
     }
 
