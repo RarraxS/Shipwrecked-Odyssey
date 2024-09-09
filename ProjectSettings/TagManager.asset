@@ -54,6 +54,9 @@ TagManager:
   - name: Juego
     uniqueID: 3423639285
     locked: 0
+  - name: Efectos
+    uniqueID: 634187243
+    locked: 0
   - name: UI
     uniqueID: 1067184595
     locked: 0

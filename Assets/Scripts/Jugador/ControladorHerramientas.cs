@@ -241,7 +241,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                     {
                         objetoRecolectable.ClasificarGolpe();
 
-                        if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar &&
+                        if (Toolbar.Instance.herramientaSeleccionada.item != null && Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar &&
                             objetoRecolectable.regado == false)
                         {
                             Regar(posicion, objetoRecolectable);

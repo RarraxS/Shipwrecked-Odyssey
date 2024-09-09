@@ -1,12 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class CicloDia : MonoBehaviour, IObserver
 {
     [SerializeField] private Light2D luz;
-    [SerializeField] private List<EstadosDia> estadosDia;
+    [SerializeField] private List<EstadosDia> estadosDiaSoleado;
+
+
+    [SerializeField] private float probabilidadDeLlover;
+    [SerializeField] private List<EstadosDia> estadosDiaLluvioso;
+    private bool lloviendo = false;
+
 
     private float contenedorDeTiempo;
 
@@ -24,10 +31,18 @@ public class CicloDia : MonoBehaviour, IObserver
     
     void Update()
     {
-        ComprobarEstadoDia();
+        if (lloviendo == false)
+        {
+            ComprobarEstadoDia(estadosDiaSoleado);
+        }
+        
+        else
+        {
+            ComprobarEstadoDia(estadosDiaLluvioso);
+        }
     }
 
-    private void ComprobarEstadoDia()
+    private void ComprobarEstadoDia(List<EstadosDia> estadosDia)
     {
         //Comprobar cuanto queda hasta el siguiente estadio del dia y aplicar el cambio de la luz
 
@@ -56,8 +71,6 @@ public class CicloDia : MonoBehaviour, IObserver
             float tiempo = minutosRestantes / minutosTotales;
 
             luz.color = Color.Lerp(estadosDia[i].iluminacion, estadosDia[i + 1].iluminacion, tiempo);
-
-            Debug.Log(tiempo);
         }
 
         else
@@ -71,6 +84,19 @@ public class CicloDia : MonoBehaviour, IObserver
         if (eventInfo == "dia completado")
         {
             i = 0;
+
+
+            float numeroAleatorio = UnityEngine.Random.Range(0f, 100f);
+
+            if (numeroAleatorio <= probabilidadDeLlover)
+            {
+                lloviendo = true;
+            }
+
+            else
+            {
+                lloviendo = false;
+            }
         }
     }
 }
