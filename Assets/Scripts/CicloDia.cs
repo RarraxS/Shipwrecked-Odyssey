@@ -12,6 +12,7 @@ public class CicloDia : MonoBehaviour, IObserver
 
     [SerializeField] private float probabilidadDeLlover;
     [SerializeField] private List<EstadosDia> estadosDiaLluvioso;
+    [SerializeField] private GameObject lluvia;
     private bool lloviendo = false;
 
 
@@ -21,6 +22,8 @@ public class CicloDia : MonoBehaviour, IObserver
 
     void Start()
     {
+        ComprobarEstadoLluvia();
+
         ObserverManager.Instance.AddObserver(this);
 
         luz= GetComponent<Light2D>();
@@ -35,7 +38,7 @@ public class CicloDia : MonoBehaviour, IObserver
         {
             ComprobarEstadoDia(estadosDiaSoleado);
         }
-        
+
         else
         {
             ComprobarEstadoDia(estadosDiaLluvioso);
@@ -79,6 +82,11 @@ public class CicloDia : MonoBehaviour, IObserver
         }        
     }
 
+    private void ComprobarEstadoLluvia()
+    {
+        lluvia.SetActive(lloviendo);
+    }
+
     public void OnNotify(string eventInfo)
     {
         if (eventInfo == "dia completado")
@@ -97,6 +105,8 @@ public class CicloDia : MonoBehaviour, IObserver
             {
                 lloviendo = false;
             }
+
+            ComprobarEstadoLluvia();
         }
     }
 }
