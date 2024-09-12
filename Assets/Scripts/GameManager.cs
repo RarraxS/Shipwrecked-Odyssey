@@ -145,6 +145,7 @@ public class GameManager : MonoBehaviour
         //dia++;
         Player.StatsComienzoDiaNormal();
         CerrarMenuDormir();
+        ObserverManager.Instance.NotifyObserver("dia completado");
     }
     
     public void DormirNo()

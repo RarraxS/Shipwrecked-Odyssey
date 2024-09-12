@@ -95,6 +95,10 @@ public class HudHora : MonoBehaviour, IObserver
 
         hora = horaDeInicioDelDia;
 
+        minutos = 0;
+
+        temporizadorPasoDelTiempo = contenedorTimerTiempo;
+
 
         if (dia > diasEnUnMes)
         {
@@ -111,6 +115,8 @@ public class HudHora : MonoBehaviour, IObserver
         }
 
         textDia.text = "Día " + dia.ToString("0");
+
+        textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
     }
 
     public void OnNotify(string eventInfo)
