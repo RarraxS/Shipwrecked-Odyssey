@@ -7,14 +7,18 @@ public class ParticulasLluvia : MonoBehaviour
 {
     private int screenWidth, screenHeight;
 
-    [SerializeField] private GameObject lluvia;
     private ParticleSystem parSysLluvia;
 
     [SerializeField] private Vector2 offsetMultiplier, scaleMultiplier;
 
+    [SerializeField] private GameObject camera;
+    private Camera cam;
+
     void Start()
     {
-        parSysLluvia = lluvia.GetComponent<ParticleSystem>();
+        parSysLluvia = GetComponent<ParticleSystem>();
+
+        cam = camera.GetComponent<Camera>();
 
         ActualizarResolucion();
 
@@ -39,18 +43,17 @@ public class ParticulasLluvia : MonoBehaviour
 
     private void OnResolutionChange() 
     {
+        float anchoMundo, alturaMundo;
+
         var shape = parSysLluvia.shape;
-        
-        shape.position = new Vector3(screenWidth * offsetMultiplier.x, screenHeight * offsetMultiplier.y, shape.position.z);
 
-        if (screenWidth != Screen.width)
-        {
-            shape.scale = new Vector3(screenWidth * scaleMultiplier.x, shape.scale.y, shape.scale.z);
-        }
 
-        else
-        {
-            shape.scale = new Vector3(1f / (screenHeight * scaleMultiplier.y), shape.scale.y, shape.scale.z);
-        }
+        alturaMundo = cam.orthographicSize * 2f;
+        anchoMundo = alturaMundo * cam.aspect;
+
+        float medidasFinales = anchoMundo + (alturaMundo * 2);
+
+        shape.position = new Vector3(offsetMultiplier.x, offsetMultiplier.y, shape.position.z);
+        shape.scale = new Vector3(medidasFinales, shape.scale.y, shape.scale.z);
     }
 }
