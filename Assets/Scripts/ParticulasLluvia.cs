@@ -7,6 +7,7 @@ public class ParticulasLluvia : MonoBehaviour
 {
     private int screenWidth, screenHeight;
 
+    [SerializeField] private GameObject objetoLluvia;
     private ParticleSystem parSysLluvia;
 
     [SerializeField] private Vector2 offsetMultiplier, scaleMultiplier;
@@ -16,7 +17,7 @@ public class ParticulasLluvia : MonoBehaviour
 
     void Start()
     {
-        parSysLluvia = GetComponent<ParticleSystem>();
+        parSysLluvia = objetoLluvia.GetComponent<ParticleSystem>();
 
         cam = camera.GetComponent<Camera>();
 
@@ -47,7 +48,6 @@ public class ParticulasLluvia : MonoBehaviour
 
         var shape = parSysLluvia.shape;
 
-
         alturaMundo = cam.orthographicSize * 2f;
         anchoMundo = alturaMundo * cam.aspect;
 
@@ -55,5 +55,9 @@ public class ParticulasLluvia : MonoBehaviour
 
         shape.position = new Vector3(offsetMultiplier.x, offsetMultiplier.y, shape.position.z);
         shape.scale = new Vector3(medidasFinales, shape.scale.y, shape.scale.z);
+
+        var emision = parSysLluvia.emission;
+
+        emision.rateOverTime = shape.scale.x / 2;
     }
 }
