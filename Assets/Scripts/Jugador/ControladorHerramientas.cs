@@ -228,11 +228,11 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         Collider2D[] colliders = Physics2D.OverlapCircleAll(posicionMouse, distanciaEntreTiles);
 
 
-        foreach (Collider2D hitbox in colliders)
+        foreach (Collider2D collider in colliders)
         {
-            if(hitbox != null && hitbox.gameObject.name != gameObject.name)
+            if(collider != null && collider.gameObject.name != gameObject.name)
             {
-                ObjetosRecolectables objetoRecolectable = hitbox.gameObject.GetComponent<ObjetosRecolectables>();
+                ObjetosRecolectables objetoRecolectable = collider.gameObject.GetComponent<ObjetosRecolectables>();
 
                 if (objetoRecolectable != null)
                 {
@@ -254,6 +254,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                             Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
                         {
                             Arar(posicion);
+                            objetoRecolectable.arado = true;
                         }
 
                         else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar && 

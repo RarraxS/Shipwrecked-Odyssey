@@ -99,6 +99,7 @@ public class CicloDia : MonoBehaviour, IObserver
             if (numeroAleatorio <= probabilidadDeLlover)
             {
                 lloviendo = true;
+                ObserverManager.Instance.NotifyObserver("dia lluvioso");
             }
 
             else

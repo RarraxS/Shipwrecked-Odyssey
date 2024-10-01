@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ObjetosRecolectables : MonoBehaviour, IObserver
 {
@@ -19,8 +19,10 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     [SerializeField] private bool semilla;
     [SerializeField] private string estacionDeCultivo;
+    [SerializeField] private Tilemap tilemapRegar;
+    [SerializeField] private TileBase tileRegar;
     public int numDiasPasados, numDiasParaCrecer;
-    public bool regado;
+    public bool arado, regado;
 
 
     public bool rotarEntrarColision;
@@ -61,11 +63,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
         Observar();
     }
-    
-    private void Update()
-    {
-        
-    }
+
 
     #region Golpear objetos
     public void ClasificarGolpe()
@@ -149,7 +147,6 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     {
         componenteSpriteRenderer.enabled = false;
         componenteHitboxColision.isTrigger = true;
-        componenteHitboxSinColision.enabled = false;
         componenteAnimator.enabled = false;
     }
 
@@ -189,13 +186,14 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
         componenteSpriteRenderer.enabled = true;
         componenteHitboxColision.enabled = true;
-        componenteHitboxSinColision.enabled = true;
         componenteAnimator.enabled = true;
 
         if (semilla == true)
         {
             numDiasPasados = componenteAnimator.GetInteger("dias");
         }
+
+        RestablecerColor();
     }
 
     #endregion
@@ -241,17 +239,8 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     private void Observar()
     {
-        if ((semilla == true && numDiasPasados <= numDiasParaCrecer) || !componenteSpriteRenderer.enabled)
-        {
-            ObserverManager.Instance.AddObserver(this);
-            observando = true;
-        }
-
-        else if (observando == true)
-        {
-            ObserverManager.Instance.RemoveObserver(this);
-            observando = false;
-        }
+        ObserverManager.Instance.AddObserver(this);
+        observando = true;
     }
 
     public void OnNotify(string eventInfo)
@@ -277,6 +266,18 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
                 }
 
                 regado = false;
+            }
+        }
+
+        if (eventInfo == "dia lluvioso")
+        {
+            if (arado == true)
+            {
+                Vector3Int position = Vector3Int.FloorToInt(tr.position);
+                position += new Vector3Int(-1, -1, 0);
+                
+
+                tilemapRegar.SetTile(position, tileRegar);
             }
         }
     }

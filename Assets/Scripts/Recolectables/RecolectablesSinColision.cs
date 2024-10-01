@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class RecolectablesSinColision : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class RecolectablesSinColision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == Jugador.Instance.gameObject.name
-            && objeto.rotarEntrarColision == true)
+            && objeto.rotarEntrarColision == true && objeto.componenteSpriteRenderer.enabled == true)
         {
             objeto.componenteAnimator.SetTrigger("rotar");
         }
@@ -24,7 +22,8 @@ public class RecolectablesSinColision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == Jugador.Instance.gameObject.name)
+        if (collision.gameObject.name == Jugador.Instance.gameObject.name &&
+            objeto.componenteSpriteRenderer.enabled == true)
         {
             objeto.TransparentarObjeto();
         }
@@ -32,7 +31,8 @@ public class RecolectablesSinColision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == Jugador.Instance.gameObject.name)
+        if (collision.gameObject.name == Jugador.Instance.gameObject.name && 
+            objeto.componenteSpriteRenderer.enabled == true)
         {
             objeto.RestablecerColor();
         }
