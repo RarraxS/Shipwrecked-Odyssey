@@ -19,10 +19,9 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     [SerializeField] private bool semilla;
     [SerializeField] private string estacionDeCultivo;
-    [SerializeField] private Tilemap tilemapRegar;
-    [SerializeField] private TileBase tileRegar;
     public int numDiasPasados, numDiasParaCrecer;
     public bool arado, regado;
+    private VariablesParentItems varParent;
 
 
     public bool rotarEntrarColision;
@@ -54,6 +53,8 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         componenteHitboxColision = GetComponent<PolygonCollider2D>();
         componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
+
+        varParent = GetComponentInParent<VariablesParentItems>();
 
 
         if (iniciarSinObjeto == true)
@@ -275,9 +276,9 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             {
                 Vector3Int position = Vector3Int.FloorToInt(tr.position);
                 position += new Vector3Int(-1, -1, 0);
-                
 
-                tilemapRegar.SetTile(position, tileRegar);
+
+                varParent.tilemapRegar.SetTile(position, varParent.tileRegar);
             }
         }
     }
