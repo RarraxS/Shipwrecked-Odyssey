@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LimitadorFrames : MonoBehaviour
+public class FrameLimiter : MonoBehaviour
 {
     [SerializeField] private int maxFps;
     private void Awake()

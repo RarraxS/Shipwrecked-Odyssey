@@ -28,7 +28,7 @@ public class RainParticles : MonoBehaviour
 
     void Update()
     {
-        if (screenHeight != Screen.height || screenWidth != Screen.width)
+        if (HasResolutionchanged())
         {
             OnResolutionChange();
 
@@ -59,5 +59,10 @@ public class RainParticles : MonoBehaviour
         var emision = rainParSys.emission;
 
         emision.rateOverTime = shape.scale.x / 2;
+    }
+
+    private bool HasResolutionchanged()
+    {
+        return screenHeight != Screen.height || screenWidth != Screen.width;
     }
 }
