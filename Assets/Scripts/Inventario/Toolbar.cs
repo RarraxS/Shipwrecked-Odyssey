@@ -105,14 +105,14 @@ public class Toolbar : MonoBehaviour, IObserver
 
     public void OnNotify(string eventInfo)
     {
-        if (eventInfo == "Cambio en la toolbar")
+        if (eventInfo == "Change on toolbar")
         {
             EnlazarToolbarInventario();
         }
 
-        if (eventInfo == "Restar en el inventario")
+        if (eventInfo == "Remove on inventory")
         {
-            ObserverManager.Instance.NotifyObserverNum("Restar en el inventario", Toolbar.Instance.herramientaActual);
+            ObserverManager.Instance.NotifyObserverNum("Remove on inventory", Toolbar.Instance.herramientaActual);
         }
     }
 }

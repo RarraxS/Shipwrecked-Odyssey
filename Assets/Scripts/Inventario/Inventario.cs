@@ -29,7 +29,7 @@ public class Inventario : MonoBehaviour, IObserverNum
         slotInventario[posicion].cantidadBarraActual= cantBarraActual;
         slotInventario[posicion].cantidadBarraMaxima= cantBarraMaxima;
         slotInventario[posicion].ActualizarInformacion();
-        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+        ObserverManager.Instance.NotifyObserver("Change on toolbar");
     }
 
     public void Sumar(int posicion)
@@ -38,7 +38,7 @@ public class Inventario : MonoBehaviour, IObserverNum
         slotInventario[posicion].cantidad += 1;
         slotInventario[posicion].ActualizarInformacion();
 
-        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+        ObserverManager.Instance.NotifyObserver("Change on toolbar");
     }
 
     private void Restar(int posicion)
@@ -53,7 +53,7 @@ public class Inventario : MonoBehaviour, IObserverNum
 
         slotInventario[posicion].ActualizarInformacion();
 
-        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+        ObserverManager.Instance.NotifyObserver("Change on toolbar");
     }
 
     private void ReducirBarraInventario(int posicion)
@@ -62,7 +62,7 @@ public class Inventario : MonoBehaviour, IObserverNum
 
         slotInventario[posicion].ActualizarInformacion();
 
-        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+        ObserverManager.Instance.NotifyObserver("Change on toolbar");
     }
 
     private void RecargarBarraInventario(int posicion)
@@ -71,22 +71,22 @@ public class Inventario : MonoBehaviour, IObserverNum
 
         slotInventario[posicion].ActualizarInformacion();
 
-        ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+        ObserverManager.Instance.NotifyObserver("Change on toolbar");
     }
 
     public void OnNotify(string eventInfo, int numInfo)
     {
-        if (eventInfo == "Restar en el inventario")
+        if (eventInfo == "Remove on inventory")
         {
             Restar(numInfo);
         }
 
-        else if(eventInfo == "Restar en la barra de utilidad")
+        else if (eventInfo == "Remove on item uses")
         {
             ReducirBarraInventario(numInfo);
         }
 
-        else if (eventInfo == "Recargar la barra de utilidad")
+        else if (eventInfo == "Reload item uses")
         {
             RecargarBarraInventario(numInfo);
         }

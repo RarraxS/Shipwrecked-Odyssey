@@ -9,7 +9,7 @@ public class HudHora : MonoBehaviour, IObserver
     public int dia, hora, minutos;
     [SerializeField] private int horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
 
-    public float temporizadorPasoDelTiempo;
+    public float timeTimer;
     private float contenedorTimerTiempo;
 
 
@@ -43,7 +43,7 @@ public class HudHora : MonoBehaviour, IObserver
 
         ObserverManager.Instance.AddObserver(this);
 
-        contenedorTimerTiempo = temporizadorPasoDelTiempo;
+        contenedorTimerTiempo = timeTimer;
 
         textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
         textDia.text = "Día " + dia.ToString("0");
@@ -60,12 +60,12 @@ public class HudHora : MonoBehaviour, IObserver
         //Paso del tiempo
         if (GameManager.Instance.pausarTiempo == false)
         {
-            temporizadorPasoDelTiempo -= Time.deltaTime;
+            timeTimer -= Time.deltaTime;
 
 
-            if (temporizadorPasoDelTiempo <= 0)
+            if (timeTimer <= 0)
             {
-                temporizadorPasoDelTiempo = contenedorTimerTiempo;
+                timeTimer = contenedorTimerTiempo;
                 minutos += 10;
 
                 if (minutos >= minutosEnUnaHora)
@@ -80,7 +80,7 @@ public class HudHora : MonoBehaviour, IObserver
 
                     else if (hora >= horaDeFinalDelDia && hora < horaDeInicioDelDia)
                     {
-                        ObserverManager.Instance.NotifyObserver("dia completado");
+                        ObserverManager.Instance.NotifyObserver("Day completed");
                     }
                 }
 
@@ -97,7 +97,7 @@ public class HudHora : MonoBehaviour, IObserver
 
         minutos = 0;
 
-        temporizadorPasoDelTiempo = contenedorTimerTiempo;
+        timeTimer = contenedorTimerTiempo;
 
 
         if (dia > diasEnUnMes)
@@ -121,7 +121,7 @@ public class HudHora : MonoBehaviour, IObserver
 
     public void OnNotify(string eventInfo)
     {
-        if (eventInfo == "dia completado")
+        if (eventInfo == "Day completed")
         {
             ActualizarDia();
         }

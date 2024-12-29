@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     // Variables para recolectar objetos-------------------------------------------------
 
-    public bool permitirUsarHerramineta;
+    public bool allowUsingTools;
 
     //-----------------------------------------------------------------------------------
 
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         {
             if (canvasInventario.activeSelf)
             {
-                ObserverManager.Instance.NotifyObserver("Cambio en la toolbar");
+                ObserverManager.Instance.NotifyObserver("Change on toolbar");
                 canvasToolbar.SetActive(true);
                 canvasInventario.SetActive(false);
                 descripciones.SetActive(false);
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         //dia++;
         Player.StatsComienzoDiaNormal();
         CerrarMenuDormir();
-        ObserverManager.Instance.NotifyObserver("dia completado");
+        ObserverManager.Instance.NotifyObserver("Day completed");
     }
     
     public void DormirNo()

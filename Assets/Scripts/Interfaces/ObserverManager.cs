@@ -23,7 +23,7 @@ public class ObserverManager : MonoBehaviour
 
     #endregion
 
-    // Interfaz STRING --------------------------------------------------------------------
+    // STRING interface --------------------------------------------------------------------
 
     private readonly List<IObserver> observers = new();
 
@@ -45,7 +45,7 @@ public class ObserverManager : MonoBehaviour
         }
     }
 
-    // Interfaz STRING y NUM --------------------------------------------------------------
+    // STRING and INT interface --------------------------------------------------------------
 
     private readonly List<IObserverNum> observersNum = new();
 

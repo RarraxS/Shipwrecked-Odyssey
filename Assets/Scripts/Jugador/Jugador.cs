@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-//Dedicado a Carlos Martín, Mauricio Gavidia y Carlos Saldaña
+//Dedicado a Carlos Martín, Mauricio Gavidia, Carlos Saldaña, Sheila Medina, Lucía Pelado e Irina Bilskaya
 
 public class Jugador : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class Jugador : MonoBehaviour
             Destroy(gameObject);
     }
 
-        void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         vidaMaxima = 100;

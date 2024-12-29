@@ -12,18 +12,19 @@ public class MarkerManager : MonoBehaviour
 
     private void Update()
     {
-        if (show == false)
+        if (show == true)
         {
-            return;
-        }
-        else
-        {
-            targetTilemap.SetTile(oldCellPosition, null);
-            targetTilemap.SetTile(markedCellPosition, tile);
-            oldCellPosition = markedCellPosition;
+            UpdateMarker();
 
             return;
         }
+    }
+
+    private void UpdateMarker()
+    {
+        targetTilemap.SetTile(oldCellPosition, null);
+        targetTilemap.SetTile(markedCellPosition, tile);
+        oldCellPosition = markedCellPosition;
     }
 
     public void Show(bool selected)
@@ -31,6 +32,6 @@ public class MarkerManager : MonoBehaviour
         show = selected;
         targetTilemap.gameObject.SetActive(show);
 
-        GameManager.Instance.permitirUsarHerramineta = show;
+        GameManager.Instance.allowUsingTools = show;
     }
 }

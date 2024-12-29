@@ -54,7 +54,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
     {
         Indicador();
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && GameManager.Instance.permitirUsarHerramineta == true)
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && GameManager.Instance.allowUsingTools == true)
         {
             //Coge la posición del tile que se está seleccionando y al tileset que se le pasa por parámetro 
             //se le apllica el tile paasado por referencia
@@ -193,7 +193,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         {
             regar.SetTile(posicion, piezaRegar);
             objetoRecolectable.regado = true;
-            ObserverManager.Instance.NotifyObserverNum("Restar en la barra de utilidad", Toolbar.Instance.herramientaActual);
+            ObserverManager.Instance.NotifyObserverNum("Remove on item uses", Toolbar.Instance.herramientaActual);
             Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
         }
     }
@@ -208,7 +208,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
             if (tileAgua != null)
             {
-                ObserverManager.Instance.NotifyObserverNum("Recargar la barra de utilidad", Toolbar.Instance.herramientaActual);
+                ObserverManager.Instance.NotifyObserverNum("Reload item uses", Toolbar.Instance.herramientaActual);
             }
         }
     }
@@ -272,7 +272,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                             {
                                 objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
 
-                                ObserverManager.Instance.NotifyObserver("Restar en el inventario");
+                                ObserverManager.Instance.NotifyObserver("Remove on inventory");
                             }
                         }
                     }
@@ -285,7 +285,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
     public void OnNotify(string eventInfo)
     {
-        if (eventInfo == "dia completado")
+        if (eventInfo == "Day completed")
         {
             regar.ClearAllTiles();
         }

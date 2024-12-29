@@ -246,7 +246,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
 
     public void OnNotify(string eventInfo)
     {
-        if (eventInfo == "dia completado")
+        if (eventInfo == "Day completed")
         {
             if (componenteSpriteRenderer.enabled == false)
             {
@@ -270,7 +270,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
             }
         }
 
-        if (eventInfo == "dia lluvioso")
+        if (eventInfo == "Rainy day")
         {
             if (arado == true)
             {
