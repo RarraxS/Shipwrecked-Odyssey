@@ -6,7 +6,7 @@ public class HudHora : MonoBehaviour, IObserver
     [SerializeField] private TMP_Text textHora, textDia;
 
     
-    public int dia, hora, minutos;
+    public int dia, hour, minutos;
     [SerializeField] private int horaDeInicioDelDia, horaDeFinalDelDia, minutosEnUnaHora, horasEnUnDia, diasEnUnMes;
 
     public float timeTimer;
@@ -45,7 +45,7 @@ public class HudHora : MonoBehaviour, IObserver
 
         contenedorTimerTiempo = timeTimer;
 
-        textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
+        textHora.text = hour.ToString("0") + ":" + minutos.ToString("00");
         textDia.text = "Día " + dia.ToString("0");
     }
 
@@ -71,20 +71,20 @@ public class HudHora : MonoBehaviour, IObserver
                 if (minutos >= minutosEnUnaHora)
                 {
                     minutos -= minutosEnUnaHora;
-                    hora++;
+                    hour++;
 
-                    if (hora >= horasEnUnDia)
+                    if (hour >= horasEnUnDia)
                     {
-                        hora -= horasEnUnDia;
+                        hour -= horasEnUnDia;
                     }
 
-                    else if (hora >= horaDeFinalDelDia && hora < horaDeInicioDelDia)
+                    else if (hour >= horaDeFinalDelDia && hour < horaDeInicioDelDia)
                     {
                         ObserverManager.Instance.NotifyObserver("Day completed");
                     }
                 }
 
-                textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
+                textHora.text = hour.ToString("0") + ":" + minutos.ToString("00");
             }
         }
     }
@@ -93,7 +93,7 @@ public class HudHora : MonoBehaviour, IObserver
     {
         dia++;
 
-        hora = horaDeInicioDelDia;
+        hour = horaDeInicioDelDia;
 
         minutos = 0;
 
@@ -116,7 +116,7 @@ public class HudHora : MonoBehaviour, IObserver
 
         textDia.text = "Día " + dia.ToString("0");
 
-        textHora.text = hora.ToString("0") + ":" + minutos.ToString("00");
+        textHora.text = hour.ToString("0") + ":" + minutos.ToString("00");
     }
 
     public void OnNotify(string eventInfo)

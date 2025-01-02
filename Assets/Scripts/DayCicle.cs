@@ -6,10 +6,10 @@ using UnityEngine.Rendering.Universal;
 public class DayCicle : MonoBehaviour, IObserver
 {
     [SerializeField] private Light2D sunlight;
-    [SerializeField] private List<EstadosDia> sunnyDayStates;
+    [SerializeField] private List<DayStates> sunnyDayStates;
 
     [SerializeField] private float rainingProbability;
-    [SerializeField] private List<EstadosDia> rainyDayStates;
+    [SerializeField] private List<DayStates> rainyDayStates;
     [SerializeField] private GameObject rain;
     private bool raining = false;
 
@@ -23,60 +23,69 @@ public class DayCicle : MonoBehaviour, IObserver
 
         ObserverManager.Instance.AddObserver(this);
 
-        sunlight= GetComponent<Light2D>();
+        sunlight = GetComponent<Light2D>();
 
         timeTimer = HudHora.Instance.timeTimer;
     }
 
-    
+
     void Update()
     {
         if (raining == false)
-        {
             CheckDayState(sunnyDayStates);
-        }
 
         else
-        {
             CheckDayState(rainyDayStates);
-        }
     }
 
-    private void CheckDayState(List<EstadosDia> estadosDia)
+    private void CheckDayState(List<DayStates> dayStates)
     {
-        //Comprobar cuanto queda hasta el siguiente estadio del dia y aplicar el cambio de la luz
-
-        float horasRestantes, minutosRestantes, minutosTotales;
-
-        if (indexDayState == estadosDia.Count - 1)
-        {
+        if (indexDayState == dayStates.Count - 1)
             return;
-        }
 
-        else if (estadosDia[indexDayState].hora <= HudHora.Instance.hora && estadosDia[indexDayState + 1].hora > HudHora.Instance.hora)
+        else if (IsHourOnCurrentDayStateIndex(dayStates))
         {
-            minutosTotales = ((estadosDia[indexDayState + 1].hora - estadosDia[indexDayState].hora) * 6) * timeTimer;
-            
-            horasRestantes = estadosDia[indexDayState + 1].hora - HudHora.Instance.hora;
+            float totalMinutes = CalculateTotalMinutes(dayStates);
 
-            minutosRestantes = horasRestantes * 6;
+            float minutesRemaining = CalculateMinutesRemaining(totalMinutes, dayStates);
 
-            if (HudHora.Instance.minutos != 0)
-            {
-                minutosRestantes -= HudHora.Instance.minutos / 10;
-            }
-
-            minutosRestantes = (minutosTotales - (minutosRestantes * timeTimer)) - HudHora.Instance.timeTimer;
-
-            float tiempo = minutosRestantes / minutosTotales;
-
-            sunlight.color = Color.Lerp(estadosDia[indexDayState].iluminacion, estadosDia[indexDayState + 1].iluminacion, tiempo);
+            ApplyIlumination(minutesRemaining, totalMinutes, dayStates);
         }
 
         else
-        {
             indexDayState++;
-        }        
+    }
+
+    private bool IsHourOnCurrentDayStateIndex(List<DayStates> dayStates)
+    {
+        return dayStates[indexDayState].hour <= HudHora.Instance.hour && 
+               dayStates[indexDayState + 1].hour > HudHora.Instance.hour;
+    }
+
+    private float CalculateTotalMinutes(List<DayStates> dayStates)
+    {
+        return ((dayStates[indexDayState + 1].hour - dayStates[indexDayState].hour) * 6) * timeTimer;
+    }
+
+    private float CalculateMinutesRemaining(float totalMinutes, List<DayStates> dayStates)
+    {
+        float hoursRemaining = dayStates[indexDayState + 1].hour - HudHora.Instance.hour;
+
+        float minutesRemaining = hoursRemaining * 6;
+
+        if (HudHora.Instance.minutos != 0)
+        {
+            minutesRemaining -= HudHora.Instance.minutos / 10;
+        }
+
+        return (totalMinutes - (minutesRemaining * timeTimer)) - HudHora.Instance.timeTimer;
+    }
+
+    private void ApplyIlumination(float minutesRemaining, float totalMinutes, List<DayStates> dayStates)
+    {
+        float time = minutesRemaining / totalMinutes;
+
+        sunlight.color = Color.Lerp(dayStates[indexDayState].ilumination, dayStates[indexDayState + 1].ilumination, time);
     }
 
     private void CheckRain()
@@ -90,19 +99,16 @@ public class DayCicle : MonoBehaviour, IObserver
         {
             indexDayState = 0;
 
+            float randomNumber = UnityEngine.Random.Range(0f, 100f);
 
-            float numeroAleatorio = UnityEngine.Random.Range(0f, 100f);
-
-            if (numeroAleatorio <= rainingProbability)
+            if (randomNumber <= rainingProbability)
             {
                 raining = true;
                 ObserverManager.Instance.NotifyObserver("Rainy day");
             }
 
             else
-            {
                 raining = false;
-            }
 
             CheckRain();
         }
@@ -111,9 +117,9 @@ public class DayCicle : MonoBehaviour, IObserver
 
 
 [Serializable]
-public class EstadosDia
+public class DayStates
 {
-    public int hora;
+    public int hour;
 
-    public Color iluminacion;
+    public Color ilumination;
 }
