@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Semilla Trigo
   m_EditorClassIdentifier: 
-  nombre: Semilla de trigo
-  stackeable: 1
+  itemName: Semilla de trigo
+  stackable: 1
   sprite: {fileID: 21300000, guid: 1429b14c773ee1b409bc48618f5b3826, type: 3}
-  descripcion: "Se puede plantar sobre suelo arado y si se riega tarda 4 d\xEDas
+  description: "Se puede plantar sobre suelo arado y si se riega tarda 4 d\xEDas
     en crecer."
-  objetoSuelo: {fileID: 4164725777254123460, guid: dc6ce50487dde3b41b7460fd69c30adc, type: 3}
-  herramienta: 
-  nivel: 0
-  damageHerramienta: 0
+  droppedItem: {fileID: 4164725777254123460, guid: dc6ce50487dde3b41b7460fd69c30adc, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
   semilla: 1
-  worldItem: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}
+  itemToPlaceOnworld: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}

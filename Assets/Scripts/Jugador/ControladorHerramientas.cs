@@ -171,7 +171,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                         arado.SetColor(posicion, colorArena);
                     }
 
-                    Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
+                    Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energyPerHit;
 
                     return;
                 }
@@ -194,7 +194,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
             regar.SetTile(posicion, piezaRegar);
             objetoRecolectable.regado = true;
             ObserverManager.Instance.NotifyObserverNum("Remove on item uses", Toolbar.Instance.herramientaActual);
-            Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
+            Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energyPerHit;
         }
     }
 
@@ -202,7 +202,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
     private void RecargarRegadera(Vector3Int posicion)
     {
-        if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar)
+        if (Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaRegar)
         {
             TileBase tileAgua = mar.GetTile(posicion);
 
@@ -241,7 +241,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                     {
                         objetoRecolectable.ClasificarGolpe();
 
-                        if (Toolbar.Instance.herramientaSeleccionada.item != null && Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar &&
+                        if (Toolbar.Instance.herramientaSeleccionada.item != null && Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaRegar &&
                             objetoRecolectable.regado == false)
                         {
                             Regar(posicion, objetoRecolectable);
@@ -251,13 +251,13 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
                     else if (Toolbar.Instance.herramientaSeleccionada.item != null)
                     {
                         if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
-                            Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaArar)
+                            Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaArar)
                         {
                             Arar(posicion);
                             objetoRecolectable.arado = true;
                         }
 
-                        else if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == nombreHerramientaParaRegar && 
+                        else if (Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaRegar && 
                             objetoRecolectable.regado == false)
                         {
                             Regar(posicion, objetoRecolectable);
@@ -270,7 +270,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
                             if (tileComprobarArado != null)
                             {
-                                objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.worldItem);
+                                objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.itemToPlaceOnworld);
 
                                 ObserverManager.Instance.NotifyObserver("Remove on inventory");
                             }

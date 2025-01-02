@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Azada Madera
   m_EditorClassIdentifier: 
-  nombre: Azada de madera
-  stackeable: 0
+  itemName: Azada de madera
+  stackable: 0
   sprite: {fileID: 21300000, guid: 3981257ef761f0b47acdef6794672237, type: 3}
-  descripcion: "Es una azada b\xE1sica, sirve para arar el suelo para poder plantar
+  description: "Es una azada b\xE1sica, sirve para arar el suelo para poder plantar
     semillas."
-  objetoSuelo: {fileID: 1955759000982958413, guid: 07854cdbf55ba794a90eb8f143163a1c, type: 3}
-  herramienta: azada
-  nivel: 1
-  damageHerramienta: 1
-  energiaPorGolpe: 2
+  droppedItem: {fileID: 1955759000982958413, guid: 07854cdbf55ba794a90eb8f143163a1c, type: 3}
+  tool: hoe
+  level: 1
+  toolDamage: 1
+  energyPerHit: 2
   semilla: 0
-  worldItem: {fileID: 0}
+  itemToPlaceOnworld: {fileID: 0}

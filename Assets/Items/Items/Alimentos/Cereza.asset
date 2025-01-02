@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Cereza
   m_EditorClassIdentifier: 
-  nombre: Cereza
-  stackeable: 1
+  itemName: Cereza
+  stackable: 1
   sprite: {fileID: 21300000, guid: 61e2b53d3eb9f7f4bacd4b4dc6e3e778, type: 3}
-  descripcion: "Es una fruta pequ\xF1a pero muy rica."
-  objetoSuelo: {fileID: 6090392258371669129, guid: f0a5f3d09085bc74a9cd987abf191e59, type: 3}
-  herramienta: 
-  nivel: 0
-  damageHerramienta: 0
+  description: "Es una fruta peque\xF1a pero muy rica."
+  droppedItem: {fileID: 6090392258371669129, guid: f0a5f3d09085bc74a9cd987abf191e59, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
+  semilla: 0
+  itemToPlaceOnworld: {fileID: 0}

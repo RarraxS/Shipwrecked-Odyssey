@@ -1,20 +1,19 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Datos/Item")]
+[CreateAssetMenu(menuName = "Data/Item")]
 public class Item : ScriptableObject
 {
-    //Son las variables que posee un item de inventario
-    public string nombre;
-    public bool stackeable;
+    public string itemName;
+    public bool stackable;
     public Sprite sprite;
-    public string descripcion;
-    public GameObject objetoSuelo;
+    public string description;
+    public GameObject droppedItem;
 
-    public string herramienta;
-    public int nivel;
-    public int damageHerramienta;
-    public int energiaPorGolpe;
+    public string tool;
+    public int level;
+    public int toolDamage;
+    public int energyPerHit;
 
     public bool semilla;
-    public ObjetosRecolectables worldItem;
+    public ObjetosRecolectables itemToPlaceOnworld;
 }

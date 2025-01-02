@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Madera
   m_EditorClassIdentifier: 
-  nombre: Madera
-  stackeable: 1
+  itemName: Madera
+  stackable: 1
   sprite: {fileID: 21300000, guid: 96ef5abb957889a4fbb572d223931bf6, type: 3}
-  descripcion: Es madera.
-  objetoSuelo: {fileID: 8184310260397840728, guid: b9b62a95a5fac0d448dce89b1da057c8, type: 3}
-  herramienta: 
-  nivel: 0
-  damageHerramienta: 0
+  description: Es madera.
+  droppedItem: {fileID: 8184310260397840728, guid: b9b62a95a5fac0d448dce89b1da057c8, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
+  semilla: 0
+  itemToPlaceOnworld: {fileID: 0}

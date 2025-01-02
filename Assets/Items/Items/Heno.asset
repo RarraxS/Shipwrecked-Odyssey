@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Heno
   m_EditorClassIdentifier: 
-  nombre: Heno
-  stackeable: 1
+  itemName: Heno
+  stackable: 1
   sprite: {fileID: 21300000, guid: d8bb3e340a109cd439b3bcd1e992ddd8, type: 3}
-  descripcion: "El heno puede ser usado para atraer a los animales as\xED como para
-    derles de comer."
-  objetoSuelo: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
-  herramienta: 
-  nivel: 0
-  damageHerramienta: 0
+  description: "El heno puede ser usado para atraer a los animales as\xED como para
+    darles de comer."
+  droppedItem: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
+  semilla: 0
+  itemToPlaceOnworld: {fileID: 0}

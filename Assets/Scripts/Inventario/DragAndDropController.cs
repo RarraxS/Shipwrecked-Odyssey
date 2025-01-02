@@ -58,7 +58,7 @@ public class DragAndDropController : MonoBehaviour
 
             //Si el objeto del DnD es stackeable y la cantidad es mayor a 1 entonces se muestra
             //el texto con el número de unidades que se tiene, sino, el texto no se muestra
-            if (cantidadDnD > 1 && itemDnD.stackeable == true)
+            if (cantidadDnD > 1 && itemDnD.stackable == true)
             {
                 textDnD.text = cantidadDnD.ToString();
             }
@@ -219,13 +219,13 @@ public class DragAndDropController : MonoBehaviour
                     {
                         if (cantBarraMaxDnD > 0)
                         {
-                            PickUpItem pickUpDrop = itemDnD.objetoSuelo.gameObject.GetComponent<PickUpItem>();
+                            PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
 
                             pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
                             pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
                         }
 
-                        GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
+                        GameObject itemSuelo = Instantiate(itemDnD.droppedItem, worldPosition, Quaternion.identity);
                     }
 
                     ReiniciarContenedorDnD();
@@ -248,13 +248,13 @@ public class DragAndDropController : MonoBehaviour
 
                     if (cantBarraMaxDnD > 0)
                     {
-                        PickUpItem pickUpDrop = itemDnD.objetoSuelo.gameObject.GetComponent<PickUpItem>();
+                        PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
 
                         pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
                         pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
                     }
 
-                    GameObject itemSuelo = Instantiate(itemDnD.objetoSuelo, worldPosition, Quaternion.identity);
+                    GameObject itemSuelo = Instantiate(itemDnD.droppedItem, worldPosition, Quaternion.identity);
                     cantidadDnD -= 1;
 
                     if (cantidadDnD <= 0)

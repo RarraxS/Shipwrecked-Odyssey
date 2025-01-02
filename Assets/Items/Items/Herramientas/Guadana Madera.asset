@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
   m_Name: Guadana Madera
   m_EditorClassIdentifier: 
-  nombre: "Guada\xF1a de madera"
-  stackeable: 0
+  itemName: "Guada\xF1a de madera"
+  stackable: 0
   sprite: {fileID: 21300000, guid: 4f81bd3bd06099e4385bf15e70a2691d, type: 3}
-  descripcion: "Es una guada\xF1a b\xE1sica, te sirve para poder recolectar los cultivos
+  description: "Es una guada\xF1a b\xE1sica, te sirve para poder recolectar los cultivos
     una vez hayan crecido."
-  objetoSuelo: {fileID: 6370790712506208730, guid: 281d872934cd2214ba126e247d9cc654, type: 3}
-  herramienta: guadana
-  nivel: 1
-  damageHerramienta: 1
+  droppedItem: {fileID: 6370790712506208730, guid: 281d872934cd2214ba126e247d9cc654, type: 3}
+  tool: scythe
+  level: 1
+  toolDamage: 1
+  energyPerHit: 0
   semilla: 0
-  worldItem: {fileID: 0}
+  itemToPlaceOnworld: {fileID: 0}

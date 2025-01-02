@@ -53,7 +53,7 @@ public class PickUpItem : MonoBehaviour
         {
             permitirMovimiento = false;
 
-            if (item == Inventario.Instance.slotInventario[i].item && item.stackeable == true ||
+            if (item == Inventario.Instance.slotInventario[i].item && item.stackable == true ||
                 Inventario.Instance.slotInventario[i].item == null)
             {
                 permitirMovimiento = true;
@@ -81,7 +81,7 @@ public class PickUpItem : MonoBehaviour
 
             for (int i = 0; i < Inventario.Instance.slotInventario.Length; i++)
             {
-                if (item == Inventario.Instance.slotInventario[i].item && item.stackeable == true)
+                if (item == Inventario.Instance.slotInventario[i].item && item.stackable == true)
                 {
                     //Suma objetos a un espacio ya existente
                     Inventario.Instance.Sumar(i);

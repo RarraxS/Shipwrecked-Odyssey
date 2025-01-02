@@ -73,12 +73,12 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         {
             if (Toolbar.Instance.herramientaSeleccionada.item != null)
             {
-                if (Toolbar.Instance.herramientaSeleccionada.item.herramienta == herramientaNecesaria && 
-                    Toolbar.Instance.herramientaSeleccionada.item.herramienta != "")
+                if (Toolbar.Instance.herramientaSeleccionada.item.tool == herramientaNecesaria && 
+                    Toolbar.Instance.herramientaSeleccionada.item.tool != "")
                 {
-                    Golpear(Toolbar.Instance.herramientaSeleccionada.item.damageHerramienta);
+                    Golpear(Toolbar.Instance.herramientaSeleccionada.item.toolDamage);
 
-                    Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energiaPorGolpe;
+                    Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energyPerHit;
                 }
 
                 else if (herramientaNecesaria == "")
