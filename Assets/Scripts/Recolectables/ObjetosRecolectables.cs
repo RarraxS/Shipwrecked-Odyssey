@@ -21,7 +21,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
     [SerializeField] private string estacionDeCultivo;
     public int numDiasPasados, numDiasParaCrecer;
     public bool arado, regado;
-    private VariablesParentItems varParent;
+    private ParentVariablesColectableItems varParent;
 
 
     public bool rotarEntrarColision;
@@ -54,7 +54,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
         componenteHitboxSinColision = objetoSinColision.GetComponent<PolygonCollider2D>();
         componenteAnimator = GetComponent<Animator>();
 
-        varParent = GetComponentInParent<VariablesParentItems>();
+        varParent = GetComponentInParent<ParentVariablesColectableItems>();
 
 
         if (iniciarSinObjeto == true)
@@ -278,7 +278,7 @@ public class ObjetosRecolectables : MonoBehaviour, IObserver
                 position += new Vector3Int(-1, -1, 0);
 
 
-                varParent.tilemapRegar.SetTile(position, varParent.tileRegar);
+                varParent.tilemapWatered.SetTile(position, varParent.tileWatered);
             }
         }
     }

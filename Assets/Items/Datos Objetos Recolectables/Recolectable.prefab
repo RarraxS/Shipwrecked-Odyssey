@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7655d6a06501ea94381a30673a508a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoPrincipal: {fileID: 9199462507180230400}
+  mainItem: {fileID: 9199462507180230400}
 --- !u!1 &9199462507180230400
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   estacionDeCultivo: 0
   numDiasPasados: 0
   numDiasParaCrecer: 0
+  arado: 0
   regado: 0
   rotarEntrarColision: 0
   ignorarTransparencia: 0
