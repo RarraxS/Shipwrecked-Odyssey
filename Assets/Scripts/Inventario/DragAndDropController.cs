@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class DragAndDropController : MonoBehaviour
 {
@@ -215,18 +216,17 @@ public class DragAndDropController : MonoBehaviour
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     worldPosition.z = 0;
 
-                    for (int i = 0; i < cantidadDnD; i++)
+                    PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
+
+                    if (cantBarraMaxDnD > 0)
                     {
-                        if (cantBarraMaxDnD > 0)
-                        {
-                            PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
-
-                            pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
-                            pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
-                        }
-
-                        GameObject itemSuelo = Instantiate(itemDnD.droppedItem, worldPosition, Quaternion.identity);
+                        pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
+                        pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
                     }
+
+                    pickUpDrop.quantity = cantidadDnD;
+
+                    GameObject itemSuelo = Instantiate(itemDnD.droppedItem, worldPosition, Quaternion.identity);
 
                     ReiniciarContenedorDnD();
                 }
@@ -246,13 +246,15 @@ public class DragAndDropController : MonoBehaviour
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     worldPosition.z = 0;
 
+                    PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
+
                     if (cantBarraMaxDnD > 0)
                     {
-                        PickUpItem pickUpDrop = itemDnD.droppedItem.gameObject.GetComponent<PickUpItem>();
-
                         pickUpDrop.cantidadBarraActual = cantBarraActualDnD;
                         pickUpDrop.cantidadBarraMaxima = cantBarraMaxDnD;
                     }
+
+                    pickUpDrop.quantity = 1;
 
                     GameObject itemSuelo = Instantiate(itemDnD.droppedItem, worldPosition, Quaternion.identity);
                     cantidadDnD -= 1;

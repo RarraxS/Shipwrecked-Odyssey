@@ -50,4 +50,6 @@ public class ItemPool : MonoBehaviour
         itemList[itemList.Count - 1].SetActive(true);
         return itemList[itemList.Count - 1];
     }
+
+    //Queda programar el que se use la pool
 }

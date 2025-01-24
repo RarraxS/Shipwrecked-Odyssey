@@ -100,5 +100,6 @@ MonoBehaviour:
   distanciaMaximaInteraccion: 4
   velocidad: 8
   item: {fileID: 0}
+  quantity: 1
   cantidadBarraActual: 0
   cantidadBarraMaxima: 0
