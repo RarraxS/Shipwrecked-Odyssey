@@ -182,7 +182,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
     // Regar ------------------------------------------------------------------
 
-    private void Regar(Vector3Int posicion, ObjetosRecolectables objetoRecolectable)
+    private void Regar(Vector3Int posicion, CollectableObject objetoRecolectable)
     {
         TileBase tileArado = arado.GetTile(posicion);
 
@@ -192,7 +192,7 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         if (tileArado != null && Toolbar.Instance.herramientaSeleccionada.cantidadBarraActual > 0 )
         {
             regar.SetTile(posicion, piezaRegar);
-            objetoRecolectable.regado = true;
+            objetoRecolectable.watered = true;
             ObserverManager.Instance.NotifyObserverNum("Remove on item uses", Toolbar.Instance.herramientaActual);
             Jugador.Instance.energia -= Toolbar.Instance.herramientaSeleccionada.item.energyPerHit;
         }
@@ -232,17 +232,17 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
         {
             if(collider != null && collider.gameObject.name != gameObject.name)
             {
-                ObjetosRecolectables objetoRecolectable = collider.gameObject.GetComponent<ObjetosRecolectables>();
+                CollectableObject objetoRecolectable = collider.gameObject.GetComponent<CollectableObject>();
 
                 if (objetoRecolectable != null)
                 {
-                    if (objetoRecolectable.componenteSpriteRenderer.enabled && posicionObjeto == objetoRecolectable.transform.position 
-                        && objetoRecolectable.permitirGolpear == true )
+                    if (objetoRecolectable.spriteRendererComponent.enabled && posicionObjeto == objetoRecolectable.transform.position 
+                        && objetoRecolectable.allowHitting == true )
                     {
-                        objetoRecolectable.ClasificarGolpe();
+                        objetoRecolectable.ClasifyHit();
 
                         if (Toolbar.Instance.herramientaSeleccionada.item != null && Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaRegar &&
-                            objetoRecolectable.regado == false)
+                            objetoRecolectable.watered == false)
                         {
                             Regar(posicion, objetoRecolectable);
                         }
@@ -250,27 +250,27 @@ public class ControladorHerramientas : MonoBehaviour, IObserver
 
                     else if (Toolbar.Instance.herramientaSeleccionada.item != null)
                     {
-                        if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                        if (objetoRecolectable.spriteRendererComponent.enabled == false &&
                             Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaArar)
                         {
                             Arar(posicion);
-                            objetoRecolectable.arado = true;
+                            objetoRecolectable.plowted = true;
                         }
 
                         else if (Toolbar.Instance.herramientaSeleccionada.item.tool == nombreHerramientaParaRegar && 
-                            objetoRecolectable.regado == false)
+                            objetoRecolectable.watered == false)
                         {
                             Regar(posicion, objetoRecolectable);
                         }
 
-                        else if (objetoRecolectable.componenteSpriteRenderer.enabled == false &&
+                        else if (objetoRecolectable.spriteRendererComponent.enabled == false &&
                             Toolbar.Instance.herramientaSeleccionada.item.semilla == true)
                         {
                             TileBase tileComprobarArado = arado.GetTile(posicion);
 
                             if (tileComprobarArado != null)
                             {
-                                objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.itemToPlaceOnworld);
+                                objetoRecolectable.CambiarAndAparecerObjeto(Toolbar.Instance.herramientaSeleccionada.item.itemToPlaceOnWorld);
 
                                 ObserverManager.Instance.NotifyObserver("Remove on inventory");
                             }

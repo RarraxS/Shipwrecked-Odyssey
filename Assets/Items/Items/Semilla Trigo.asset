@@ -23,4 +23,4 @@ MonoBehaviour:
   toolDamage: 0
   energyPerHit: 0
   semilla: 1
-  itemToPlaceOnworld: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}
+  itemToPlaceOnWorld: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}

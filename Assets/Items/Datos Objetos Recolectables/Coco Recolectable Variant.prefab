@@ -32,6 +32,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7e84e172ab9ee3e4eb4eece3210350b3, type: 2}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].dropItem
+      value: 
+      objectReference: {fileID: 7176542665701264434, guid: ee2a5d36d2db1804798fa5c09c61e886, type: 3}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].dropeable
       value: 
       objectReference: {fileID: 7176542665701264434, guid: ee2a5d36d2db1804798fa5c09c61e886, type: 3}
@@ -40,11 +44,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7276041121302367}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
-      propertyPath: spawneables.Array.data[0].probabilidad
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
-      propertyPath: spawneables.Array.data[1].probabilidad
+      propertyPath: drops.Array.data[0].probabilities.Array.data[0].quantity
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[1].cantidad
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].probabilities.Array.data[0].probability
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].probabilidad

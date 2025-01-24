@@ -177,57 +177,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df241b56f775e34e9e0b45599b1c100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iniciarSinObjeto: 0
-  herramientaNecesaria: 
-  nivelMinimoDeHerramienta: 0
-  permitirGolpear: 1
-  energiaGolpear: 0
-  puntosDeVida: 1
+  startWithoutObject: 0
+  requiredTool: 
+  minimumToolLevel: 0
+  allowHitting: 1
+  energyPerHit: 0
+  healthPoints: 1
   drops:
-  - dropeable: {fileID: 0}
-    probabilidades:
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-  - dropeable: {fileID: 0}
-    probabilidades:
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-  - dropeable: {fileID: 0}
-    probabilidades:
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-    - cantidad: 0
-      probabilidad: 0
-  distanciaMaximaAparicion: 2
-  semilla: 0
-  estacionDeCultivo: 0
-  numDiasPasados: 0
-  numDiasParaCrecer: 0
-  arado: 0
-  regado: 0
-  rotarEntrarColision: 0
-  ignorarTransparencia: 0
-  objetoSinColision: {fileID: 1036944312968333535}
-  colorTransparencia: {r: 1, g: 1, b: 1, a: 0.6509804}
-  componenteSpriteRenderer: {fileID: 9199462507180230407}
-  componenteHitboxColision: {fileID: 82235802063802782}
-  componenteHitboxSinColision: {fileID: 2224636285734665121}
-  componenteAnimator: {fileID: 1052049730215737564}
-  spawneables:
+  - dropItem: {fileID: 0}
+    probabilities:
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+  - dropItem: {fileID: 0}
+    probabilities:
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+  - dropItem: {fileID: 0}
+    probabilities:
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+    - quantity: 0
+      probability: 0
+  maximumSpawnDistance: 2
+  seed: 0
+  daysToGrow: 0
+  totalDaysToGrow: 0
+  plowted: 0
+  watered: 0
+  rotateOnCollisionEnter: 0
+  ignoreTransparency: 0
+  noCollisionItem: {fileID: 1036944312968333535}
+  semitransparencyColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+  spriteRendererComponent: {fileID: 9199462507180230407}
+  collisionComponent: {fileID: 82235802063802782}
+  isTriggerCollisionComponent: {fileID: 2224636285734665121}
+  animatorComponent: {fileID: 1052049730215737564}
+  objectsToSpawn:
   - worldItem: {fileID: 7792818676749412848, guid: a6684d928a153574c89b1d83fd35897c, type: 3}
-    probabilidad: 0
+    probability: 0.5
   - worldItem: {fileID: 7276041121302367, guid: deb8e9dd29160e2478e719b9c42c5a03, type: 3}
-    probabilidad: 0
+    probability: 0.5
 --- !u!60 &82235802063802782
 PolygonCollider2D:
   m_ObjectHideFlags: 0

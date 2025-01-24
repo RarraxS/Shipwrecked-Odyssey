@@ -4,26 +4,26 @@ public class RecolectablesSinColision : MonoBehaviour
 {
     [SerializeField] private GameObject mainItem;
 
-    private ObjetosRecolectables item;
+    private CollectableObject item;
 
     private void Start()
     {
-        item = mainItem.GetComponent<ObjetosRecolectables>();
+        item = mainItem.GetComponent<CollectableObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == Jugador.Instance.gameObject.name
-            && item.rotarEntrarColision == true && item.componenteSpriteRenderer.enabled == true)
+            && item.rotateOnCollisionEnter == true && item.spriteRendererComponent.enabled == true)
         {
-            item.componenteAnimator.SetTrigger("rotar");
+            item.animatorComponent.SetTrigger("rotar");
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == Jugador.Instance.gameObject.name &&
-            item.componenteSpriteRenderer.enabled == true)
+            item.spriteRendererComponent.enabled == true)
         {
             item.TransparentarObjeto();
         }
@@ -32,7 +32,7 @@ public class RecolectablesSinColision : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == Jugador.Instance.gameObject.name && 
-            item.componenteSpriteRenderer.enabled == true)
+            item.spriteRendererComponent.enabled == true)
         {
             item.RestablecerColor();
         }

@@ -8,16 +8,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: seed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: semilla
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: daysToGrow
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: requiredTool
+      value: scythe
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: permitirGolpear
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: totalDaysToGrow
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: minimumToolLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: numDiasParaCrecer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: ignoreTransparency
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: rotarEntrarColision
@@ -32,9 +56,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: rotateOnCollisionEnter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: nivelMinimoDeHerramienta
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].dropItem
+      value: 
+      objectReference: {fileID: 4096900679469209668, guid: defb776acc598264283fccdea946f72a, type: 3}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].dropItem
+      value: 
+      objectReference: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].dropeable
       value: 
@@ -44,12 +80,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7530549148776135882, guid: e2c929e684986f245a459309dbe0854f, type: 3}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
-      propertyPath: spawneables.Array.data[0].probabilidad
-      value: 1
+      propertyPath: drops.Array.data[0].probabilities.Array.data[0].quantity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
-      propertyPath: spawneables.Array.data[1].probabilidad
-      value: 1
+      propertyPath: drops.Array.data[0].probabilities.Array.data[1].quantity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].probabilities.Array.data[2].quantity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[0].quantity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[1].quantity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[2].quantity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].cantidad
@@ -74,6 +126,30 @@ PrefabInstance:
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[1].probabilidades.Array.data[2].cantidad
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].probabilities.Array.data[0].probability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].probabilities.Array.data[1].probability
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[0].probabilities.Array.data[2].probability
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[0].probability
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[1].probability
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
+      propertyPath: drops.Array.data[1].probabilities.Array.data[2].probability
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 82235802063802777, guid: 50783db975c240e47a0a562357cb6b4d, type: 3}
       propertyPath: drops.Array.data[0].probabilidades.Array.data[0].probabilidad
