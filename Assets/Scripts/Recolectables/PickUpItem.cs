@@ -100,7 +100,9 @@ public class PickUpItem : MonoBehaviour
                     {
                         //Añade un nuevo espacio
                         Inventario.Instance.AnadirInventario(i, item, quantity, cantidadBarraActual, cantidadBarraMaxima);
-                        Destroy(gameObject);
+                        
+                        gameObject.SetActive(false);
+
                         break;
                     }
                 }

@@ -8,8 +8,17 @@ public class ItemPool : MonoBehaviour
     [SerializeField] private List<GameObject> itemList;
     [SerializeField] private int poolSize;
 
+    private Transform tr;
+    private List<Transform> transformList;
+    private List<PickUpItem> pickUpItemList;
+
     private static ItemPool instance;
     public static ItemPool Instance { get { return instance; } }
+    private ItemPool()
+    {
+        transformList = new List<Transform>();
+        pickUpItemList = new List<PickUpItem>();
+    }
 
     private void Awake()
     {
@@ -29,18 +38,42 @@ public class ItemPool : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject item = Instantiate(itemPrefab);
+
             item.SetActive(false);
-            itemList.Add(item);
             item.transform.parent = transform;
+            itemList.Add(item);
+
+            //tr = item.GetComponent<Transform>();
+            //transformList.Add(tr);
+
+            PickUpItem pickUpItem = item.GetComponent<PickUpItem>();
+
+            //PickUpItem itemPU = item.gameObject.GetComponent<PickUpItem>();
+
+            pickUpItemList.Add(pickUpItem);
+
+            //PickUpItem pickUpItem = item.GetComponent<PickUpItem>();
+            //if (pickUpItem != null)
+            //{
+            //    pickUpItemList.Add(pickUpItem);
+            //}
+            //else
+            //{
+            //    Debug.LogWarning($"El GameObject {item.name} no tiene un componente PickUpItem.");
+            //}
+
+            Debug.Log("Salida");
         }
     }
 
-    public GameObject RequestItem()
+    public GameObject RequestItem(Vector3 position)
     {
         for(int i = 0; i < itemList.Count; i++)
         {
             if (!itemList[i].activeSelf)
             {
+                //transformList[i].position = position;
+                itemList[i].transform.position = position;
                 itemList[i].SetActive(true);
                 return itemList[i];
             }
