@@ -4,9 +4,9 @@ public class PickUpItem : MonoBehaviour
 {
     Transform jugador;//Es el objeto al que va a seguir el item
 
-    [SerializeField] float distanciaMaximaInteraccion;//La distancia maxima a la que un objeto seguira al jugador
-    [SerializeField] int velocidad;//La velocidad con la que el objeto persigue al jugador
-    [SerializeField] Item item;//El item que se le sumara al inventario del jugador cuando recoja el objeto
+    public float distanciaMaximaInteraccion;//La distancia maxima a la que un objeto seguira al jugador
+    public int velocidad;//La velocidad con la que el objeto persigue al jugador
+    public Item item;//El item que se le sumara al inventario del jugador cuando recoja el objeto
     public int quantity;
 
     private bool permitirMovimiento;//Se encarga de hacer que un objeto no siga al jugador cuando este no cabe en el inventario
@@ -86,7 +86,7 @@ public class PickUpItem : MonoBehaviour
                 {
                     //Suma objetos a un espacio ya existente
                     Inventario.Instance.Sumar(i, quantity);
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                     dentro = true;
                     break;
                 }

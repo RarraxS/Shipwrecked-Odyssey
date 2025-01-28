@@ -226,7 +226,7 @@ public class DragAndDropController : MonoBehaviour
 
                     pickUpDrop.quantity = cantidadDnD;
 
-                    ItemPool.Instance.RequestItem(worldPosition);
+                    //ItemPool.Instance.RequestItem(worldPosition, );
 
                     ReiniciarContenedorDnD();
                 }

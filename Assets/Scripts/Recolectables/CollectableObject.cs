@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CollectableObject : MonoBehaviour, IObserver
 {
@@ -41,6 +42,9 @@ public class CollectableObject : MonoBehaviour, IObserver
 
     [SerializeField] private List<ItemAndProbability> objectsToSpawn;
 
+    private List<SpriteRenderer> spriteRendererComponentList = new List<SpriteRenderer>();
+    private List<PickUpItem> pickUpItemComponentList = new List<PickUpItem>();
+
 
     private void Start()
     {
@@ -49,6 +53,15 @@ public class CollectableObject : MonoBehaviour, IObserver
         if (startWithoutObject == true)
         {
             DeactivateObject();
+        }
+
+        for(int i = 0; i < drops.Count; i++)
+        {
+            SpriteRenderer _spriteRendererComponent = drops[i].dropItem.GetComponent<SpriteRenderer>();
+            spriteRendererComponentList.Add(_spriteRendererComponent);
+
+            PickUpItem _pickUpItemComponent = drops[i].dropItem.GetComponent<PickUpItem>();
+            pickUpItemComponentList.Add(_pickUpItemComponent);
         }
 
         Observe();
@@ -160,7 +173,18 @@ public class CollectableObject : MonoBehaviour, IObserver
                             Vector3 posicionAleatoria = (UnityEngine.Random.insideUnitSphere * distanciaAparicion) + transformComponent.position;
                             posicionAleatoria.z = 0;
 
-                            Instantiate(drops[dropsCount].dropItem, posicionAleatoria, Quaternion.identity);
+                            GameObject droppedItem = ItemPool.Instance.RequestItem(posicionAleatoria);
+                            
+                            SpriteRenderer spriteRendererComponent = droppedItem.GetComponent<SpriteRenderer>();
+                            spriteRendererComponent.sprite = spriteRendererComponentList[probabilitiesCount].sprite;
+
+                            PickUpItem pickUpItemComponent = droppedItem.GetComponent<PickUpItem>();
+                            pickUpItemComponent.item = pickUpItemComponentList[probabilitiesCount].item;
+                            pickUpItemComponent.quantity = pickUpItemComponentList[probabilitiesCount].quantity;
+                            pickUpItemComponent.cantidadBarraActual = pickUpItemComponentList[probabilitiesCount].cantidadBarraActual;
+                            pickUpItemComponent.cantidadBarraMaxima = pickUpItemComponentList[probabilitiesCount].cantidadBarraMaxima;
+
+                            //Instantiate(drops[dropsCount].dropItem, posicionAleatoria, Quaternion.identity);
                         }
                         break;
                     }

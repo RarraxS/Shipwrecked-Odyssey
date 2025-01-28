@@ -184,7 +184,7 @@ MonoBehaviour:
   energyPerHit: 0
   healthPoints: 1
   drops:
-  - dropItem: {fileID: 0}
+  - dropItem: {fileID: 6453705441346248688, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
     probabilities:
     - quantity: 0
       probability: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
       probability: 0
     - quantity: 0
       probability: 0
-  - dropItem: {fileID: 0}
+  - dropItem: {fileID: 6453705441346248688, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
     probabilities:
     - quantity: 0
       probability: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
       probability: 0
     - quantity: 0
       probability: 0
-  - dropItem: {fileID: 0}
+  - dropItem: {fileID: 6453705441346248688, guid: de019cbdd51b0df43accf6c35b09a31d, type: 3}
     probabilities:
     - quantity: 0
       probability: 0
