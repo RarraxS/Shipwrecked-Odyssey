@@ -23,6 +23,8 @@ public class DayCicle : MonoBehaviour, IObserver
 
         ObserverManager.Instance.AddObserver(this);
 
+        ObserverManager.Instance.RemoveObserver(this);
+
         sunlight = GetComponent<Light2D>();
 
         timeTimer = HudHora.Instance.timeTimer;

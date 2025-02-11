@@ -34,7 +34,7 @@ public class CollectableObject : MonoBehaviour, IObserver
 
     private Transform transformComponent;
 
-    public SpriteRenderer spriteRendererComponent;
+    public SpriteRenderer spriteRendererComponent { get; private set; }
     public PolygonCollider2D collisionComponent;
     public PolygonCollider2D isTriggerCollisionComponent;
     public Animator animatorComponent;
