@@ -8,11 +8,16 @@ public class TimeView : MonoBehaviour
 
     void Start()
     {
-        
+        timeHasChangedEvent.UnityAction += UpdateTime;
     }
 
     void Update()
     {
         
+    }
+
+    private void UpdateTime(int _hours, int _minutes)
+    {
+        Debug.Log("Hola");
     }
 }
