@@ -15,6 +15,8 @@ public class TimeController : MonoBehaviour
     {
         timeContainer = timeSheet.timeBetweenUpdates;
 
+        timeHasChangedEvent?.Invoke(timeSheet.hours, timeSheet.minutes);
+
         //_timeSheet.season = _timeSheet.season += 2;
         //Debug.Log(_timeSheet.season);
     }

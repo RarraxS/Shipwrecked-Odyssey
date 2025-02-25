@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7658208943322302191}
   - component: {fileID: 6587988266582863505}
   - component: {fileID: 5413547155013814162}
+  - component: {fileID: 872825504133012672}
   m_Layer: 5
   m_Name: IMG Time HUD BG
   m_TagString: Untagged
@@ -116,7 +117,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSheet: {fileID: 6587988266582863505}
-  timeHasChangedEvent: {fileID: 0}
+  timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
+--- !u!114 &872825504133012672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173111005265961900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a174d8cd1680dc240b99b3ec832888a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
+  timeText: {fileID: 7855824698521964875}
 --- !u!1 &6434578046597319350
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,3 +459,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
   m_PrefabInstance: {fileID: 4434616395664616001}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7855824698521964875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5805019992375311114, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
+  m_PrefabInstance: {fileID: 4434616395664616001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
