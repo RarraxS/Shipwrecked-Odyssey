@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static TimeSheet;
 
 public class TimeController : MonoBehaviour
 {
@@ -11,11 +13,15 @@ public class TimeController : MonoBehaviour
 
     private float timeContainer;
 
+    private int seasonsEnumLenght;
+
     private void Start()
     {
         timeContainer = timeSheet.timeBetweenUpdates;
 
         timeHasChangedEvent?.Invoke(timeSheet.hours, timeSheet.minutes);
+
+        seasonsEnumLenght = Enum.GetValues(typeof(TimeSheet.Season)).Length;
 
         //_timeSheet.season = _timeSheet.season += 2;
         //Debug.Log(_timeSheet.season);
@@ -81,6 +87,8 @@ public class TimeController : MonoBehaviour
         if (timeSheet.days > timeSheet.daysInAMonth)
         {
             timeSheet.days -= timeSheet.daysInAMonth;
+
+            CheckSeason();
         }
     }
 
@@ -88,4 +96,31 @@ public class TimeController : MonoBehaviour
 
 
     // If hora >= hora mas tarde ( || dormir pero eso en otro script ) -> lanzar evento de pasar día (y ahí actualizar season)
+
+    private void SetNewDay()
+    {
+        timeSheet.hours = timeSheet.wakingUpTime;
+        timeSheet.minutes = 0;
+    }
+
+    private void IsSleepingTime()
+    {
+        if (true)
+        {
+
+        }
+    }
+
+    private void CheckSeason()
+    {
+        if (timeSheet.days > timeSheet.daysInAMonth)
+            UpdateSeason();
+    }
+
+    private void UpdateSeason()
+    {
+        timeSheet.season++;
+
+        timeSheet.season = (Season)((int)timeSheet.season % seasonsEnumLenght);
+    }
 }
