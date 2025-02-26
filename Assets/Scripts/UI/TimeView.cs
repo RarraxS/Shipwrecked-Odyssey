@@ -23,6 +23,6 @@ public class TimeView : MonoBehaviour
     {
         Debug.Log("Hola Carolo, perraco; Shei, si lees esto rata :P");
 
-        timeText.text = _hours.ToString() + ":" + _minutes.ToString();
+        timeText.text = _hours.ToString() + ":" + _minutes.ToString("00");
     }
 }
