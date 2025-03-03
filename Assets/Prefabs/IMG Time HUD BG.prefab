@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e1ecdd351d21442aec0ad562fb9718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  days: 0
-  hours: 0
+  days: 1
+  hours: 6
   minutes: 0
   season: 0
   minutesInAnHour: 60
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSheet: {fileID: 6587988266582863505}
+  isSleepingTimeEvent: {fileID: 11400000, guid: 8c8f6d4fe23e6d14ab430ff902c0bbdb, type: 2}
+  dayHasChangedEvent: {fileID: 11400000, guid: cf69568c739aa954594dd80d12db4b95, type: 2}
   timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
 --- !u!114 &872825504133012672
 MonoBehaviour:
@@ -131,7 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
+  dayHasChangedEvent: {fileID: 11400000, guid: cf69568c739aa954594dd80d12db4b95, type: 2}
   timeText: {fileID: 7855824698521964875}
+  daysText: {fileID: 6126885883035460488}
+  prefixDaysText: "D\xEDa: "
 --- !u!1 &6434578046597319350
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +338,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
   m_PrefabInstance: {fileID: 398710208638818434}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6126885883035460488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5805019992375311114, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
+  m_PrefabInstance: {fileID: 398710208638818434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4434616395664616001
 PrefabInstance:
   m_ObjectHideFlags: 0

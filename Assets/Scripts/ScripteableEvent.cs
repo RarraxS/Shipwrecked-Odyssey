@@ -21,5 +21,12 @@ public class ScripteableEventDoubleParameter<T> : ScriptableObject
     }
 }
 
-[CreateAssetMenu(fileName = "Scripteable Event Double Parameter Int", menuName = "Events/Scriptable")]
+[CreateAssetMenu(fileName = "Scripteable Event Single Parameter Bool", menuName = "Scripteable Event/Single Parameter/Bool")]
+public class ScripteableEventSingleParameterBool : ScripteableEventSingleParameter<bool> { }
+
+[CreateAssetMenu(fileName = "Scripteable Event Single Parameter Int", menuName = "Scripteable Event/Single Parameter/Int")]
+public class ScripteableEventSingleParameterInt : ScripteableEventSingleParameter<int> { }
+
+
+[CreateAssetMenu(fileName = "Scripteable Event Double Parameter Int", menuName = "Scripteable Event/Double Parameter/Int")]
 public class ScripteableEventDoubleParameterInt : ScripteableEventDoubleParameter<int> { }

@@ -9,17 +9,23 @@ public class TimeController : MonoBehaviour
 {
     [SerializeField] private TimeSheet timeSheet;
 
+    [SerializeField] private ScripteableEventSingleParameterBool isSleepingTimeEvent;
+    [SerializeField] private ScripteableEventSingleParameterInt dayHasChangedEvent;
     [SerializeField] private ScripteableEventDoubleParameterInt timeHasChangedEvent;
 
     private float timeContainer;
 
     private int seasonsEnumLenght;
 
+    private void OnEnable()
+    {
+        CallHasTimeChangedEvent();
+        CallHasDayChangedEvent();
+    }
+
     private void Start()
     {
         timeContainer = timeSheet.timeBetweenUpdates;
-
-        timeHasChangedEvent?.Invoke(timeSheet.hours, timeSheet.minutes);
 
         seasonsEnumLenght = Enum.GetValues(typeof(TimeSheet.Season)).Length;
 
@@ -47,7 +53,7 @@ public class TimeController : MonoBehaviour
 
             timeContainer = timeSheet.timeBetweenUpdates;
 
-            timeHasChangedEvent?.Invoke(timeSheet.hours, timeSheet.minutes);
+            CallHasTimeChangedEvent();
         }
     }
 
@@ -78,24 +84,19 @@ public class TimeController : MonoBehaviour
 
             UpdateDays();
         }
+
+        IsSleepingTime();
     }
 
     private void UpdateDays()
     {
         timeSheet.days += 1;
 
+        CallHasDayChangedEvent();
+
         if (timeSheet.days > timeSheet.daysInAMonth)
-        {
             timeSheet.days -= timeSheet.daysInAMonth;
-
-            CheckSeason();
-        }
     }
-
-    //Si me lanzan un evento de dormir 
-
-
-    // If hora >= hora mas tarde ( || dormir pero eso en otro script ) -> lanzar evento de pasar día (y ahí actualizar season)
 
     private void SetNewDay()
     {
@@ -105,9 +106,11 @@ public class TimeController : MonoBehaviour
 
     private void IsSleepingTime()
     {
-        if (true)
+        if (timeSheet.hours == timeSheet.sleepingTime)
         {
-
+            CallIsSleepingTimeEvent();
+            CheckSeason();
+            SetNewDay();
         }
     }
 
@@ -122,5 +125,29 @@ public class TimeController : MonoBehaviour
         timeSheet.season++;
 
         timeSheet.season = (Season)((int)timeSheet.season % seasonsEnumLenght);
+    }
+
+
+
+
+
+
+
+
+
+
+    private void CallIsSleepingTimeEvent()
+    {
+        isSleepingTimeEvent?.Invoke(true);
+    }
+
+    private void CallHasTimeChangedEvent()
+    {
+        timeHasChangedEvent?.Invoke(timeSheet.hours, timeSheet.minutes);
+    }
+
+    private void CallHasDayChangedEvent()
+    {
+        dayHasChangedEvent?.Invoke(timeSheet.days);
     }
 }
