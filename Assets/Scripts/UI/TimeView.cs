@@ -3,8 +3,8 @@ using TMPro;
 
 public class TimeView : MonoBehaviour
 {
-    [SerializeField] private ScripteableEventDoubleParameterInt timeHasChangedEvent;
-    [SerializeField] private ScripteableEventSingleParameterInt dayHasChangedEvent;
+    [SerializeField] private ScriptableEventDoubleParameterInt timeHasChangedEvent;
+    [SerializeField] private ScriptableEventSingleParameterInt dayHasChangedEvent;
 
     [SerializeField] private TMP_Text timeText, daysText;
 

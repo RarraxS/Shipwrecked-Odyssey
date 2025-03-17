@@ -7,9 +7,9 @@ public class TimeController : MonoBehaviour
 {
     [SerializeField] private TimeSheet timeSheet;
 
-    [SerializeField] private ScripteableEventSingleParameterBool isSleepingTimeEvent;
-    [SerializeField] private ScripteableEventSingleParameterInt dayHasChangedEvent;
-    [SerializeField] private ScripteableEventDoubleParameterInt timeHasChangedEvent;
+    [SerializeField] private ScriptableEventSingleParameterBool isSleepingTimeEvent;
+    [SerializeField] private ScriptableEventSingleParameterInt dayHasChangedEvent;
+    [SerializeField] private ScriptableEventDoubleParameterInt timeHasChangedEvent;
 
     private int seasonsEnumLenght;
     private float timeContainer;
