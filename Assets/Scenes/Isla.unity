@@ -531,6 +531,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5413547155013814162, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
+      propertyPath: isSleepingTimeEvent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413547155013814162, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
+      propertyPath: timeHasChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: ad126b1a10aaa4b4aa621c15f60154cc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
