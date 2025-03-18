@@ -451,6 +451,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: IMG Time HUD BG
       objectReference: {fileID: 0}
+    - target: {fileID: 872825504133012672, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
+      propertyPath: dayHasChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c3addb3f9adac844a5c9ed1d3625c41, type: 2}
+    - target: {fileID: 872825504133012672, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
+      propertyPath: timeHasChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
     - target: {fileID: 1860152682007423736, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -532,13 +540,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5413547155013814162, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
+      propertyPath: dayHasChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c3addb3f9adac844a5c9ed1d3625c41, type: 2}
+    - target: {fileID: 5413547155013814162, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
       propertyPath: isSleepingTimeEvent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 8c8f6d4fe23e6d14ab430ff902c0bbdb, type: 2}
     - target: {fileID: 5413547155013814162, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
       propertyPath: timeHasChangedEvent
       value: 
-      objectReference: {fileID: 11400000, guid: ad126b1a10aaa4b4aa621c15f60154cc, type: 2}
+      objectReference: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
