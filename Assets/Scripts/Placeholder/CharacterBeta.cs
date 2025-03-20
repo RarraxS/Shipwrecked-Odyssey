@@ -39,4 +39,9 @@ public class CharacterBeta : MonoBehaviour
 
         rb.position += move;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Enter 2D");
+    }
 }
