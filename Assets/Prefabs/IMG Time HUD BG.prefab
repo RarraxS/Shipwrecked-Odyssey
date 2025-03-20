@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1860152682007423736
 RectTransform:
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSheet: {fileID: 6587988266582863505}
   isSleepingTimeEvent: {fileID: 11400000, guid: 8c8f6d4fe23e6d14ab430ff902c0bbdb, type: 2}
-  dayHasChangedEvent: {fileID: 11400000, guid: cf69568c739aa954594dd80d12db4b95, type: 2}
+  dayHasChangedEvent: {fileID: 11400000, guid: 1c3addb3f9adac844a5c9ed1d3625c41, type: 2}
   timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
 --- !u!114 &872825504133012672
 MonoBehaviour:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeHasChangedEvent: {fileID: 11400000, guid: 1b8e3ca71d16ce247b5f3636cca19e2c, type: 2}
-  dayHasChangedEvent: {fileID: 11400000, guid: cf69568c739aa954594dd80d12db4b95, type: 2}
+  dayHasChangedEvent: {fileID: 11400000, guid: 1c3addb3f9adac844a5c9ed1d3625c41, type: 2}
   timeText: {fileID: 7855824698521964875}
   daysText: {fileID: 6126885883035460488}
   prefixDaysText: "D\xEDa: "
@@ -153,7 +153,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &7710212426516859816
 RectTransform:
@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27.5, y: 15}
+  m_AnchoredPosition: {x: 27.5, y: 14.5}
   m_SizeDelta: {x: 24, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4726241043985611214
@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -13.542107
+      value: -13.542
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15
+      value: 14.53
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -303,6 +303,10 @@ PrefabInstance:
     - target: {fileID: 4324866429871998767, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_Name
       value: TXT PFV Day
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324866429871998767, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5805019992375311114, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_text
@@ -383,11 +387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 79.00085
+      value: 79.0008
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 27.0073
+      value: 26.0137
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -423,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.496256
+      value: -14.482208
       objectReference: {fileID: 0}
     - target: {fileID: 2900730716066933031, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -440,6 +444,10 @@ PrefabInstance:
     - target: {fileID: 4324866429871998767, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_Name
       value: TXT PFV Hour
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324866429871998767, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5805019992375311114, guid: 6eb85c366ff8ccf46a27020311a11f9f, type: 3}
       propertyPath: m_text
