@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TimeSheet : MonoBehaviour
 {
-    public int days,
+    public byte days,
         hours, 
         minutes;
 
@@ -16,7 +16,7 @@ public class TimeSheet : MonoBehaviour
 
     public Season season;
 
-    public int minutesInAnHour, 
+    public byte minutesInAnHour, 
         hoursInADay,
         daysInAMonth,
         wakingUpTime, 
