@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
+  m_Name: Trigo
+  m_EditorClassIdentifier: 
+  itemName: Trigo
+  stackable: 1
+  sprite: {fileID: 21300000, guid: 67cbb92e8fbfa574d8f7631465968512, type: 3}
+  description: "Es uno de los alimentos m\xE1s b\xE1sicos, puede convertirse en productos
+    m\xE1s \xFAtiles si se elabora."
+  droppedItem: {fileID: 4096900679469209668, guid: defb776acc598264283fccdea946f72a, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
+  semilla: 0
+  itemToPlaceOnworld: {fileID: 0}

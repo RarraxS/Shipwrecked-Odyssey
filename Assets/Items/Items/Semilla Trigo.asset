@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb386cd91c6fc34f8857ec288f9d9c8, type: 3}
+  m_Name: Semilla Trigo
+  m_EditorClassIdentifier: 
+  itemName: Semilla de trigo
+  stackable: 1
+  sprite: {fileID: 21300000, guid: 1429b14c773ee1b409bc48618f5b3826, type: 3}
+  description: "Se puede plantar sobre suelo arado y si se riega tarda 4 d\xEDas
+    en crecer."
+  droppedItem: {fileID: 4164725777254123460, guid: dc6ce50487dde3b41b7460fd69c30adc, type: 3}
+  tool: 
+  level: 0
+  toolDamage: 0
+  energyPerHit: 0
+  semilla: 1
+  itemToPlaceOnWorld: {fileID: 8606709364508791451, guid: eae3fad25c40471438b10687a8689dde, type: 3}
