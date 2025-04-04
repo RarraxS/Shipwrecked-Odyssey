@@ -7,5 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Isla.unity
-    guid: 94a1ff9cc9462354187e40597d275d0f
+    guid: 8db76ac0596560642922f503a25efc8b
   m_configObjects: {}

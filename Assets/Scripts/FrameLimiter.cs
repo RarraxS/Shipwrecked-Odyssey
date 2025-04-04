@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class FrameLimiter : MonoBehaviour
 {
-    [SerializeField] private int maxFps;
-    private void Awake()
+    [SerializeField] private int maxFrames;
+
+    void Awake()
     {
-        Application.targetFrameRate = maxFps;
+        Application.targetFrameRate = maxFrames;
     }
 }

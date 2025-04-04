@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Inventario
-  - Jugador
-  - Enemigo
-  - Cama
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -44,19 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Mundo
-    uniqueID: 869069067
-    locked: 0
-  - name: Altos
-    uniqueID: 753705921
-    locked: 0
-  - name: Juego
-    uniqueID: 3423639285
-    locked: 0
-  - name: Efectos
-    uniqueID: 634187243
-    locked: 0
-  - name: UI
-    uniqueID: 1067184595
     locked: 0
