@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TL - Sand Grass Upper Right
+  m_Name: TL - Cliff Center
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1726441433, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
+  m_Sprite: {fileID: -1159609604, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1

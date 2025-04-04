@@ -388,7 +388,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Upper Left
+      name: SPR - Cliff Upper Side
       rect:
         serializedVersion: 2
         x: 0
@@ -399,7 +399,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 4, y: 1}
+        - {x: -2, y: -3}
+        - {x: -5, y: -8}
+        - {x: -8, y: -8}
+        - {x: -3, y: -1}
+        - {x: 8, y: 8}
+        - {x: 8, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: 0b28a0af5f70aa3479ea76b0710bb074
@@ -409,7 +416,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Upper Middle
+      name: SPR - Cliff Upper Side Aux
       rect:
         serializedVersion: 2
         x: 16
@@ -420,7 +427,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 6}
+        - {x: -8, y: 8}
+        - {x: -7, y: 8}
+        - {x: -7, y: 6}
       tessellationDetail: 0
       bones: []
       spriteID: f94a5902711c1d7489e6358a88fdb5de
@@ -430,7 +441,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Upper Right
+      name: SPR - Cliff Upper
       rect:
         serializedVersion: 2
         x: 32
@@ -441,7 +452,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 4}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: 22578b1b52739c64d9ccd9970e10c32f
@@ -472,7 +487,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Middle Left
+      name: SPR - Cliff Side
       rect:
         serializedVersion: 2
         x: 0
@@ -483,7 +498,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: -5, y: 8}
+        - {x: -5, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 04d2463df574a5e439442f776292c490
@@ -493,7 +512,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Middle Right
+      name: SPR - Cliff Lower Side Aux
       rect:
         serializedVersion: 2
         x: 32
@@ -504,7 +523,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 7, y: -8}
+        - {x: 7, y: -7}
+        - {x: 8, y: -7}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 06da50a0cc503d7459f7c502e9f7dfd8
@@ -514,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Lower Left
+      name: SPR - Cliff Lower Side Ope
       rect:
         serializedVersion: 2
         x: 0
@@ -525,7 +548,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: -5, y: 8}
+        - {x: 8, y: -4}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: e80207b469e642e48bda99f286d8c1fc
@@ -546,7 +574,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: -4}
+        - {x: 8, y: -4}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 8349eccf67559ce49ab6f72f30768919
@@ -556,7 +588,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Lower Right
+      name: SPR - Cliff Lower Side Open
       rect:
         serializedVersion: 2
         x: 32
@@ -567,7 +599,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: -4}
+        - {x: 7, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 4afab129590cc7f4fbb71aea6303a06b
@@ -577,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Union Southeast
+      name: SPR - Cliff Side Closed
       rect:
         serializedVersion: 2
         x: 0
@@ -588,7 +625,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 97df9e045b3e99046ab14553a4c055fb
@@ -598,7 +639,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Union Southwest
+      name: SPR - Cliff Lower Middle Aux
       rect:
         serializedVersion: 2
         x: 16
@@ -609,7 +650,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: cb47409b61768dd4daf1541eec718dac
@@ -619,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Union Northeast
+      name: SPR - Cliff Bottom Side Closed
       rect:
         serializedVersion: 2
         x: 0
@@ -630,7 +675,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -6, y: 3}
+        - {x: -8, y: 8}
+        - {x: 8, y: 7}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: f53b60a2e2c008e499a0028ee49062f4
@@ -640,7 +689,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPR - Cliff Union Northwest
+      name: SPR - Cliff Bottom Close
       rect:
         serializedVersion: 2
         x: 16
@@ -651,7 +700,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 79f09f9dbac95794c99ec4b240f86839
@@ -690,7 +743,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -711,7 +764,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -732,7 +785,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -753,7 +806,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -774,7 +827,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -795,7 +848,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -816,7 +869,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -824,6 +877,80 @@ TextureImporter:
       bones: []
       spriteID: ba5151b9bc90fb64688be5b31bb41870
       internalID: 1307193435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR - Cliff Side Open
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcddc82ad363df94ab64520798ff281d
+      internalID: 1743608933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR - Cliff Center
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb2d6748fd7a7848862322f61ca443c
+      internalID: -1159609604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR - Cliff Joint
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6, y: -8}
+        - {x: 8, y: -6}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5eeaefd0ae32f94191179a4bdb7d99c
+      internalID: -339079851
       vertices: []
       indices: 
       edges: []
@@ -839,18 +966,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SPR - Cliff Lower Left: -821107760
+      SPR - Cliff Bottom Close: 2056536680
+      SPR - Cliff Bottom Side Closed: 1166363918
+      SPR - Cliff Center: -1159609604
+      SPR - Cliff Joint: -339079851
       SPR - Cliff Lower Middle: -923425552
-      SPR - Cliff Lower Right: -268169604
-      SPR - Cliff Middle Left: -392311642
-      SPR - Cliff Middle Right: 555782795
-      SPR - Cliff Union Northeast: 1166363918
-      SPR - Cliff Union Northwest: 2056536680
-      SPR - Cliff Union Southeast: -325549388
-      SPR - Cliff Union Southwest: -1485310403
-      SPR - Cliff Upper Left: -1169630391
-      SPR - Cliff Upper Middle: -16012620
-      SPR - Cliff Upper Right: 837865558
+      SPR - Cliff Lower Middle Aux: -1485310403
+      SPR - Cliff Lower Side Aux: 555782795
+      SPR - Cliff Lower Side Ope: -821107760
+      SPR - Cliff Lower Side Open: -268169604
+      SPR - Cliff Side: -392311642
+      SPR - Cliff Side Closed: -325549388
+      SPR - Cliff Side Open: 1743608933
+      SPR - Cliff Upper: 837865558
+      SPR - Cliff Upper Side: -1169630391
+      SPR - Cliff Upper Side Aux: -16012620
       SPR - Decor 1 F 1: -664662601
       SPR - Decor 1 F 2: -1499951861
       SPR - Decor 1 F 3: 1149432446
