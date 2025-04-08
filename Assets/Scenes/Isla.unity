@@ -29973,7 +29973,7 @@ Tilemap:
       - {fileID: -1499951861, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 1149432446, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: -750118704, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 17, y: -9, z: 0}
@@ -30175,7 +30175,7 @@ Tilemap:
       - {fileID: -944388967, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 602647563, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 1671557644, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: -3, z: 0}
@@ -30376,7 +30376,7 @@ Tilemap:
       - {fileID: -944388967, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 602647563, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 1671557644, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 9, y: 2, z: 0}
@@ -30579,10 +30579,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba008b81c2c77a409d12f144f7fbf3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sunnyDayStates: []
-  rainyDayStates: []
-  rainingProbability: 0
   rainParticleEmmiter: {fileID: 0}
+  sunnyDayStates:
+  - hour: 6
+    ilumination: {r: 1, g: 0.627451, b: 0.4784314, a: 1}
+  - hour: 10
+    ilumination: {r: 1, g: 0.9725491, b: 0.9058824, a: 1}
+  - hour: 14
+    ilumination: {r: 0.9686275, g: 0.9686275, b: 1, a: 1}
+  - hour: 18
+    ilumination: {r: 0.9725491, g: 0.29803923, b: 0.2627451, a: 1}
+  - hour: 22
+    ilumination: {r: 0.18039216, g: 0.16862746, b: 0.37254903, a: 1}
+  rainyDayStates:
+  - hour: 6
+    ilumination: {r: 0.5176471, g: 0.6, b: 0.69411767, a: 1}
+  - hour: 10
+    ilumination: {r: 0.60784316, g: 0.69411767, b: 0.78823537, a: 1}
+  - hour: 14
+    ilumination: {r: 0.6392157, g: 0.7058824, b: 0.7490196, a: 1}
+  - hour: 18
+    ilumination: {r: 0.3529412, g: 0.4431373, b: 0.5254902, a: 1}
+  - hour: 22
+    ilumination: {r: 0.1254902, g: 0.15294118, b: 0.18039216, a: 1}
+  rainingProbability: 0
 --- !u!224 &1281922102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1860152682007423736, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
