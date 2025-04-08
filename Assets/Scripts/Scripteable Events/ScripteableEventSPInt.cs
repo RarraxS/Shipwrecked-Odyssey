@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "Scriptable Event Double Parameter Int", menuName = "Scriptable Event/Double Parameter/Int")]
-public class ScriptableEventDoubleParameterInt : ScriptableObject
+[CreateAssetMenu(fileName = "Scriptable Event Single Parameter Int", menuName = "Scriptable Event/Single Parameter/Int")]
+public class ScriptableEventSingleParameterInt : ScriptableObject
 {
-    public UnityAction<int, int> UnityAction;
+    public UnityAction<int> UnityAction;
 
-    public void Invoke(int _value1, int _value2)
+    public void Invoke(int _value)
     {
-        this.UnityAction?.Invoke(_value1, _value2);
+        this.UnityAction?.Invoke(_value);
     }
 }

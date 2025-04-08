@@ -3,8 +3,8 @@ using TMPro;
 
 public class TimeView : MonoBehaviour
 {
-    [SerializeField] private ScriptableEventDoubleParameterInt timeHasChangedEvent;
-    [SerializeField] private ScriptableEventSingleParameterInt dayHasChangedEvent;
+    [SerializeField] private ScriptableEventDoubleParameterByte timeHasChangedEvent;
+    [SerializeField] private ScriptableEventSingleParameterByte dayHasChangedEvent;
 
     [SerializeField] private TMP_Text timeText, daysText;
 
@@ -16,17 +16,13 @@ public class TimeView : MonoBehaviour
         dayHasChangedEvent.UnityAction += UpdateDay;
     }
 
-    private void UpdateTime(int _hours, int _minutes)
+    private void UpdateTime(byte _hours, byte _minutes)
     {
-        //Debug.Log("Hola Carolo, perraco; Shei, si lees esto rata :P");
-
         timeText.text = _hours.ToString() + ":" + _minutes.ToString("00");
     }
 
-    private void UpdateDay(int _day)
+    private void UpdateDay(byte _day)
     {
-        //Debug.Log("Hola Carolo, perraco; Shei, si lees esto rata :P");
-
         daysText.text = prefixDaysText + _day.ToString();
     }
 }

@@ -2,14 +2,13 @@ using System;
 using UnityEngine;
 using static TimeSheet;
 
-
 public class TimeController : MonoBehaviour
 {
     [SerializeField] private TimeSheet timeSheet;
 
     [SerializeField] private ScriptableEventSingleParameterBool isSleepingTimeEvent;
-    [SerializeField] private ScriptableEventSingleParameterInt dayHasChangedEvent;
-    [SerializeField] private ScriptableEventDoubleParameterInt timeHasChangedEvent;
+    [SerializeField] private ScriptableEventSingleParameterByte dayHasChangedEvent;
+    [SerializeField] private ScriptableEventDoubleParameterByte timeHasChangedEvent;
 
     private int seasonsEnumLenght;
     private float timeContainer;
