@@ -5,19 +5,16 @@ using UnityEngine.Rendering.Universal;
 
 public class LightsModel : MonoBehaviour
 {
+    [SerializeField] private GameObject rainParticleEmmiter;
     private Light2D sunlight;
 
     [SerializeField] private List<DayState> sunnyDayStates, 
-                                    rainyDayStates;
-
+        rainyDayStates;
     [SerializeField] private float rainingProbability;
 
-    [SerializeField] private GameObject rainParticleEmmiter;
 
     private bool raining = false;
-
     private float timeTimer;
-
     private int indexDayState = 0;
 }
 
