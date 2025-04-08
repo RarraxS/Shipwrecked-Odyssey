@@ -30088,7 +30088,7 @@ Tilemap:
       - {fileID: -944388967, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 602647563, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
       - {fileID: 1671557644, guid: 480e93b303c688d4a8ec303ffab940bb, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -13, y: -5, z: 0}
@@ -30494,6 +30494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839733323}
   - component: {fileID: 839733322}
+  - component: {fileID: 839733324}
   m_Layer: 0
   m_Name: LHT - Sun Light
   m_TagString: Untagged
@@ -30566,6 +30567,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839733324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839733321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba008b81c2c77a409d12f144f7fbf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sunnyDayStates: []
+  rainyDayStates: []
+  rainingProbability: 0
+  rainParticleEmmiter: {fileID: 0}
 --- !u!224 &1281922102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1860152682007423736, guid: 3cbd8924bebf0374aabd5176435db77c, type: 3}
