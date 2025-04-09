@@ -1,10 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightsController : MonoBehaviour
 {
-    LightsModel lightsModel;
+    [SerializeField] private TimeSheet timeSheet;
+    private LightsModel lightsModel;
+
+    [SerializeField] private ScriptableEventSingleParameterFloat timeBetweenMinutesUpdateEvent;
+
+    private float timeBetweenMinuteChange;
 
     void Start()
     {
