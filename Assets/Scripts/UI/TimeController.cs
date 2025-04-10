@@ -10,8 +10,11 @@ public class TimeController : MonoBehaviour
     [SerializeField] private ScriptableEventSingleParameterByte dayHasChangedEvent;
     [SerializeField] private ScriptableEventDoubleParameterByte timeHasChangedEvent;
 
+    [SerializeField] private ScriptableEventSingleParameterBool askForTimeContainer;
+    [SerializeField] private ScriptableEventSingleParameterFloat timeBetweenMinutesUpdateEvent;
+
     private int seasonsEnumLenght;
-    private float timeContainer;
+    private float totalTimeInTimer, timeContainer;
 
     private void OnEnable()
     {
@@ -21,12 +24,15 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
+        totalTimeInTimer = timeSheet.timeBetweenUpdates;
         timeContainer = timeSheet.timeBetweenUpdates;
 
         seasonsEnumLenght = Enum.GetValues(typeof(TimeSheet.Season)).Length;
 
         isSleepingTimeEvent.UnityAction += CheckSeason;
         isSleepingTimeEvent.UnityAction += SetNewDay;
+
+        askForTimeContainer.UnityAction += SendTimeContainer;
     }
 
     private void Update()
@@ -47,7 +53,7 @@ public class TimeController : MonoBehaviour
         {
             UpdateMinutes();
 
-            timeContainer = timeSheet.timeBetweenUpdates;
+            timeContainer = totalTimeInTimer;
 
             CallHasTimeChangedEvent();
         }
@@ -93,6 +99,11 @@ public class TimeController : MonoBehaviour
     {
         if (IsSleepingTime())
             CallIsSleepingTimeEvent();
+    }
+
+    private void SendTimeContainer(bool _param)
+    {
+        timeBetweenMinutesUpdateEvent?.Invoke(totalTimeInTimer);
     }
 
     private void SetNewDay(bool _param)

@@ -6,6 +6,9 @@ public class LightsController : MonoBehaviour
     private LightsModel lightsModel;
 
     [SerializeField] private ScriptableEventSingleParameterFloat timeBetweenMinutesUpdateEvent;
+    [SerializeField] private ScriptableEventSingleParameterBool askForTimeContainer;
+
+    //Yo llamo a un tio para qyue me llame con otra info de vuelta
 
     private float timeBetweenMinuteChange;
 
